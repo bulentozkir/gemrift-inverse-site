@@ -35,7 +35,7 @@ body::before {
   inset: 0;
   background-image:
     radial-gradient(circle at 8% 18%, var(--cp-border) 0 1px, transparent 2px),
-    radial-gradient(circle at 78% 68%, var(--cp-highlight) 0 2px, transparent 3px),
+    radial-gradient(circle at 78% 68%, color-mix(in srgb, var(--cp-link) 18%, transparent) 0 2px, transparent 3px),
     radial-gradient(circle at 34% 82%, var(--cp-border-strong) 0 1px, transparent 2px);
   background-size: 173px 191px, 257px 223px, 311px 277px;
   content: "";
@@ -69,12 +69,12 @@ img {
 }
 
 ::selection {
-  background: var(--cp-highlight);
+  background: color-mix(in srgb, var(--cp-link) 18%, transparent);
   color: var(--cp-text);
 }
 
 :focus-visible {
-  outline: 3px solid var(--cp-accent);
+  outline: 3px solid var(--cp-link);
   outline-offset: 4px;
 }
 
@@ -135,7 +135,7 @@ img {
 }
 
 .wordmark b {
-  color: var(--cp-accent);
+  color: var(--cp-link);
 }
 
 .primary-nav {
@@ -153,7 +153,7 @@ img {
 
 .primary-nav > a:not(.nav-status):hover,
 .footer-link:hover {
-  color: var(--cp-accent);
+  color: var(--cp-link);
 }
 
 .nav-status {
@@ -173,8 +173,8 @@ img {
   height: 8px;
   flex: 0 0 auto;
   border-radius: 50%;
-  background: var(--cp-accent);
-  box-shadow: 0 0 0 4px var(--cp-accent-soft);
+  background: var(--cp-link);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--cp-link) 18%, transparent);
 }
 
 .menu-toggle {
@@ -190,14 +190,14 @@ img {
   border: 1px solid var(--cp-border);
   border-radius: 0.625rem;
   background: var(--cp-surface);
-  color: var(--cp-accent);
+  color: var(--cp-link);
   font-size: 21px;
   cursor: pointer;
 }
 
 .primary-nav a[aria-current="page"],
 .footer-link[aria-current="page"] {
-  color: var(--cp-accent);
+  color: var(--cp-link);
 }
 
 .hero {
@@ -280,7 +280,7 @@ html[data-theme="light"] .hero::after {
 }
 
 .eyebrow-mark {
-  color: var(--cp-accent);
+  color: var(--cp-link);
   font-size: 18px;
 }
 
@@ -308,7 +308,7 @@ h3 {
 
 .hero h1 span,
 h2 em {
-  color: var(--cp-accent);
+  color: var(--cp-link);
   font-style: normal;
 }
 
@@ -356,12 +356,13 @@ h2 em {
 }
 
 .button-primary {
-  background: var(--cp-accent);
+  background: var(--cp-link);
   color: var(--cp-accent-fg);
 }
 
 .button-primary:hover {
-  background: var(--cp-accent-hover);
+  background: var(--cp-link);
+  filter: brightness(0.9);
 }
 
 .button-outline {
@@ -371,8 +372,8 @@ h2 em {
 }
 
 .button-outline:hover {
-  border-color: var(--cp-accent);
-  background: var(--cp-accent-soft);
+  border-color: var(--cp-link);
+  background: color-mix(in srgb, var(--cp-link) 12%, transparent);
 }
 
 .hero-note {
@@ -481,7 +482,7 @@ h2 em {
 .art-caption-mark i {
   width: 42px;
   height: 1px;
-  background: var(--cp-accent);
+  background: var(--cp-link);
 }
 
 .scroll-cue {
@@ -502,7 +503,7 @@ h2 em {
   width: 17px;
   height: 25px;
   fill: none;
-  stroke: var(--cp-accent);
+  stroke: var(--cp-link);
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.4;
@@ -533,7 +534,7 @@ h2 em {
 }
 
 .section-kicker > span:first-child {
-  color: var(--cp-accent);
+  color: var(--cp-link);
   font-family: Consolas, "Courier New", Courier, monospace;
 }
 
@@ -578,7 +579,7 @@ h2 em {
   align-items: center;
   gap: 11px;
   margin-top: 7px;
-  color: var(--cp-accent);
+  color: var(--cp-link);
   font-size: 13px;
   font-weight: 700;
 }
@@ -635,7 +636,7 @@ h2 em {
   aspect-ratio: 1;
   border: 1px solid var(--cp-border-strong);
   border-radius: 50%;
-  box-shadow: 0 0 0 12px var(--cp-accent-soft), 0 0 0 28px var(--cp-highlight);
+  box-shadow: 0 0 0 12px color-mix(in srgb, var(--cp-link) 12%, transparent), 0 0 0 28px color-mix(in srgb, var(--cp-link) 7%, transparent);
   content: "";
   opacity: 0.45;
 }
@@ -687,8 +688,12 @@ h2 em {
   place-items: center;
   border: 1px solid var(--cp-border);
   border-radius: 50%;
-  color: var(--cp-accent);
+  color: var(--cp-link);
   font-size: 21px;
+}
+
+.principle-card:nth-child(3) .card-glyph {
+  color: var(--cp-warning);
 }
 
 .principle-card h3 {
@@ -716,8 +721,12 @@ h2 em {
 }
 
 .bottom-arrow {
-  color: var(--cp-accent);
+  color: var(--cp-link);
   font-size: 16px;
+}
+
+.principle-card:nth-child(3) .bottom-arrow {
+  color: var(--cp-warning);
 }
 
 .expedition {
@@ -745,7 +754,7 @@ h2 em {
 
 .expedition-heading .eyebrow {
   margin-bottom: 14px;
-  color: var(--cp-accent);
+  color: var(--cp-link);
 }
 
 .expedition-deck {
@@ -843,7 +852,7 @@ h2 em {
 .art-side-line {
   width: 1px;
   height: 72px;
-  background: var(--cp-accent);
+  background: var(--cp-link);
 }
 
 .expedition-bottom {
@@ -943,7 +952,7 @@ h2 em {
   width: min(83%, 340px);
   max-height: 425px;
   object-fit: contain;
-  filter: drop-shadow(0 10px 18px var(--cp-highlight));
+  filter: drop-shadow(0 10px 18px color-mix(in srgb, var(--cp-link) 18%, transparent));
 }
 
 .milo-coordinate,
@@ -997,7 +1006,7 @@ h2 em {
 }
 
 .milo-caption span {
-  color: var(--cp-accent);
+  color: var(--cp-link);
 }
 
 .milo-copy {
@@ -1044,7 +1053,7 @@ h2 em {
   inset: 0;
   background-image:
     repeating-linear-gradient(0deg, transparent 0 39px, var(--cp-border) 40px, transparent 41px),
-    radial-gradient(circle at 15% 28%, var(--cp-highlight) 0 1px, transparent 2px);
+    radial-gradient(circle at 15% 28%, color-mix(in srgb, var(--cp-link) 18%, transparent) 0 1px, transparent 2px);
   background-size: 100% 160px, 211px 227px;
   content: "";
   opacity: 0.2;
@@ -1082,7 +1091,7 @@ h2 em {
 }
 
 .wildlife-entry:hover {
-  background-color: var(--cp-accent-soft);
+  background-color: color-mix(in srgb, var(--cp-link) 12%, transparent);
 }
 
 .wildlife-no {
@@ -1099,7 +1108,7 @@ h2 em {
   border: 1px solid var(--cp-border-strong);
   border-radius: 0.625rem;
   background: var(--cp-bg-elevated);
-  color: var(--cp-accent);
+  color: var(--cp-link);
   box-shadow: inset 0 0 0 4px var(--cp-surface-soft);
   transition: transform 180ms ease, border-color 180ms ease;
 }
@@ -1116,7 +1125,7 @@ h2 em {
 
 .wildlife-entry:hover .wildlife-symbol {
   transform: translateY(-2px);
-  border-color: var(--cp-accent);
+  border-color: var(--cp-link);
 }
 
 .wildlife-entry h3 {
@@ -1140,7 +1149,7 @@ h2 em {
 
 .wildlife-entry:hover .wildlife-arrow {
   transform: translate(2px, -2px);
-  color: var(--cp-accent);
+  color: var(--cp-link);
 }
 
 .closing {
@@ -1159,7 +1168,7 @@ h2 em {
   border: 1px solid var(--cp-border);
   border-radius: 16px;
   background:
-    radial-gradient(ellipse at 50% 50%, var(--cp-accent-soft), transparent 58%),
+    radial-gradient(ellipse at 50% 50%, color-mix(in srgb, var(--cp-link) 12%, transparent), transparent 58%),
     var(--cp-bg-elevated);
   text-align: center;
 }
@@ -1231,8 +1240,8 @@ h2 em {
   left: 51%;
   width: 8px;
   height: 8px;
-  border-color: var(--cp-accent);
-  background: var(--cp-accent);
+  border-color: var(--cp-warning);
+  background: var(--cp-warning);
 }
 
 .site-footer {
@@ -1266,11 +1275,11 @@ h2 em {
 
 .footer-inner p span {
   margin-inline: 5px;
-  color: var(--cp-accent);
+  color: var(--cp-link);
 }
 
 .footer-link span {
-  color: var(--cp-accent);
+  color: var(--cp-link);
 }
 
 .footer-links {
@@ -1369,7 +1378,7 @@ code {
 .document-content a:not(.button),
 .support-layout a:not(.button),
 .field-note a {
-  color: var(--cp-accent);
+  color: var(--cp-link);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -1402,7 +1411,7 @@ code {
 }
 
 .document-heading h1 em {
-  color: var(--cp-accent);
+  color: var(--cp-link);
   font-style: normal;
 }
 
@@ -1434,7 +1443,7 @@ code {
 }
 
 .document-nav a:hover {
-  color: var(--cp-accent);
+  color: var(--cp-link);
 }
 
 .document-content {
@@ -1504,7 +1513,7 @@ code {
 }
 
 .faq-list summary::after {
-  color: var(--cp-accent);
+  color: var(--cp-link);
   font-size: 23px;
   font-weight: 400;
   content: "+";
@@ -1656,7 +1665,7 @@ code {
 
 .not-found-number {
   margin-bottom: 15px;
-  color: var(--cp-accent);
+  color: var(--cp-link);
   font-family: Consolas, "Courier New", Courier, monospace;
   font-size: clamp(80px, 18vw, 160px);
   line-height: 1;
