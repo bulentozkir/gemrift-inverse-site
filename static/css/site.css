@@ -1267,7 +1267,7 @@ code {
 }
 
 .faq-list details[open] summary::after {
-  content: "−";
+  content: "\2212";
 }
 
 .faq-list details p,

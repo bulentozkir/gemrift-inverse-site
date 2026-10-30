@@ -77,12 +77,14 @@
 
       if (file) {
         const name = file.name.replace(/[^\x20-\x7e]|["\\]/g, "_") || "attachment";
+        const encodedName = encodeURIComponent(file.name).replace(/['()*]/g, (character) =>
+          `%${character.charCodeAt(0).toString(16).toUpperCase()}`);
         lines.push(
           `--${boundary}`,
           "Content-Type: application/octet-stream",
           "Content-Transfer-Encoding: base64",
           `Content-Disposition: attachment; filename="${name}";`,
-          ` filename*=UTF-8''${encodeURIComponent(file.name)}`,
+          ` filename*=UTF-8''${encodedName}`,
           "",
           wrapBase64(toBase64(new Uint8Array(await file.arrayBuffer())))
         );
