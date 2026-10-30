@@ -8,10 +8,10 @@ Open `index.html` directly, or serve this folder with any static file server. Th
 
 ## GitHub Pages
 
-The workflow in `.github/workflows/pages.yml` deploys the site when changes are pushed to `main` and when manually run.
+The single workflow in `.github/workflows/static.yml` deploys the site when changes are pushed to `main` and when manually run.
 
 1. Open [repository Settings → Pages](https://github.com/bulentozkir/gemrift-inverse-site/settings/pages) and select **GitHub Actions** as the build and deployment source if it is not already selected. Pages must be enabled before the workflow can deploy.
-2. Push to `main`, or run **Deploy static site to GitHub Pages** from the **Actions** tab.
+2. Push to `main`, or run **Deploy static content to Pages** from the **Actions** tab.
 
 Published URL: **https://bulentozkir.github.io/gemrift-inverse-site/** (note the hyphen between `gemrift` and `inverse`).
 
