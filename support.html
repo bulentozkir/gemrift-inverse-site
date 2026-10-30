@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Get help with Gemrift inverse, read the development FAQ, and prepare a support email without uploading anything.">
+    <link rel="canonical" href="https://bulentozkir.github.io/gemrift-inverse-site/support.html">
+    <link rel="icon" type="image/png" href="static/images/gemrift-inverse-icon.png">
+    <link rel="stylesheet" href="static/css/site.css">
+    <title>Support — Gemrift inverse</title>
+    <script>
+      (() => {
+        const param = new URLSearchParams(window.location.search).get("scoutTheme");
+        const theme =
+          param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+        --cp-bg: #f7f4ef;
+        --cp-bg-elevated: #fcfbf8;
+        --cp-surface: #ffffff;
+        --cp-surface-soft: #f5f5f5;
+        --cp-border: #dedede;
+        --cp-border-strong: #919191;
+        --cp-text: #242424;
+        --cp-text-muted: #5c5c5c;
+        --cp-text-soft: #6f6f6f;
+        --cp-accent: #b11f4b;
+        --cp-accent-hover: #9a1a41;
+        --cp-accent-soft: rgba(177, 31, 75, 0.08);
+        --cp-accent-fg: #ffffff;
+        --cp-success: #16a34a;
+        --cp-danger: #dc2626;
+        --cp-warning: #f59e0b;
+        --cp-link: #0078d4;
+        --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+        --cp-overlay: rgba(255, 255, 255, 0.8);
+        --cp-panel: rgba(255, 255, 255, 0.86);
+        --cp-panel-strong: rgba(255, 255, 255, 0.96);
+        --cp-sheen: rgba(255, 255, 255, 0.55);
+        --cp-highlight: rgba(177, 31, 75, 0.12);
+      }
+      html[data-theme="dark"] {
+        color-scheme: dark;
+        --cp-bg: #3d3b3a;
+        --cp-bg-elevated: #343231;
+        --cp-surface: #292929;
+        --cp-surface-soft: #2e2e2e;
+        --cp-border: #474747;
+        --cp-border-strong: #5f5f5f;
+        --cp-text: #dedede;
+        --cp-text-muted: #919191;
+        --cp-text-soft: #b0b0b0;
+        --cp-accent: #fd8ea1;
+        --cp-accent-hover: #fb7b91;
+        --cp-accent-soft: rgba(253, 142, 161, 0.14);
+        --cp-accent-fg: #1a1a1a;
+        --cp-success: #4ade80;
+        --cp-danger: #f87171;
+        --cp-warning: #fbbf24;
+        --cp-link: #4da6ff;
+        --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+        --cp-overlay: rgba(41, 41, 41, 0.88);
+        --cp-panel: rgba(41, 41, 41, 0.72);
+        --cp-panel-strong: rgba(41, 41, 41, 0.96);
+        --cp-sheen: rgba(255, 255, 255, 0.04);
+        --cp-highlight: rgba(253, 142, 161, 0.12);
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="index.html" aria-label="Gemrift inverse home"><img src="static/images/gemrift-inverse-icon.png" alt="" width="42" height="42"><span>GEMRIFT <b>INVERSE</b></span></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav"><span class="menu-toggle-label">Menu</span><span class="menu-icon" aria-hidden="true"><i></i><i></i></span></button>
+        <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
+          <a href="index.html#the-inverse">The game</a>
+          <a href="index.html#how-to-play">How to play</a>
+          <a href="support.html" aria-current="page">Support</a>
+          <a class="nav-status" href="index.html#in-development"><span class="status-dot"></span> In development</a>
+          <button class="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="false" title="Toggle light and dark theme"><span aria-hidden="true">◐</span></button>
+        </nav>
+      </div>
+    </header>
+    <main class="document-page section-wrap" id="main">
+      <div class="section-kicker"><span>HELP</span><span class="kicker-line"></span><span>A LINE TO THE SURFACE</span></div>
+      <div class="document-heading">
+        <h1>A little help<br><em>from the surface.</em></h1>
+        <p>Questions, a tricky bug, or a bright idea? Start here. Gemrift inverse is still in development, so details may change.</p>
+      </div>
+      <div class="support-layout">
+        <section class="faq-list" id="questions" aria-labelledby="questions-title">
+          <h2 id="questions-title">Before you dive in</h2>
+          <details open><summary>Can I download Gemrift inverse yet?</summary><p>No public release date or Store listing has been announced here. This website is a preview of the Windows game in development. The original Gemrift is a separate app.</p></details>
+          <details><summary>What is different from Gemrift?</summary><p>Inverse takes Milo underwater: swim through title-themed caves, keep an eye on your air, and use upward-moving rocks to solve the room. The current campaign contains 215 caves.</p></details>
+          <details><summary>How do I play?</summary><p>Use WASD or the arrow keys to move and swim. Hold Space with a direction to snap/dig, press P to pause, and R to retry. Keyboard and controller bindings can be changed in Settings. <a href="index.html#how-to-play">See the control guide.</a></p></details>
+          <details><summary>Does the clock end my attempt?</summary><p>The current default is a relaxed clock: reaching zero removes the remaining-time bonus, but play continues. Strict clock is an optional setting. Difficulty also changes the pace and air supply.</p></details>
+          <details><summary>What should I include in a bug report?</summary><p>If you have a development build, include its version, your Windows version, the cave name, what you expected, and the steps to reproduce the problem. A screenshot can help. Do not include passwords, payment details, or other sensitive information.</p></details>
+          <div class="contact-card">
+            <p class="eyebrow">PREFER YOUR OWN EMAIL APP?</p>
+            <a href="mailto:bulentozkir@hotmail.com?subject=Gemrift%20inverse%20support">bulentozkir@hotmail.com <span aria-hidden="true">↗</span></a>
+            <p>For website issues, you can also visit the <a href="https://github.com/bulentozkir/gemrift-inverse-site/issues" target="_blank" rel="noopener noreferrer">website issue tracker</a>. GitHub issues are public; do not post private information there.</p>
+          </div>
+        </section>
+        <section class="support-card" aria-labelledby="form-title">
+          <p class="eyebrow"><span class="status-dot"></span> NO UPLOADS. NO AUTOMATIC SENDING.</p>
+          <h2 id="form-title">Prepare a support email</h2>
+          <p>This creates a local <code>.eml</code> draft. Open it in your email app, review it, and send it yourself. Your message and attachment are not uploaded to this website.</p>
+          <form id="support-form">
+            <label for="topic">Topic</label>
+            <select id="topic" name="topic"><option>Bug report</option><option>Question</option><option>Feedback</option><option>Website issue</option></select>
+            <label for="environment">Game / Windows version <span>(optional)</span></label>
+            <input id="environment" name="environment" type="text" maxlength="160" placeholder="Build version, Windows version, cave name">
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" type="text" required maxlength="120">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="7" required maxlength="8000" placeholder="What happened? What steps reproduce it?"></textarea>
+            <label for="attachment">One attachment <span>(optional, up to 5 MB)</span></label>
+            <input id="attachment" name="attachment" type="file" aria-describedby="attachment-note">
+            <p class="field-note" id="attachment-note">Attach a screenshot or relevant log only after checking it for private information.</p>
+            <p id="support-status" class="support-status" role="status" aria-live="polite"></p>
+            <button id="support-submit" class="button button-primary" type="submit" disabled>Create email draft <span aria-hidden="true">↗</span></button>
+            <noscript><p>JavaScript is needed to prepare a draft. You can use the direct email link instead.</p></noscript>
+          </form>
+          <p class="field-note">If your mail app cannot open draft files, email the address on this page directly. See our <a href="privacy.html#support-data">privacy notice for support messages</a>.</p>
+        </section>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="wordmark footer-wordmark" href="index.html"><img src="static/images/gemrift-inverse-icon.png" alt="" width="34" height="34"><span>GEMRIFT <b>INVERSE</b></span></a>
+        <nav class="footer-links" aria-label="Footer navigation"><a class="footer-link" href="index.html">Home</a><a class="footer-link" href="support.html" aria-current="page">Support</a><a class="footer-link" href="privacy.html">Privacy</a><a class="footer-link" href="copyright.html">Copyright &amp; credits</a></nav>
+        <span class="copyright">© <span id="current-year">2026</span> Bulent Ozkir</span>
+      </div>
+    </footer>
+    <script src="static/js/site.js" defer></script>
+    <script src="static/js/support.js" defer></script>
+  </body>
+</html>
