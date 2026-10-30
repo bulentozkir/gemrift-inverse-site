@@ -39,6 +39,7 @@ button {
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 ::selection {
@@ -352,7 +353,7 @@ h2 em {
 
 .hero-art img {
   width: 100%;
-  aspect-ratio: 1.52;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: center;
 }
@@ -1601,10 +1602,6 @@ html[data-theme="dark"] :is(.hero-lede, .intro-copy p, .principle-card p, .exped
   .hero-art {
     width: 100%;
     transform: none;
-  }
-
-  .hero-art img {
-    aspect-ratio: 1.35;
   }
 
   .scroll-cue {
