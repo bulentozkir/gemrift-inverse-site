@@ -2,12 +2,24 @@
   box-sizing: border-box;
 }
 
+@keyframes bubbles-rise {
+  from { background-position: 0 0, 0 30px, 0 55px, 0 80px, 0 105px; }
+  to { background-position: 0 -227px, 0 -233px, 0 -197px, 0 -261px, 0 -233px; }
+}
+
+@keyframes rise-rock {
+  0%, 100% { transform: translateY(12px) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(14deg); }
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 92px;
 }
 
 body {
+  position: relative;
+  isolation: isolate;
   margin: 0;
   background: var(--cp-bg);
   color: var(--cp-text);
@@ -15,6 +27,20 @@ body {
   font-size: 16px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 8% 18%, var(--cp-border) 0 1px, transparent 2px),
+    radial-gradient(circle at 78% 68%, var(--cp-highlight) 0 2px, transparent 3px),
+    radial-gradient(circle at 34% 82%, var(--cp-border-strong) 0 1px, transparent 2px);
+  background-size: 173px 191px, 257px 223px, 311px 277px;
+  content: "";
+  opacity: 0.22;
+  pointer-events: none;
 }
 
 body,
@@ -176,17 +202,67 @@ img {
 
 .hero {
   position: relative;
+  isolation: isolate;
+  overflow: clip;
   display: grid;
   min-height: 700px;
-  grid-template-columns: minmax(0, 0.88fr) minmax(400px, 1.12fr);
+  grid-template-columns: 1fr;
   align-items: center;
-  gap: clamp(36px, 6vw, 86px);
   padding-block: 70px 112px;
+}
+
+.hero::before {
+  position: absolute;
+  z-index: 1;
+  top: 12%;
+  right: 24%;
+  width: 180px;
+  height: 66%;
+  background-image:
+    radial-gradient(circle at 28% 80%, var(--cp-sheen) 0 2px, transparent 3px),
+    radial-gradient(circle at 63% 65%, var(--cp-sheen) 0 4px, transparent 5px),
+    radial-gradient(circle at 42% 42%, var(--cp-sheen) 0 2px, transparent 3px),
+    radial-gradient(circle at 78% 24%, var(--cp-sheen) 0 3px, transparent 4px),
+    radial-gradient(circle at 18% 9%, var(--cp-sheen) 0 1px, transparent 2px);
+  background-size: 173px 227px, 211px 263px, 151px 197px, 239px 181px, 283px 233px;
+  content: "";
+  opacity: 0.75;
+  pointer-events: none;
+  animation: bubbles-rise 16s linear infinite;
+}
+
+.hero::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+
+html[data-theme="dark"] .hero::after {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--cp-bg) 82%, transparent) 0%,
+    color-mix(in srgb, var(--cp-bg) 66%, transparent) 32%,
+    color-mix(in srgb, var(--cp-bg) 29%, transparent) 58%,
+    transparent 100%
+  );
+}
+
+html[data-theme="light"] .hero::after {
+  background: linear-gradient(
+    90deg,
+    var(--cp-bg) 0%,
+    color-mix(in srgb, var(--cp-bg) 92%, transparent) 37%,
+    color-mix(in srgb, var(--cp-bg) 62%, transparent) 62%,
+    transparent 100%
+  );
 }
 
 .hero-copy {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  max-width: 720px;
   padding-block: 15px;
 }
 
@@ -332,14 +408,32 @@ h2 em {
 }
 
 .hero-art {
-  position: relative;
+  position: absolute;
+  z-index: 0;
+  inset: 0;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
   margin: 0;
-  border: 1px solid var(--cp-border);
+  border: 0;
   border-radius: 16px;
   background: var(--cp-surface-soft);
-  box-shadow: var(--cp-shadow);
-  transform: rotate(1.2deg);
+  box-shadow: none;
+}
+
+.hero-art::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 12% 72%, var(--cp-sheen) 0 2px, transparent 3px),
+    radial-gradient(circle at 27% 44%, var(--cp-sheen) 0 1px, transparent 2px),
+    radial-gradient(circle at 64% 30%, var(--cp-sheen) 0 2px, transparent 3px),
+    radial-gradient(circle at 83% 63%, var(--cp-sheen) 0 1px, transparent 2px);
+  background-size: 193px 227px, 149px 179px, 251px 197px, 227px 263px;
+  content: "";
+  opacity: 0.75;
+  pointer-events: none;
 }
 
 .hero-art::after {
@@ -353,21 +447,24 @@ h2 em {
 
 .hero-art img {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: 58% center;
 }
 
 .hero-art figcaption {
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   right: 20px;
   bottom: 17px;
-  left: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--cp-border);
+  border-radius: 0.625rem;
+  background: var(--cp-panel-strong);
   color: var(--cp-text);
   font-size: 9px;
   font-weight: 700;
@@ -389,6 +486,7 @@ h2 em {
 
 .scroll-cue {
   position: absolute;
+  z-index: 3;
   bottom: 36px;
   left: 0;
   display: flex;
@@ -418,6 +516,9 @@ h2 em {
 
 .intro {
   padding-block: 84px 118px;
+  background-image: repeating-linear-gradient(168deg, transparent 0 73px, var(--cp-border) 74px, transparent 75px);
+  background-position: 0 32px;
+  background-size: 100% 300px;
 }
 
 .section-kicker {
@@ -497,15 +598,67 @@ h2 em {
 }
 
 .principle-card {
+  position: relative;
   display: flex;
   min-height: 305px;
   flex-direction: column;
   padding: 23px 24px 18px;
   border: 1px solid var(--cp-border);
   border-radius: 16px;
-  background: var(--cp-surface);
+  background-color: var(--cp-surface);
+  background-image:
+    linear-gradient(
+      140deg,
+      color-mix(in srgb, var(--cp-surface) 92%, transparent),
+      color-mix(in srgb, var(--cp-surface) 82%, transparent)
+    ),
+    url("../images/gemrift-inverse-hero.png");
+  background-position: center, 74% center;
+  background-size: cover;
   box-shadow: 0 0 2px var(--cp-border), 0 1px 2px var(--cp-border);
   transition: transform 220ms ease, border-color 220ms ease;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.principle-card::before,
+.principle-card::after {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.principle-card::before {
+  top: 49px;
+  right: -43px;
+  width: 142px;
+  aspect-ratio: 1;
+  border: 1px solid var(--cp-border-strong);
+  border-radius: 50%;
+  box-shadow: 0 0 0 12px var(--cp-accent-soft), 0 0 0 28px var(--cp-highlight);
+  content: "";
+  opacity: 0.45;
+}
+
+.principle-card::after {
+  right: 12px;
+  bottom: 69px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--cp-border-strong);
+  background: var(--cp-surface-soft);
+  clip-path: polygon(50% 0, 100% 40%, 76% 100%, 20% 84%, 0 28%);
+  content: "";
+  animation: rise-rock 7s ease-in-out infinite;
+  opacity: 0.72;
+}
+
+.principle-card:nth-child(2)::after {
+  animation-delay: -2.6s;
+}
+
+.principle-card:nth-child(3)::after {
+  animation-delay: -4.4s;
 }
 
 .principle-card:hover {
@@ -570,7 +723,16 @@ h2 em {
 .expedition {
   padding-block: 86px 79px;
   border-block: 1px solid var(--cp-border);
-  background: var(--cp-bg-elevated);
+  background-color: var(--cp-bg-elevated);
+  background-image:
+    linear-gradient(
+      112deg,
+      color-mix(in srgb, var(--cp-bg-elevated) 94%, transparent),
+      color-mix(in srgb, var(--cp-bg-elevated) 81%, transparent)
+    ),
+    url("../images/gemrift-inverse-hero.png");
+  background-position: center;
+  background-size: cover;
 }
 
 .expedition-heading {
@@ -601,6 +763,21 @@ h2 em {
   border: 1px solid var(--cp-border);
   border-radius: 16px;
   background: var(--cp-surface-soft);
+}
+
+.expedition-art::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 11% 18%, var(--cp-sheen) 0 2px, transparent 3px),
+    radial-gradient(circle at 24% 60%, var(--cp-sheen) 0 1px, transparent 2px),
+    radial-gradient(circle at 78% 38%, var(--cp-sheen) 0 2px, transparent 3px),
+    radial-gradient(circle at 91% 72%, var(--cp-sheen) 0 1px, transparent 2px);
+  background-size: 197px 241px, 173px 189px, 239px 227px, 269px 173px;
+  content: "";
+  opacity: 0.68;
+  pointer-events: none;
 }
 
 .expedition-art::after {
@@ -735,6 +912,20 @@ h2 em {
   border: 1px solid var(--cp-border);
   border-radius: 16px;
   background: var(--cp-bg-elevated);
+  isolation: isolate;
+}
+
+.milo-art::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--cp-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cp-border) 1px, transparent 1px);
+  background-size: 38px 38px;
+  content: "";
+  opacity: 0.32;
+  pointer-events: none;
 }
 
 .milo-art::before {
@@ -753,6 +944,11 @@ h2 em {
   max-height: 425px;
   object-fit: contain;
   filter: drop-shadow(0 10px 18px var(--cp-highlight));
+}
+
+.milo-coordinate,
+.milo-caption {
+  z-index: 2;
 }
 
 .milo-orbit {
@@ -825,8 +1021,34 @@ h2 em {
 }
 
 .wildlife {
+  position: relative;
+  isolation: isolate;
   padding-block: 83px 104px;
   border-top: 1px solid var(--cp-border);
+  background-color: var(--cp-bg-elevated);
+  background-image:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--cp-bg-elevated) 94%, transparent) 0%,
+      color-mix(in srgb, var(--cp-bg-elevated) 87%, transparent) 48%,
+      color-mix(in srgb, var(--cp-bg-elevated) 72%, transparent) 100%
+    ),
+    url("../images/gemrift-inverse-hero.png");
+  background-position: center, 76% center;
+  background-size: cover;
+}
+
+.wildlife::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 39px, var(--cp-border) 40px, transparent 41px),
+    radial-gradient(circle at 15% 28%, var(--cp-highlight) 0 1px, transparent 2px);
+  background-size: 100% 160px, 211px 227px;
+  content: "";
+  opacity: 0.2;
+  pointer-events: none;
 }
 
 .wildlife-heading {
@@ -856,6 +1078,11 @@ h2 em {
   align-items: center;
   gap: 15px;
   border-bottom: 1px solid var(--cp-border);
+  transition: background-color 180ms ease;
+}
+
+.wildlife-entry:hover {
+  background-color: var(--cp-accent-soft);
 }
 
 .wildlife-no {
@@ -869,11 +1096,27 @@ h2 em {
   width: 44px;
   height: 44px;
   place-items: center;
-  border: 1px solid var(--cp-border);
-  border-radius: 50%;
-  background: var(--cp-surface);
+  border: 1px solid var(--cp-border-strong);
+  border-radius: 0.625rem;
+  background: var(--cp-bg-elevated);
   color: var(--cp-accent);
-  font-size: 22px;
+  box-shadow: inset 0 0 0 4px var(--cp-surface-soft);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.wildlife-symbol svg {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.wildlife-entry:hover .wildlife-symbol {
+  transform: translateY(-2px);
+  border-color: var(--cp-accent);
 }
 
 .wildlife-entry h3 {
@@ -1548,6 +1791,11 @@ html[data-theme="dark"] :is(.hero-lede, .intro-copy p, .principle-card p, .exped
     margin-top: 13px;
   }
 
+  .hero::before {
+    right: 5%;
+    width: 120px;
+  }
+
   .primary-nav .theme-toggle {
     align-self: flex-start;
     margin-top: 12px;
@@ -1581,6 +1829,14 @@ html[data-theme="dark"] :is(.hero-lede, .intro-copy p, .principle-card p, .exped
     padding-block: 69px 92px;
   }
 
+  .hero::after {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--cp-bg) 94%, transparent) 0%, color-mix(in srgb, var(--cp-bg) 88%, transparent) 50%, color-mix(in srgb, var(--cp-bg) 60%, transparent) 78%, transparent 100%);
+  }
+
+  html[data-theme="dark"] .hero::after {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--cp-bg) 82%, transparent) 0%, color-mix(in srgb, var(--cp-bg) 72%, transparent) 48%, color-mix(in srgb, var(--cp-bg) 35%, transparent) 78%, transparent 100%);
+  }
+
   .hero-copy {
     padding: 0;
   }
@@ -1597,11 +1853,6 @@ html[data-theme="dark"] :is(.hero-lede, .intro-copy p, .principle-card p, .exped
   .hero-facts {
     max-width: 460px;
     margin-top: 34px;
-  }
-
-  .hero-art {
-    width: 100%;
-    transform: none;
   }
 
   .scroll-cue {

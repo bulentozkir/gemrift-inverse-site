@@ -35,3 +35,5 @@ All root HTML pages and the sitemap are included automatically in the Pages arti
 ## Artwork
 
 The images in `static/images/` are presentation artwork from the local Gemrift inverse game project. There is currently no gameplay footage on the site.
+
+The shared visual theme uses the official underwater key art, cave-strata and tile-grid textures, rising-rock motion, drifting bubbles, and original line icons for the four sea enemies.
