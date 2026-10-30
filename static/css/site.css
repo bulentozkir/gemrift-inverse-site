@@ -2,11 +2,6 @@
   box-sizing: border-box;
 }
 
-@keyframes bubbles-rise {
-  from { background-position: 0 0, 0 30px, 0 55px, 0 80px, 0 105px; }
-  to { background-position: 0 -227px, 0 -233px, 0 -197px, 0 -261px, 0 -233px; }
-}
-
 @keyframes rise-rock {
   0%, 100% { transform: translateY(12px) rotate(0deg); }
   50% { transform: translateY(-18px) rotate(14deg); }
@@ -202,67 +197,15 @@ img {
 
 .hero {
   position: relative;
-  isolation: isolate;
-  overflow: clip;
   display: grid;
-  min-height: 700px;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   align-items: center;
-  padding-block: 70px 112px;
-}
-
-.hero::before {
-  position: absolute;
-  z-index: 1;
-  top: 12%;
-  right: 24%;
-  width: 180px;
-  height: 66%;
-  background-image:
-    radial-gradient(circle at 28% 80%, var(--cp-sheen) 0 2px, transparent 3px),
-    radial-gradient(circle at 63% 65%, var(--cp-sheen) 0 4px, transparent 5px),
-    radial-gradient(circle at 42% 42%, var(--cp-sheen) 0 2px, transparent 3px),
-    radial-gradient(circle at 78% 24%, var(--cp-sheen) 0 3px, transparent 4px),
-    radial-gradient(circle at 18% 9%, var(--cp-sheen) 0 1px, transparent 2px);
-  background-size: 173px 227px, 211px 263px, 151px 197px, 239px 181px, 283px 233px;
-  content: "";
-  opacity: 0.75;
-  pointer-events: none;
-  animation: bubbles-rise 16s linear infinite;
-}
-
-.hero::after {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  content: "";
-  pointer-events: none;
-}
-
-html[data-theme="dark"] .hero::after {
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--cp-bg) 82%, transparent) 0%,
-    color-mix(in srgb, var(--cp-bg) 66%, transparent) 32%,
-    color-mix(in srgb, var(--cp-bg) 29%, transparent) 58%,
-    transparent 100%
-  );
-}
-
-html[data-theme="light"] .hero::after {
-  background: linear-gradient(
-    90deg,
-    var(--cp-bg) 0%,
-    color-mix(in srgb, var(--cp-bg) 92%, transparent) 37%,
-    color-mix(in srgb, var(--cp-bg) 62%, transparent) 62%,
-    transparent 100%
-  );
+  gap: 32px clamp(32px, 4vw, 64px);
+  padding-block: 64px 40px;
 }
 
 .hero-copy {
-  position: relative;
-  z-index: 2;
-  max-width: 720px;
+  min-width: 0;
   padding-block: 15px;
 }
 
@@ -302,7 +245,7 @@ h3 {
 .hero h1 {
   max-width: 640px;
   margin-bottom: 24px;
-  font-size: clamp(56px, 7.3vw, 94px);
+  font-size: clamp(48px, 5.2vw, 72px);
   line-height: 0.98;
 }
 
@@ -409,63 +352,29 @@ h2 em {
 }
 
 .hero-art {
-  position: absolute;
-  z-index: 0;
-  inset: 0;
   overflow: hidden;
+  min-width: 0;
   width: 100%;
-  height: 100%;
   margin: 0;
-  border: 0;
+  border: 1px solid var(--cp-border);
   border-radius: 16px;
   background: var(--cp-surface-soft);
-  box-shadow: none;
-}
-
-.hero-art::before {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 12% 72%, var(--cp-sheen) 0 2px, transparent 3px),
-    radial-gradient(circle at 27% 44%, var(--cp-sheen) 0 1px, transparent 2px),
-    radial-gradient(circle at 64% 30%, var(--cp-sheen) 0 2px, transparent 3px),
-    radial-gradient(circle at 83% 63%, var(--cp-sheen) 0 1px, transparent 2px);
-  background-size: 193px 227px, 149px 179px, 251px 197px, 227px 263px;
-  content: "";
-  opacity: 0.75;
-  pointer-events: none;
-}
-
-.hero-art::after {
-  position: absolute;
-  inset: auto 0 0;
-  height: 28%;
-  background: linear-gradient(0deg, var(--cp-overlay), transparent);
-  content: "";
-  pointer-events: none;
 }
 
 .hero-art img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 58% center;
+  height: auto;
 }
 
 .hero-art figcaption {
-  position: absolute;
-  z-index: 3;
-  right: 20px;
-  bottom: 17px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 12px;
-  padding: 8px 10px;
-  border: 1px solid var(--cp-border);
-  border-radius: 0.625rem;
-  background: var(--cp-panel-strong);
+  padding: 14px 16px;
+  border-top: 1px solid var(--cp-border);
+  background: var(--cp-surface);
   color: var(--cp-text);
   font-size: 9px;
   font-weight: 700;
@@ -486,11 +395,8 @@ h2 em {
 }
 
 .scroll-cue {
-  position: absolute;
-  z-index: 3;
-  bottom: 36px;
-  left: 0;
   display: flex;
+  grid-column: 1 / -1;
   align-items: center;
   gap: 13px;
   color: var(--cp-text-soft);
@@ -607,15 +513,7 @@ h2 em {
   border: 1px solid var(--cp-border);
   border-radius: 16px;
   background-color: var(--cp-surface);
-  background-image:
-    linear-gradient(
-      140deg,
-      color-mix(in srgb, var(--cp-surface) 92%, transparent),
-      color-mix(in srgb, var(--cp-surface) 82%, transparent)
-    ),
-    url("../images/gemrift-inverse-hero.png");
-  background-position: center, 74% center;
-  background-size: cover;
+  background-image: linear-gradient(140deg, var(--cp-surface), var(--cp-bg-elevated));
   box-shadow: 0 0 2px var(--cp-border), 0 1px 2px var(--cp-border);
   transition: transform 220ms ease, border-color 220ms ease;
   isolation: isolate;
@@ -733,15 +631,6 @@ h2 em {
   padding-block: 86px 79px;
   border-block: 1px solid var(--cp-border);
   background-color: var(--cp-bg-elevated);
-  background-image:
-    linear-gradient(
-      112deg,
-      color-mix(in srgb, var(--cp-bg-elevated) 94%, transparent),
-      color-mix(in srgb, var(--cp-bg-elevated) 81%, transparent)
-    ),
-    url("../images/gemrift-inverse-hero.png");
-  background-position: center;
-  background-size: cover;
 }
 
 .expedition-heading {
@@ -766,54 +655,34 @@ h2 em {
 }
 
 .expedition-art {
-  position: relative;
   overflow: hidden;
-  min-height: 360px;
+  margin: 0;
   border: 1px solid var(--cp-border);
   border-radius: 16px;
   background: var(--cp-surface-soft);
 }
 
-.expedition-art::before {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 11% 18%, var(--cp-sheen) 0 2px, transparent 3px),
-    radial-gradient(circle at 24% 60%, var(--cp-sheen) 0 1px, transparent 2px),
-    radial-gradient(circle at 78% 38%, var(--cp-sheen) 0 2px, transparent 3px),
-    radial-gradient(circle at 91% 72%, var(--cp-sheen) 0 1px, transparent 2px);
-  background-size: 197px 241px, 173px 189px, 239px 227px, 269px 173px;
-  content: "";
-  opacity: 0.68;
-  pointer-events: none;
-}
-
-.expedition-art::after {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, var(--cp-overlay), transparent 49%);
-  content: "";
-  pointer-events: none;
-}
-
 .expedition-art img {
-  position: absolute;
-  inset: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 54%;
+  height: auto;
+}
+
+.expedition-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+  padding: 20px 24px;
+  border-top: 1px solid var(--cp-border);
+  background: var(--cp-surface);
 }
 
 .art-index {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: clamp(24px, 6vw, 76px);
-  display: grid;
-  gap: 3px;
-  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
   color: var(--cp-text);
 }
 
@@ -824,25 +693,19 @@ h2 em {
 }
 
 .art-index strong {
-  font-size: clamp(86px, 13vw, 150px);
+  font-size: clamp(40px, 6vw, 64px);
   font-weight: 600;
   letter-spacing: -0.1em;
   line-height: 0.95;
 }
 
 .art-side-note {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: 22px;
   display: flex;
-  height: 100%;
   align-items: center;
   gap: 12px;
 }
 
 .vertical-label {
-  writing-mode: vertical-rl;
   color: var(--cp-text);
   font-size: 9px;
   font-weight: 750;
@@ -850,8 +713,8 @@ h2 em {
 }
 
 .art-side-line {
-  width: 1px;
-  height: 72px;
+  width: 40px;
+  height: 1px;
   background: var(--cp-link);
 }
 
@@ -915,8 +778,11 @@ h2 em {
   position: relative;
   display: flex;
   min-height: 470px;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 20px;
+  padding: 24px;
   overflow: hidden;
   border: 1px solid var(--cp-border);
   border-radius: 16px;
@@ -957,7 +823,9 @@ h2 em {
 
 .milo-coordinate,
 .milo-caption {
+  position: relative;
   z-index: 2;
+  align-self: stretch;
 }
 
 .milo-orbit {
@@ -981,9 +849,6 @@ h2 em {
 }
 
 .milo-coordinate {
-  position: absolute;
-  top: 24px;
-  left: 24px;
   color: var(--cp-text-soft);
   font-family: Consolas, "Courier New", Courier, monospace;
   font-size: 9px;
@@ -991,10 +856,6 @@ h2 em {
 }
 
 .milo-caption {
-  position: absolute;
-  right: 18px;
-  bottom: 18px;
-  left: 18px;
   display: flex;
   justify-content: space-between;
   padding-top: 12px;
@@ -1035,16 +896,6 @@ h2 em {
   padding-block: 83px 104px;
   border-top: 1px solid var(--cp-border);
   background-color: var(--cp-bg-elevated);
-  background-image:
-    linear-gradient(
-      90deg,
-      color-mix(in srgb, var(--cp-bg-elevated) 94%, transparent) 0%,
-      color-mix(in srgb, var(--cp-bg-elevated) 87%, transparent) 48%,
-      color-mix(in srgb, var(--cp-bg-elevated) 72%, transparent) 100%
-    ),
-    url("../images/gemrift-inverse-hero.png");
-  background-position: center, 76% center;
-  background-size: cover;
 }
 
 .wildlife::before {
@@ -1688,13 +1539,11 @@ html[data-theme="dark"] :is(.hero-lede, .intro-copy p, .principle-card p, .exped
 
 @media (max-width: 1000px) {
   .hero {
-    min-height: 620px;
-    grid-template-columns: minmax(0, 0.9fr) minmax(340px, 1.1fr);
     gap: 35px;
   }
 
   .hero h1 {
-    font-size: clamp(55px, 7.7vw, 76px);
+    font-size: clamp(48px, 6vw, 64px);
   }
 
   .hero-facts {
@@ -1800,11 +1649,6 @@ html[data-theme="dark"] :is(.hero-lede, .intro-copy p, .principle-card p, .exped
     margin-top: 13px;
   }
 
-  .hero::before {
-    right: 5%;
-    width: 120px;
-  }
-
   .primary-nav .theme-toggle {
     align-self: flex-start;
     margin-top: 12px;
@@ -1838,14 +1682,6 @@ html[data-theme="dark"] :is(.hero-lede, .intro-copy p, .principle-card p, .exped
     padding-block: 69px 92px;
   }
 
-  .hero::after {
-    background: linear-gradient(180deg, color-mix(in srgb, var(--cp-bg) 94%, transparent) 0%, color-mix(in srgb, var(--cp-bg) 88%, transparent) 50%, color-mix(in srgb, var(--cp-bg) 60%, transparent) 78%, transparent 100%);
-  }
-
-  html[data-theme="dark"] .hero::after {
-    background: linear-gradient(180deg, color-mix(in srgb, var(--cp-bg) 82%, transparent) 0%, color-mix(in srgb, var(--cp-bg) 72%, transparent) 48%, color-mix(in srgb, var(--cp-bg) 35%, transparent) 78%, transparent 100%);
-  }
-
   .hero-copy {
     padding: 0;
   }
@@ -1862,10 +1698,6 @@ html[data-theme="dark"] :is(.hero-lede, .intro-copy p, .principle-card p, .exped
   .hero-facts {
     max-width: 460px;
     margin-top: 34px;
-  }
-
-  .scroll-cue {
-    bottom: 30px;
   }
 
   .intro {
@@ -1916,22 +1748,6 @@ html[data-theme="dark"] :is(.hero-lede, .intro-copy p, .principle-card p, .exped
 
   .expedition-deck {
     max-width: 520px;
-  }
-
-  .expedition-art {
-    min-height: 310px;
-  }
-
-  .expedition-art img {
-    object-position: 54% center;
-  }
-
-  .expedition-art::after {
-    background: linear-gradient(90deg, var(--cp-overlay), transparent 80%);
-  }
-
-  .art-side-note {
-    right: 13px;
   }
 
   .expedition-bottom {
@@ -2067,10 +1883,6 @@ html[data-theme="dark"] :is(.hero-lede, .intro-copy p, .principle-card p, .exped
 
   .hero-facts span {
     font-size: 10px;
-  }
-
-  .expedition-art {
-    min-height: 250px;
   }
 
   .wildlife-entry {

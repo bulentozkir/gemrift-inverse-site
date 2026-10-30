@@ -36,4 +36,6 @@ All root HTML pages and the sitemap are included automatically in the Pages arti
 
 The images in `static/images/` are presentation artwork from the local Gemrift inverse game project. There is currently no gameplay footage on the site.
 
-The shared visual theme uses the official underwater key art, cave-strata and tile-grid textures, rising-rock motion, drifting bubbles, and original line icons for the four sea enemies. Water-blue accents and gem-gold highlights replace the rose styling, which is not part of the game's visual palette.
+The shared visual theme uses the official underwater key art, cave-strata and tile-grid textures, rising-rock motion, and original line icons for the four sea enemies. Water-blue accents and gem-gold highlights replace the rose styling, which is not part of the game's visual palette.
+
+Key art includes its own title lettering, so it is displayed uncropped in separate image panels rather than behind page text. Captions and character labels stay outside the images in normal document flow, with the hero columns stacking on smaller screens.
