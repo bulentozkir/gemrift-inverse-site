@@ -169,28 +169,36 @@
               </div>
             </div>
 
-            <div class="trailer-stage" id="trailer-stage">
+            <div class="trailer-stage" id="trailer-stage" title="Click to toggle trailer sound">
               <img
                 id="trailer-media"
                 src="static/images/gemrift-inverse-trailer.gif"
                 data-gif-src="static/images/gemrift-inverse-trailer.gif"
                 data-poster-src="static/images/gemrift-inverse-trailer-poster.webp"
                 alt="Animated gameplay trailer of Gemrift inverse showing Milo swimming through flooded caves, dropping boulders onto mines, dodging sea predators, and collecting upward-floating gems."
-                width="720"
-                height="405"
+                width="608"
+                height="342"
                 loading="eager">
+              <span class="trailer-sound-overlay" id="trailer-sound-overlay" aria-hidden="true">🔇 Click for Sound</span>
+              <audio id="trailer-audio" src="static/audio/gemrift-inverse-trailer.mp3" loop preload="metadata"></audio>
             </div>
 
             <div class="trailer-controls-bar">
               <div class="trailer-status-group">
-                <span class="trailer-state-badge" id="trailer-state-badge">LIVE · 53s GAMEPLAY LOOP</span>
+                <span class="trailer-state-badge" id="trailer-state-badge">LIVE · 28s GAMEPLAY LOOP</span>
                 <span class="chiptune-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                <span class="chiptune-caption">“Pixel Tides” 128 BPM Chiptune · 432 Hz Cave Audio</span>
+                <span class="chiptune-caption">“Pixel Tides” 128 BPM Chiptune + Cave SFX</span>
               </div>
-              <button class="trailer-toggle-btn" id="trailer-toggle" type="button" aria-pressed="false">
-                <span data-toggle-glyph aria-hidden="true">⏸</span>
-                <span data-toggle-label>Pause GIF</span>
-              </button>
+              <div class="trailer-btn-group">
+                <button class="trailer-sound-btn" id="trailer-sound-toggle" type="button" aria-pressed="false">
+                  <span data-sound-glyph aria-hidden="true">🔊</span>
+                  <span data-sound-label>Enable Sound</span>
+                </button>
+                <button class="trailer-toggle-btn" id="trailer-toggle" type="button" aria-pressed="false">
+                  <span data-toggle-glyph aria-hidden="true">⏸</span>
+                  <span data-toggle-label>Pause GIF</span>
+                </button>
+              </div>
             </div>
           </div>
 

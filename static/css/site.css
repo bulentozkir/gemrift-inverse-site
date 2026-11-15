@@ -964,28 +964,45 @@ html[data-theme="light"] .hero-tagline {
 
 .trailer-stage {
   position: relative;
-  background: #040b14;
+  background: #071625;
   aspect-ratio: 16 / 9;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .trailer-stage img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  image-rendering: auto;
 }
 
-/* Subtle retro CRT scanlines over trailer stage */
-.trailer-stage::after {
-  content: "";
+.trailer-sound-overlay {
   position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 0 3px,
-    rgba(0, 0, 0, 0.14) 3px 4px
-  );
+  left: 14px;
+  bottom: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 212, 126, 0.72);
+  border-radius: 999px;
+  background: rgba(6, 19, 32, 0.88);
+  color: #ffe29a;
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
   pointer-events: none;
+  transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+}
+
+.trailer-stage.is-sound-on .trailer-sound-overlay {
+  border-color: rgba(89, 243, 194, 0.75);
+  background: rgba(11, 46, 36, 0.9);
+  color: #9ef7cf;
 }
 
 .trailer-controls-bar {
@@ -1005,6 +1022,13 @@ html[data-theme="light"] .hero-tagline {
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
+}
+
+.trailer-btn-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
 }
 
 .trailer-state-badge {
@@ -1047,14 +1071,45 @@ html[data-theme="light"] .hero-tagline {
 .chiptune-eq i:nth-child(3) { animation-delay: 0.32s; background: #59f3c2; }
 .chiptune-eq i:nth-child(4) { animation-delay: 0.08s; }
 
-.trailer-stage.is-paused ~ .trailer-controls-bar .chiptune-eq i {
+.trailer-stage.is-paused ~ .trailer-controls-bar .chiptune-eq i,
+.trailer-stage:not(.is-sound-on) ~ .trailer-controls-bar .chiptune-eq i {
   animation-play-state: paused;
-  transform: scaleY(0.35);
+  transform: scaleY(0.32);
+  opacity: 0.45;
 }
 
 .chiptune-caption {
   color: #9dc0d8;
   font-size: 12.5px;
+}
+
+.trailer-sound-btn {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  border: 1px solid #ffe094;
+  border-radius: 9px;
+  background: linear-gradient(180deg, #ffe094 0%, #ffc24b 100%);
+  color: #061520;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 3px 0 var(--gold-shade);
+  transition: transform 140ms ease, filter 140ms ease;
+}
+
+.trailer-sound-btn[aria-pressed="true"] {
+  border-color: #6ef5cb;
+  background: #135a47;
+  color: #ffffff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 3px 0 #05241c;
+}
+
+.trailer-sound-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.07);
 }
 
 .trailer-toggle-btn {
@@ -1063,14 +1118,14 @@ html[data-theme="light"] .hero-tagline {
   align-items: center;
   gap: 8px;
   padding: 0 14px;
-  border: 1px solid #6ef5cb;
+  border: 1px solid rgba(140, 226, 255, 0.45);
   border-radius: 9px;
-  background: #0d4d3d;
+  background: #102b42;
   color: #ffffff;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 3px 0 #05241c;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 3px 0 #051320;
   transition: transform 140ms ease, filter 140ms ease;
 }
 

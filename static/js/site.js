@@ -173,9 +173,12 @@
     sections.forEach((sec) => spyObserver.observe(sec));
   }
 
-  // 5. Animated GIF Trailer Player (play/pause toggle + chapter beat pulse)
+  // 5. Animated GIF Trailer Player + Synced MP3 Soundtrack
   const trailerImg = document.querySelector("#trailer-media");
   const trailerToggle = document.querySelector("#trailer-toggle");
+  const trailerSoundToggle = document.querySelector("#trailer-sound-toggle");
+  const trailerSoundOverlay = document.querySelector("#trailer-sound-overlay");
+  const trailerAudio = document.querySelector("#trailer-audio");
   const trailerBadge = document.querySelector("#trailer-state-badge");
   const trailerStage = document.querySelector("#trailer-stage");
   const beatPills = Array.from(document.querySelectorAll(".trailer-beat"));
@@ -184,25 +187,99 @@
     const gifSrc = trailerImg.getAttribute("data-gif-src") || trailerImg.getAttribute("src") || "";
     const posterSrc = trailerImg.getAttribute("data-poster-src") || gifSrc;
     let isPlaying = !reducedMotionQuery.matches;
+    let isSoundOn = false;
 
-    const syncTrailerState = () => {
-      trailerImg.setAttribute("src", isPlaying ? gifSrc : posterSrc);
+    const syncTrailerState = (restartGif = false) => {
+      if (isPlaying) {
+        if (restartGif) {
+          // Force browser to restart animated GIF from frame 0 in sync with audio
+          trailerImg.setAttribute("src", posterSrc);
+          requestAnimationFrame(() => trailerImg.setAttribute("src", gifSrc));
+        } else if (trailerImg.getAttribute("src") !== gifSrc) {
+          trailerImg.setAttribute("src", gifSrc);
+        }
+      } else {
+        trailerImg.setAttribute("src", posterSrc);
+      }
+
       trailerToggle.setAttribute("aria-pressed", String(!isPlaying));
       const label = trailerToggle.querySelector("[data-toggle-label]");
       const glyph = trailerToggle.querySelector("[data-toggle-glyph]");
-      if (label) label.textContent = isPlaying ? "Pause GIF" : "Play Animated GIF";
+      if (label) label.textContent = isPlaying ? "Pause GIF" : "Play GIF";
       if (glyph) glyph.textContent = isPlaying ? "⏸" : "▶";
+
       if (trailerBadge) {
-        trailerBadge.textContent = isPlaying ? "LIVE · 53s GAMEPLAY LOOP" : "PAUSED · POSTER FRAME";
+        trailerBadge.textContent = isPlaying
+          ? isSoundOn
+            ? "LIVE · SOUND ON"
+            : "LIVE · 28s GAMEPLAY LOOP"
+          : "PAUSED · POSTER FRAME";
         trailerBadge.classList.toggle("is-paused", !isPlaying);
       }
+
       trailerStage?.classList.toggle("is-paused", !isPlaying);
+      trailerStage?.classList.toggle("is-sound-on", isPlaying && isSoundOn);
+
+      if (trailerSoundToggle) {
+        trailerSoundToggle.setAttribute("aria-pressed", String(isSoundOn));
+        const sLabel = trailerSoundToggle.querySelector("[data-sound-label]");
+        const sGlyph = trailerSoundToggle.querySelector("[data-sound-glyph]");
+        if (sLabel) sLabel.textContent = isSoundOn ? "Mute Sound" : "Enable Sound";
+        if (sGlyph) sGlyph.textContent = isSoundOn ? "🔇" : "🔊";
+      }
+
+      if (trailerSoundOverlay) {
+        trailerSoundOverlay.textContent = !isPlaying
+          ? "▶ Click to Play"
+          : isSoundOn
+            ? "🔊 Sound On"
+            : "🔇 Click for Sound";
+      }
+
+      if (trailerAudio instanceof HTMLAudioElement) {
+        if (isPlaying && isSoundOn) {
+          trailerAudio.play().catch(() => {
+            isSoundOn = false;
+          });
+        } else {
+          trailerAudio.pause();
+        }
+      }
     };
 
-    syncTrailerState();
+    const toggleSound = () => {
+      isSoundOn = !isSoundOn;
+      if (isSoundOn) {
+        isPlaying = true;
+        if (trailerAudio instanceof HTMLAudioElement) {
+          trailerAudio.currentTime = 0;
+        }
+        syncTrailerState(true);
+      } else {
+        syncTrailerState(false);
+      }
+    };
+
+    syncTrailerState(false);
+
     trailerToggle.addEventListener("click", () => {
       isPlaying = !isPlaying;
-      syncTrailerState();
+      if (isPlaying && isSoundOn && trailerAudio instanceof HTMLAudioElement) {
+        trailerAudio.currentTime = 0;
+        syncTrailerState(true);
+      } else {
+        syncTrailerState(false);
+      }
+    });
+
+    trailerSoundToggle?.addEventListener("click", toggleSound);
+    trailerStage?.addEventListener("click", () => {
+      if (!isPlaying) {
+        isPlaying = true;
+        syncTrailerState(true);
+      } else {
+        toggleSound();
+      }
     });
 
     if (beatPills.length > 0 && !reducedMotionQuery.matches) {
