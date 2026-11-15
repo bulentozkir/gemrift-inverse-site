@@ -11,7 +11,7 @@ Open `index.html` directly, or serve this folder with any static file server (fo
 The single workflow in `.github/workflows/static.yml` deploys the site automatically when changes are pushed to `main` or when manually triggered from **Actions**.
 
 - Published URL: **https://bulentozkir.github.io/gemrift-inverse-site/**
-- Store CTA link: currently points to the configured Microsoft Store placeholder URL (`https://apps.microsoft.com/detail/9P3QHCNQ5SL3?hl=en-us&gl=TR&ocid=pdpshare`) in `index.html`, `support.html`, `privacy.html`, and `copyright.html` so it can be updated in one quick search-and-replace once the final Store listing is live.
+- Store CTA link: points to the Microsoft Store purchase page (`https://apps.microsoft.com/detail/9P50M5F8CHBM?hl=en-us&gl=US&ocid=pdpshare`) in `index.html`, `support.html`, `privacy.html`, and `copyright.html`.
 
 ## Pages and structure
 
