@@ -1,41 +1,27 @@
 # Gemrift inverse website
 
-A static, responsive website for **Gemrift inverse — Underwater Puzzle Adventure**. The project is in development; game details and artwork may change before release.
+Official static GitHub Pages website for **Gemrift inverse — Underwater Puzzle Adventure**.
 
 ## Local preview
 
-Open `index.html` directly, or serve this folder with any static file server. There is no build step or runtime dependency.
+Open `index.html` directly, or serve this folder with any static file server (for example `python -m http.server 8080`). There is no build step, bundler, or runtime dependency.
 
-## GitHub Pages
+## GitHub Pages deployment
 
-The single workflow in `.github/workflows/static.yml` deploys the site when changes are pushed to `main` and when manually run.
+The single workflow in `.github/workflows/static.yml` deploys the site automatically when changes are pushed to `main` or when manually triggered from **Actions**.
 
-1. Open [repository Settings → Pages](https://github.com/bulentozkir/gemrift-inverse-site/settings/pages) and select **GitHub Actions** as the build and deployment source if it is not already selected. Pages must be enabled before the workflow can deploy.
-2. Push to `main`, or run **Deploy static content to Pages** from the **Actions** tab.
+- Published URL: **https://bulentozkir.github.io/gemrift-inverse-site/**
+- Store CTA link: currently points to the configured Microsoft Store placeholder URL (`https://apps.microsoft.com/detail/9P3QHCNQ5SL3?hl=en-us&gl=TR&ocid=pdpshare`) in `index.html`, `support.html`, `privacy.html`, and `copyright.html` so it can be updated in one quick search-and-replace once the final Store listing is live.
 
-Published URL: **https://bulentozkir.github.io/gemrift-inverse-site/** (note the hyphen between `gemrift` and `inverse`).
+## Pages and structure
 
-Like the original Gemrift site, the workflow stages the public files in `_site` and uploads that single directory. No build tool is needed.
+- `index.html`: hero showcase, animated gameplay trailer GIF (`static/images/gemrift-inverse-trailer.gif`), live inverse-physics schematic, native 1920×1111 screenshot gallery with lightbox, 8-creature bestiary (with Standard vs Remixed toggle), interactive 1–5 diamond difficulty selector, Milo Coppercap showcase, and controls/accessibility guide.
+- `support.html`: player FAQ and local `.eml` support email draft generator (with optional attachment up to 5 MB; nothing is uploaded).
+- `privacy.html`: tracker-free static site privacy, GitHub Pages hosting, voluntary support contact, and offline local game save behavior.
+- `copyright.html`: ownership, original 215-cave campaign & Milo Coppercap credits, `Baloo 2` SIL Open Font License 1.1 credit, and engine acknowledgements.
+- `404.html`: custom not-found page using project-root `/gemrift-inverse-site/` paths for GitHub Pages.
+- `sitemap.xml`: public page URLs.
 
-The site uses only local assets and does not require a backend.
+## Privacy & static assets
 
-## Pages and support
-
-- `index.html`: the game, campaign, characters, and current controls.
-- `support.html`: development FAQ and a support email draft generator with an optional attachment up to 5 MB.
-- `privacy.html`: website privacy, current development-build information, hosting, and voluntary support contact.
-- `copyright.html`: ownership and artwork credits without borrowing the original game's Store identity.
-- `404.html`: a custom not-found page with project-root asset links.
-- `sitemap.xml`: the public page URLs.
-
-The support form creates a local `.eml` draft. It does not upload data or send email; the player reviews and sends it in their own mail app. The site has no analytics, tracking scripts, cookies, or browser storage. Theme selection travels in the `scoutTheme` URL parameter rather than being stored.
-
-All root HTML pages and the sitemap are included automatically in the Pages artifact. Pricing, Store links, and a release date must only be added once confirmed for Gemrift inverse.
-
-## Artwork
-
-The images in `static/images/` are presentation artwork from the local Gemrift inverse game project. There is currently no gameplay footage on the site.
-
-The shared visual theme uses the official underwater key art, cave-strata and tile-grid textures, rising-rock motion, and original line icons for the four sea enemies. Water-blue accents and gem-gold highlights replace the rose styling, which is not part of the game's visual palette.
-
-Key art includes its own title lettering, so it is displayed uncropped in separate image panels rather than behind page text. Captions and character labels stay outside the images in normal document flow, with the hero columns stacking on smaller screens.
+All fonts (`static/fonts/Baloo2.ttf`), artwork, WebP screenshots, and the optimized animated trailer GIF are self-hosted in `static/`. No third-party scripts, analytics, cookies, or browser storage APIs are used; theme switching uses the optional `scoutTheme` URL query parameter.

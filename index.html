@@ -1,299 +1,844 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Meet Gemrift inverse, an underwater puzzle adventure where rocks rise, air runs out, and every cave has a way through. In development.">
+    <meta name="description" content="Gemrift inverse — Underwater Puzzle Adventure for Windows. Guide Milo Coppercap through 215 underwater caves where heavy rocks sink, crystals and mines rise, and 8 coastal &amp; deep creatures guard the rift.">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Gemrift inverse — Turn the cave upside down">
-    <meta property="og:description" content="215 underwater caves. One wonderfully inverted world. Gemrift inverse is in development.">
+    <meta property="og:title" content="Gemrift inverse — Underwater Puzzle Adventure">
+    <meta property="og:description" content="Rocks fall. Gems rise. Explore 215 proved underwater caves, outsmart 8 sea &amp; ice creatures, and master 5 difficulty tiers.">
     <meta property="og:url" content="https://bulentozkir.github.io/gemrift-inverse-site/">
     <meta property="og:image" content="https://bulentozkir.github.io/gemrift-inverse-site/static/images/gemrift-inverse-hero.png">
-    <meta property="og:image:alt" content="Gemrift inverse underwater cave key art with Milo, glowing gems, and sea creatures.">
+    <meta property="og:image:alt" content="Gemrift inverse official key art featuring Milo Coppercap swimming toward rising cyan diamonds above heavy boulders.">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://bulentozkir.github.io/gemrift-inverse-site/">
     <link rel="icon" type="image/png" href="static/images/gemrift-inverse-icon.png">
+    <link rel="preload" href="static/fonts/Baloo2.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="stylesheet" href="static/css/site.css">
-    <title>Gemrift inverse — Turn the cave upside down</title>
+    <title>Gemrift inverse — Underwater Puzzle Adventure</title>
     <script>
       (() => {
         const param = new URLSearchParams(window.location.search).get("scoutTheme");
-        const theme =
-          param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-        document.documentElement.setAttribute("data-theme", theme);
+        document.documentElement.setAttribute("data-theme", param === "light" ? "light" : "dark");
       })();
     </script>
-    <style>
-      :root {
-        color-scheme: light;
-        --cp-bg: #f7f4ef;
-        --cp-bg-elevated: #fcfbf8;
-        --cp-surface: #ffffff;
-        --cp-surface-soft: #f5f5f5;
-        --cp-border: #dedede;
-        --cp-border-strong: #919191;
-        --cp-text: #242424;
-        --cp-text-muted: #5c5c5c;
-        --cp-text-soft: #6f6f6f;
-        --cp-accent: #b11f4b;
-        --cp-accent-hover: #9a1a41;
-        --cp-accent-soft: rgba(177, 31, 75, 0.08);
-        --cp-accent-fg: #ffffff;
-        --cp-success: #16a34a;
-        --cp-danger: #dc2626;
-        --cp-warning: #f59e0b;
-        --cp-link: #0078d4;
-        --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
-        --cp-overlay: rgba(255, 255, 255, 0.8);
-        --cp-panel: rgba(255, 255, 255, 0.86);
-        --cp-panel-strong: rgba(255, 255, 255, 0.96);
-        --cp-sheen: rgba(255, 255, 255, 0.55);
-        --cp-highlight: rgba(177, 31, 75, 0.12);
-      }
-      html[data-theme="dark"] {
-        color-scheme: dark;
-        --cp-bg: #3d3b3a;
-        --cp-bg-elevated: #343231;
-        --cp-surface: #292929;
-        --cp-surface-soft: #2e2e2e;
-        --cp-border: #474747;
-        --cp-border-strong: #5f5f5f;
-        --cp-text: #dedede;
-        --cp-text-muted: #919191;
-        --cp-text-soft: #b0b0b0;
-        --cp-accent: #fd8ea1;
-        --cp-accent-hover: #fb7b91;
-        --cp-accent-soft: rgba(253, 142, 161, 0.14);
-        --cp-accent-fg: #1a1a1a;
-        --cp-success: #4ade80;
-        --cp-danger: #f87171;
-        --cp-warning: #fbbf24;
-        --cp-link: #4da6ff;
-        --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
-        --cp-overlay: rgba(41, 41, 41, 0.88);
-        --cp-panel: rgba(41, 41, 41, 0.72);
-        --cp-panel-strong: rgba(41, 41, 41, 0.96);
-        --cp-sheen: rgba(255, 255, 255, 0.04);
-        --cp-highlight: rgba(253, 142, 161, 0.12);
-      }
-    </style>
   </head>
   <body>
+    <canvas id="abyss-canvas" aria-hidden="true"></canvas>
     <a class="skip-link" href="#main">Skip to content</a>
+
     <header class="site-header">
       <div class="header-inner">
         <a class="wordmark" href="#top" aria-label="Gemrift inverse home">
           <img src="static/images/gemrift-inverse-icon.png" alt="" width="42" height="42">
-          <span>GEMRIFT <b>INVERSE</b></span>
+          <span><span class="wordmark-gemrift">GEMRIFT</span> <span class="wordmark-inverse">INVERSE</span></span>
         </a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
-          <span class="menu-toggle-label">Menu</span>
+          <span>Menu</span>
           <span class="menu-icon" aria-hidden="true"><i></i><i></i></span>
         </button>
         <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
-          <a href="#the-inverse">The inverse</a>
-          <a href="#the-expedition">The expedition</a>
-          <a href="#meet-milo">Meet Milo</a>
-          <a href="support.html">Support</a>
-          <a class="nav-status" href="#in-development"><span class="status-dot"></span> In development</a>
-          <button class="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="false" title="Toggle light and dark theme"><span aria-hidden="true">◐</span></button>
+          <div class="nav-section-links">
+            <a href="#trailer">Trailer</a>
+            <a href="#gameplay">Gameplay</a>
+            <a href="#screenshots">Screenshots</a>
+            <a href="#creatures">Creatures</a>
+            <a href="#caves">Caves &amp; Modes</a>
+            <a href="#controls">Controls</a>
+          </div>
+          <div class="toolbar-capsule" role="group" aria-label="Site pages and theme">
+            <a class="toolbar-btn toolbar-btn-support" href="support.html">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2a2.6 2.6 0 0 1 5 .8c0 1.8-2.5 2.1-2.5 3.8"/><circle cx="12" cy="17.2" r="0.6" fill="currentColor"/></svg>
+              Support
+            </a>
+            <a class="toolbar-btn toolbar-btn-privacy" href="privacy.html">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.8 3 8.3 7 9.8 4-1.5 7-5 7-9.8V6l-7-3Z"/><path d="m9.2 12.2 2 2 3.8-4"/></svg>
+              Privacy
+            </a>
+            <a class="toolbar-btn toolbar-btn-credits" href="copyright.html">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.6 9.6a3.6 3.6 0 1 0 0 4.8"/></svg>
+              Copyright &amp; credit
+            </a>
+            <button class="theme-toggle" type="button" aria-label="Switch to coastal daylight theme" aria-pressed="false" title="Toggle dark and light theme">
+              <span data-theme-icon aria-hidden="true">☀</span>
+            </button>
+          </div>
         </nav>
       </div>
     </header>
 
     <main id="main">
+      <!-- HERO -->
       <section class="hero section-wrap" id="top" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow"><span class="eyebrow-mark">✦</span> An underwater puzzle adventure</p>
-          <h1 id="hero-title">Turn the cave <span>upside down.</span></h1>
-          <p class="hero-lede">Swim into a world where rocks rise, air is precious, and the way forward is never quite where you expect.</p>
+          <p class="release-pill">
+            <span class="status-beacon" aria-hidden="true"></span>
+            Out Now for Windows · 215 Proved Caves
+          </p>
+          <h1 id="hero-title">
+            Rocks fall.
+            <span class="hero-line-cyan">Gems rise.</span>
+          </h1>
+          <p class="hero-tagline">Dig smart · Shine bright.</p>
+          <p class="hero-lede">
+            Plunge with Milo Coppercap into an arcade underwater puzzle adventure where heavy boulders crash downward, freed crystals and buoyant mines shoot toward the ceiling, and every breath of air shapes your route.
+          </p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#the-inverse">
-              Explore the inverse
-              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-5-5 5 5-5 5"/></svg>
+            <a class="button button-store" href="https://apps.microsoft.com/detail/9P3QHCNQ5SL3?hl=en-us&amp;gl=TR&amp;ocid=pdpshare" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor" stroke="none"/><rect x="13" y="3" width="8" height="8" fill="currentColor" stroke="none"/><rect x="3" y="13" width="8" height="8" fill="currentColor" stroke="none"/><rect x="13" y="13" width="8" height="8" fill="currentColor" stroke="none"/></svg>
+              Get on Microsoft Store
             </a>
-            <span class="hero-note">A new adventure from the world of Gemrift</span>
+            <a class="button button-secondary" href="#trailer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="8,5 19,12 8,19" fill="currentColor" stroke="none"/></svg>
+              Watch Trailer
+            </a>
           </div>
-          <div class="hero-facts" aria-label="At a glance">
-            <div><strong>215</strong><span>underwater caves</span></div>
-            <div><strong>↑</strong><span>gravity, reversed</span></div>
-            <div><strong>5</strong><span>difficulty tiers</span></div>
+          <div class="hero-platform-note">
+            <span><i>✦</i> Windows x64 &amp; ARM64</span>
+            <span><i>✦</i> 100% Offline Play</span>
+            <span><i>✦</i> Keyboard &amp; Controller</span>
+            <span><i>✦</i> Smart Checkpoint Rewind</span>
           </div>
-        </div>
-        <figure class="hero-art">
-          <img src="static/images/gemrift-inverse-hero.png" alt="Gemrift inverse key art: Milo swims through a deep blue cave filled with glowing gems, rising crystals, and sea creatures." width="1920" height="1080" fetchpriority="high">
-          <figcaption><span>OFFICIAL KEY ART · NOT GAMEPLAY FOOTAGE</span><span class="art-caption-mark">01 <i></i> 215</span></figcaption>
-        </figure>
-        <a class="scroll-cue" href="#the-inverse" aria-label="Scroll to discover the game">
-          <span>SCROLL TO DESCEND</span>
-          <svg viewBox="0 0 18 26" aria-hidden="true"><path d="M9 2v19m-6-6 6 6 6-6"/></svg>
-        </a>
-      </section>
-
-      <section class="intro section-wrap" id="the-inverse" aria-labelledby="inverse-title">
-        <div class="section-kicker"><span>01</span><span class="kicker-line"></span><span>THE INVERSE</span></div>
-        <div class="intro-grid">
-          <h2 id="inverse-title">Everything you know<br>is <em>about to float away.</em></h2>
-          <div class="intro-copy">
-            <p>Meet the curious new side of Gemrift. Milo dives into a chain of title-inspired underwater caves, where the terrain is a puzzle and gravity has its own ideas.</p>
-            <p>Read the room. Watch the water. Give a rock a nudge in the right direction—and see what rises.</p>
-            <a class="text-link" href="#the-expedition">See what waits below <span aria-hidden="true">↘</span></a>
-          </div>
-        </div>
-        <div class="principles">
-          <article class="principle-card principle-water">
-            <div class="card-topline"><span>01 / THE CURRENT</span><span class="card-glyph" aria-hidden="true">≈</span></div>
-            <h3>Every breath<br>counts.</h3>
-            <p>Swim through flooded passages, find air pockets, and plan your route before the water takes its toll.</p>
-            <div class="card-bottom"><span>SWIM</span><span class="bottom-arrow" aria-hidden="true">↗</span></div>
-          </article>
-          <article class="principle-card principle-gravity">
-            <div class="card-topline"><span>02 / THE TWIST</span><span class="card-glyph" aria-hidden="true">↑</span></div>
-            <h3>Rocks go<br>the other way.</h3>
-            <p>Upward-moving rocks turn familiar cave logic on its head. Make the strange new physics work for you.</p>
-            <div class="card-bottom"><span>THINK UP</span><span class="bottom-arrow" aria-hidden="true">↗</span></div>
-          </article>
-          <article class="principle-card principle-gems">
-            <div class="card-topline"><span>03 / THE PAYOFF</span><span class="card-glyph" aria-hidden="true">✦</span></div>
-            <h3>Make a path<br>to the sparkle.</h3>
-            <p>Set clever chain reactions in motion, gather enough gems, and find your way to the exit.</p>
-            <div class="card-bottom"><span>DISCOVER</span><span class="bottom-arrow" aria-hidden="true">↗</span></div>
-          </article>
-        </div>
-      </section>
-
-      <section class="expedition" id="the-expedition" aria-labelledby="expedition-title">
-        <div class="expedition-inner section-wrap">
-          <div class="section-kicker"><span>02</span><span class="kicker-line"></span><span>THE EXPEDITION</span></div>
-          <div class="expedition-heading">
-            <div>
-              <p class="eyebrow">215 doors into the deep</p>
-              <h2 id="expedition-title">A name for every cave.<br><em>A new way to explore.</em></h2>
+          <div class="hud-stats" aria-label="Game highlights">
+            <div class="hud-stat-box" data-tone="cyan">
+              <span class="hud-stat-top">◆ Caves</span>
+              <strong class="hud-stat-value" data-count="215">215</strong>
+              <span class="hud-stat-label">All open at launch</span>
             </div>
-            <p class="expedition-deck">Each cave starts with its own name. That name shapes the rooms, the rockwork, the water, and the puzzle waiting inside.</p>
+            <div class="hud-stat-box" data-tone="coral">
+              <span class="hud-stat-top">◈ Hunters</span>
+              <strong class="hud-stat-value" data-count="8">8</strong>
+              <span class="hud-stat-label">5 coastal + 3 deep</span>
+            </div>
+            <div class="hud-stat-box" data-tone="gold">
+              <span class="hud-stat-top">★ Tiers</span>
+              <strong class="hud-stat-value" data-count="5">5</strong>
+              <span class="hud-stat-label">Junior to Distinguished</span>
+            </div>
+            <div class="hud-stat-box" data-tone="mint">
+              <span class="hud-stat-top">◎ Locales</span>
+              <strong class="hud-stat-value" data-count="30">30</strong>
+              <span class="hud-stat-label">UI &amp; Help languages</span>
+            </div>
           </div>
-          <figure class="expedition-art">
-            <img src="static/images/gemrift-inverse-hero.png" alt="A wide underwater cave scene with deep-water light, gem formations, and Milo exploring." width="1920" height="1080" loading="lazy">
-            <figcaption class="expedition-caption">
-              <span class="art-index"><span>FIELD NOTES</span><strong>215</strong><span>WAYS INTO THE RIFT</span></span>
-              <span class="art-side-note"><span class="vertical-label">UNDERWATER WORLD · KEY ART</span><span class="art-side-line"></span></span>
-            </figcaption>
-          </figure>
-          <div class="expedition-bottom">
-            <p>From twisting mazes to flooded chambers, every title points to a new shape—and a new way to think your way through.</p>
-            <div class="difficulty">
-              <span class="difficulty-label">CHOOSE YOUR PACE</span>
-              <div class="difficulty-levels" aria-label="Five difficulty settings">
-                <span>Junior</span><span>Senior</span><span>Principal</span><span>Expert</span><span>Distinguished</span>
+        </div>
+
+        <figure class="hero-monitor">
+          <div class="monitor-topbar" aria-hidden="true">
+            <span class="monitor-dots"><i></i><i></i><i></i></span>
+            <span>GEMRIFT INVERSE · UNDERWATER PUZZLE ADVENTURE</span>
+            <span class="monitor-chip">NATIVE-V3</span>
+          </div>
+          <picture>
+            <source srcset="static/images/gemrift-inverse-hero.webp" type="image/webp">
+            <img src="static/images/gemrift-inverse-hero.png" alt="Gemrift inverse official key art: Milo Coppercap swims through a glowing deep-sea cavern toward rising cyan crystals while heavy boulders sink below." width="1920" height="1080" fetchpriority="high">
+          </picture>
+          <figcaption class="monitor-footer">
+            <span>OPPOSITE-GRAVITY CAVERNS · MILO COPPERCAP</span>
+            <span>001 — 215 UNLOCKED</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- ANIMATED GIF TRAILER -->
+      <section class="section-block section-block-alt" id="trailer" aria-labelledby="trailer-title">
+        <div class="section-wrap">
+          <div class="section-kicker"><span class="kicker-num">01</span><span>GAMEPLAY TRAILER</span></div>
+          <div class="section-header reveal">
+            <h2 id="trailer-title">See the abyss <em>in motion.</em></h2>
+            <p>Real gameplay across flooded cisterns, buoyant mine locks, telegraphed predator ambushes, and chain-reaction blasts—scored by the original 128 BPM chiptune theme <strong>Pixel Tides</strong>.</p>
+          </div>
+
+          <div class="trailer-cabinet reveal" id="trailer-player">
+            <div class="game-hud-bar" aria-hidden="true">
+              <div class="hud-capsule-group">
+                <span class="hud-mini-key hud-mini-mint">⏸</span>
+                <span class="hud-mini-key hud-mini-coral">↺</span>
+                <span class="hud-mini-key hud-mini-amber">▶|</span>
+                <span class="hud-mini-key hud-mini-sky">1/215 · The Inverted Cistern</span>
+              </div>
+              <div class="hud-readouts">
+                <span class="hud-gem">◆ <b>15/15</b></span>
+                <span class="hud-time">⏱ <b>283s</b></span>
+                <span class="hud-score">★ <b>002450</b></span>
+                <span class="hud-air">🫧 <b>30s</b></span>
+              </div>
+              <div class="hud-capsule-group">
+                <span class="hud-mini-key hud-mini-lime">💡</span>
+                <span class="hud-mini-key hud-mini-cyan">?</span>
+              </div>
+            </div>
+
+            <div class="trailer-stage" id="trailer-stage">
+              <img
+                id="trailer-media"
+                src="static/images/gemrift-inverse-trailer.gif"
+                data-gif-src="static/images/gemrift-inverse-trailer.gif"
+                data-poster-src="static/images/gemrift-inverse-trailer-poster.webp"
+                alt="Animated gameplay trailer of Gemrift inverse showing Milo swimming through flooded caves, dropping boulders onto mines, dodging sea predators, and collecting upward-floating gems."
+                width="720"
+                height="405"
+                loading="eager">
+            </div>
+
+            <div class="trailer-controls-bar">
+              <div class="trailer-status-group">
+                <span class="trailer-state-badge" id="trailer-state-badge">LIVE · 53s GAMEPLAY LOOP</span>
+                <span class="chiptune-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                <span class="chiptune-caption">“Pixel Tides” 128 BPM Chiptune · 432 Hz Cave Audio</span>
+              </div>
+              <button class="trailer-toggle-btn" id="trailer-toggle" type="button" aria-pressed="false">
+                <span data-toggle-glyph aria-hidden="true">⏸</span>
+                <span data-toggle-label>Pause GIF</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="trailer-beats reveal" aria-label="Trailer highlights">
+            <div class="trailer-beat is-current">
+              <span>01 / OPPOSITE GRAVITY</span>
+              <strong>Rocks sink. Gems &amp; mines rise.</strong>
+            </div>
+            <div class="trailer-beat">
+              <span>02 / OXYGEN ROUTING</span>
+              <strong>Dive, surface in domes &amp; plan ahead.</strong>
+            </div>
+            <div class="trailer-beat">
+              <span>03 / TELEGRAPHED AI</span>
+              <strong>Read every warning &amp; score dodges.</strong>
+            </div>
+            <div class="trailer-beat">
+              <span>04 / 3×3 DEMOLITION</span>
+              <strong>Drop boulders onto buoyant mines.</strong>
+            </div>
+            <div class="trailer-beat">
+              <span>05 / PROVED DESIGN</span>
+              <strong>215 caves · 430 verified routes.</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CORE GAMEPLAY & LIVE INVERSE PHYSICS SCHEMATIC -->
+      <section class="section-block" id="gameplay" aria-labelledby="gameplay-title">
+        <div class="section-wrap">
+          <div class="section-kicker"><span class="kicker-num">02</span><span>THE INVERSE TWIST</span></div>
+          <div class="section-header reveal">
+            <h2 id="gameplay-title">Opposite gravity.<br><em>Pure arcade tactics.</em></h2>
+            <p>Every cave runs on an exact 180 ms deterministic simulation. Water never drains or evaporates—so every silt plug you clear, mine you release, and boulder you drop obeys crystal-clear rules.</p>
+          </div>
+
+          <div class="mechanics-layout">
+            <aside class="physics-stage reveal" aria-label="Animated diagram comparing downward boulder gravity and upward crystal buoyancy">
+              <div class="physics-stage-head">
+                <span>LIVE SIMULATION RULESET · NATIVE-V3</span>
+                <span class="monitor-chip">180ms TICKS</span>
+              </div>
+
+              <div class="physics-shafts" aria-hidden="true">
+                <div class="shaft-card shaft-down">
+                  <span class="shaft-label">ROCKS SINK ↓</span>
+                  <span class="shaft-waterline"></span>
+                  <svg class="anim-boulder" viewBox="0 0 48 48">
+                    <polygon points="14,6 35,8 43,23 36,41 13,42 5,25" fill="#4f6272" stroke="#b8d0e0" stroke-width="2.5"/>
+                    <path d="M18 16 L26 24 L22 34 M26 24 L35 20" stroke="#90a8bc" stroke-width="2" fill="none" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="anim-mine" viewBox="0 0 48 48">
+                    <circle cx="24" cy="24" r="12" fill="#2c3e50" stroke="#ff7a6b" stroke-width="2.5"/>
+                    <path d="M24 6v6M24 36v6M6 24h6M36 24h6M11 11l4 4M33 33l4 4M37 11l-4 4M15 33l-4 4" stroke="#ff7a6b" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="24" cy="24" r="4" fill="#ffb347"/>
+                  </svg>
+                  <span class="anim-blast"></span>
+                </div>
+
+                <div class="shaft-card shaft-up">
+                  <span class="shaft-label">GEMS RISE ↑</span>
+                  <span class="shaft-waterline"></span>
+                  <div class="air-dome">AIR DOME</div>
+                  <svg class="anim-gem" viewBox="0 0 48 48">
+                    <polygon points="13,14 35,14 43,22 24,42 5,22" fill="#4ce8ff" stroke="#e6fcff" stroke-width="2.2"/>
+                    <polyline points="5,22 43,22" stroke="#e6fcff" stroke-width="1.8"/>
+                    <polyline points="16,14 24,42 32,14" fill="none" stroke="#a8f7ff" stroke-width="1.6"/>
+                  </svg>
+                  <span class="anim-bubble"></span>
+                  <span class="anim-bubble b2"></span>
+                </div>
+              </div>
+
+              <p class="physics-stage-foot">
+                <strong>Dual-vector puzzles:</strong> Unseal a submerged siphon so a naval mine floats up into firing position, then push a counterweight boulder above to shatter brick blast doors!
+              </p>
+            </aside>
+
+            <div class="mechanics-cards">
+              <article class="mechanic-card reveal" data-accent="cyan">
+                <span class="mechanic-icon" aria-hidden="true">⇅</span>
+                <h3>Inverse Crystal Gravity</h3>
+                <p>Heavy rocks crash downward and roll off rounded brick ledges, while freed gems, black pearls, and waterborne mines float straight toward the ceiling.</p>
+                <span class="mechanic-tag">BOULDERS DOWN · CRYSTALS &amp; MINES UP</span>
+              </article>
+
+              <article class="mechanic-card reveal" data-accent="mint">
+                <span class="mechanic-icon" aria-hidden="true">🫧</span>
+                <h3>Fixed Water &amp; Air Domes</h3>
+                <p>60–85% of every cave is submerged. Digging blue-tinted silt opens flooded paths without draining pools, while steel-capped air pockets instantly refill your tank.</p>
+                <span class="mechanic-tag">OXYGEN-AUDITED ROUTES</span>
+              </article>
+
+              <article class="mechanic-card reveal" data-accent="coral">
+                <span class="mechanic-icon" aria-hidden="true">↺</span>
+                <h3>Smart Rewind (R vs R+R)</h3>
+                <p>Unlimited lives, zero frustration. Press <kbd>R</kbd> once—whether Milo died or wedged a rock—to rewind to the last clean checkpoint with dug paths &amp; gems kept, or <kbd>R+R</kbd> for tick 0.</p>
+                <span class="mechanic-tag">INSTANT CHECKPOINT RECOVERY</span>
+              </article>
+
+              <article class="mechanic-card reveal" data-accent="gold">
+                <span class="mechanic-icon" aria-hidden="true">💡</span>
+                <h3>Live Solution Bulb &amp; Demo</h3>
+                <p>Jump into <strong>Show me the game play</strong> for an interactive tutorial cave, or unlock the toolbar <strong>Bulb</strong> after 9 tries on any cave for step-scrubbable live solution playback.</p>
+                <span class="mechanic-tag">430 BUNDLED JSON PROOFS</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREENSHOT GALLERY -->
+      <section class="section-block section-block-alt" id="screenshots" aria-labelledby="screenshots-title">
+        <div class="section-wrap">
+          <div class="section-kicker"><span class="kicker-num">03</span><span>NATIVE CAPTURES</span></div>
+          <div class="section-header reveal">
+            <h2 id="screenshots-title">Crisp silhouettes.<br><em>Readable at a glance.</em></h2>
+            <p>Captured directly at 1920×1111 desktop resolution with the high-contrast color-coded capsule toolbar, predator telegraph brackets, and procedural cave palettes.</p>
+          </div>
+
+          <div class="filter-bar reveal">
+            <div class="filter-pills" role="group" aria-label="Filter screenshots">
+              <button class="filter-pill is-active" type="button" data-shot-filter="all" aria-pressed="true">All Captures (10)</button>
+              <button class="filter-pill" type="button" data-shot-filter="gameplay" aria-pressed="false">Underwater Caves (6)</button>
+              <button class="filter-pill" type="button" data-shot-filter="interface" aria-pressed="false">Menus, Tutorial &amp; Help (4)</button>
+            </div>
+          </div>
+
+          <div class="shots-grid">
+            <figure class="shot-card reveal" data-shot-cat="gameplay" data-title="Cave 1/215 — The Inverted Cistern" data-desc="Bespoke U-cistern opening cave introducing submerged silt, upward-floating gems, and your first Giant Crab counterweight trap.">
+              <button class="shot-trigger" type="button" aria-label="Enlarge screenshot: Cave 1 The Inverted Cistern">
+                <img src="static/images/screenshots/01-gameplay-the-inverted-cistern.webp" alt="Gameplay in Cave 1 The Inverted Cistern showing Milo, flooded channels, gems, and the color-coded top toolbar." width="1920" height="1111" loading="lazy">
+                <span class="shot-zoom-badge">⤢ ENLARGE</span>
+              </button>
+              <figcaption class="shot-meta">
+                <span class="shot-rank">CAVE 001 / 215</span>
+                <h3>The Inverted Cistern</h3>
+                <p>Compact U-cistern opener with air domes, rising crystals, and a Giant Crab ambush pool.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="shot-card reveal" data-shot-cat="gameplay" data-title="Cave 3/215 — Ascending Reefs" data-desc="Bottom-up reef ascent where Milo swims with an oxygen ring while a Shark charges along a flooded steel channel.">
+              <button class="shot-trigger" type="button" aria-label="Enlarge screenshot: Cave 3 Ascending Reefs">
+                <img src="static/images/screenshots/02-gameplay-ascending-reefs.webp" alt="Gameplay in Cave 3 Ascending Reefs with Milo swimming past brick blast locks as a Shark charges through water." width="1920" height="1111" loading="lazy">
+                <span class="shot-zoom-badge">⤢ ENLARGE</span>
+              </button>
+              <figcaption class="shot-meta">
+                <span class="shot-rank">CAVE 003 / 215</span>
+                <h3>Ascending Reefs</h3>
+                <p>Flooded steel corridors where breaking cardinal sightlines dodges a 1.5× Shark sprint.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="shot-card reveal" data-shot-cat="gameplay" data-title="Cave 4/215 — Buoyancy Chambers" data-desc="Twin buoyancy bells combining dry counterweight shelves, submerged naval mines, and dry-ledge Polar Bear patrols.">
+              <button class="shot-trigger" type="button" aria-label="Enlarge screenshot: Cave 4 Buoyancy Chambers">
+                <img src="static/images/screenshots/03-gameplay-buoyancy-chambers.webp" alt="Gameplay in Cave 4 Buoyancy Chambers featuring twin flooded bell chambers and counterweight boulders." width="1920" height="1111" loading="lazy">
+                <span class="shot-zoom-badge">⤢ ENLARGE</span>
+              </button>
+              <figcaption class="shot-meta">
+                <span class="shot-rank">CAVE 004 / 215</span>
+                <h3>Buoyancy Chambers</h3>
+                <p>Twin pressure bells pairing rising naval mines with elevated counterweight rock shelves.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="shot-card reveal" data-shot-cat="gameplay" data-title="Cave 148/215 — The Leviathan Pressure Cage" data-desc="Live 3×3 mine detonation below Milo while an Octopus illuminates its pink tentacle warning lanes and a Polar Bear patrols the left shelf.">
+              <button class="shot-trigger" type="button" aria-label="Enlarge screenshot: Cave 148 The Leviathan Pressure Cage">
+                <img src="static/images/screenshots/04-gameplay-the-leviathan-pressure-cage.webp" alt="Gameplay in Cave 148 The Leviathan Pressure Cage showing a 3x3 explosion, Octopus tentacle warning lanes, and a Polar Bear." width="1920" height="1111" loading="lazy">
+                <span class="shot-zoom-badge">⤢ ENLARGE</span>
+              </button>
+              <figcaption class="shot-meta">
+                <span class="shot-rank">CAVE 148 / 215</span>
+                <h3>The Leviathan Pressure Cage</h3>
+                <p>3×3 blast action alongside Octopus tentacle lane warnings and multi-habitat batteries.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="shot-card reveal" data-shot-cat="gameplay" data-title="Cave 165/215 — Hadal Breathing Vaults" data-desc="Deep-cavern oxygen routing across dome-capped air pockets, siphon relays, and multi-pin boulder locks.">
+              <button class="shot-trigger" type="button" aria-label="Enlarge screenshot: Hadal Breathing Vaults">
+                <img src="static/images/screenshots/05-gameplay-hadal-breathing-vaults.webp" alt="Gameplay in Hadal Breathing Vaults with deep flooded vaults, air pockets, and multi-stage boulder contraptions." width="1920" height="1111" loading="lazy">
+                <span class="shot-zoom-badge">⤢ ENLARGE</span>
+              </button>
+              <figcaption class="shot-meta">
+                <span class="shot-rank">DEEP CAMPAIGN</span>
+                <h3>Hadal Breathing Vaults</h3>
+                <p>Tight 10-second deep-cave oxygen budgets bridged by dome-capped breathing vaults.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="shot-card reveal" data-shot-cat="gameplay" data-title="Cave 191/215 — Sunken Basalt Bastion" data-desc="Late-game ecosystem stronghold combining coastal hunters, deep-sea creatures, and multi-step blast doors.">
+              <button class="shot-trigger" type="button" aria-label="Enlarge screenshot: Sunken Basalt Bastion">
+                <img src="static/images/screenshots/06-gameplay-sunken-basalt-bastion.webp" alt="Gameplay in Sunken Basalt Bastion showing dense basalt steel architecture, gems, and submerged puzzle shafts." width="1920" height="1111" loading="lazy">
+                <span class="shot-zoom-badge">⤢ ENLARGE</span>
+              </button>
+              <figcaption class="shot-meta">
+                <span class="shot-rank">CAVE 191 / 215</span>
+                <h3>Sunken Basalt Bastion</h3>
+                <p>High-IQ late-campaign architecture where every blast door demands exact causal order.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="shot-card reveal" data-shot-cat="interface" data-title="Opening Screen — Start, Tutorial &amp; Low-Vision Difficulty Slider" data-desc="Milo Coppercap's animated headlamp portrait, Start Game, Show me the game play, and the numbered 1–5 diamond difficulty selector.">
+              <button class="shot-trigger" type="button" aria-label="Enlarge screenshot: Opening Screen">
+                <img src="static/images/screenshots/07-opening-page.webp" alt="Gemrift inverse opening screen with Milo Coppercap, gold Start game button, Show me the game play button, and 1-5 difficulty slider." width="1920" height="1111" loading="lazy">
+                <span class="shot-zoom-badge">⤢ ENLARGE</span>
+              </button>
+              <figcaption class="shot-meta">
+                <span class="shot-rank">OPENING SCREEN</span>
+                <h3>Clean Arcade Launch</h3>
+                <p>Instant keyboard-first launch with gold Start action, tutorial button, and numbered 1–5 difficulty slider.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="shot-card reveal" data-shot-cat="interface" data-title="Interactive Tutorial — Show Me How To Play" data-desc="Self-contained playable tutorial cave with live keycaps, HUD callouts, Snap digging, mine blasts, and checkpoint rewind.">
+              <button class="shot-trigger" type="button" aria-label="Enlarge screenshot: Interactive How to Play Tutorial">
+                <img src="static/images/screenshots/10-how-to-play-page.webp" alt="Interactive Show me the game play tutorial demonstrating movement, Snap digging, air pockets, and HUD callouts." width="1920" height="1111" loading="lazy">
+                <span class="shot-zoom-badge">⤢ ENLARGE</span>
+              </button>
+              <figcaption class="shot-meta">
+                <span class="shot-rank">LIVE TUTORIAL</span>
+                <h3>“Show Me The Game Play”</h3>
+                <p>Step-by-step choreographed cave teaching inverse gems, air pockets, mines, and <kbd>R</kbd> rewind.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="shot-card reveal" data-shot-cat="interface" data-title="Settings — 30 Languages, Remixed Creatures &amp; Sprint Caves" data-desc="Switch across 30 UI languages, pick any cave 1–215, adjust the 1–5 slider, or toggle Strict Clock, Remixed Creatures, and Sprint Caves.">
+              <button class="shot-trigger" type="button" aria-label="Enlarge screenshot: Settings Screen">
+                <img src="static/images/screenshots/08-settings-page.webp" alt="Gemrift inverse Settings screen showing 30-language selector, cave jumper, difficulty slider, Remixed creatures, and Sprint caves toggles." width="1920" height="1111" loading="lazy">
+                <span class="shot-zoom-badge">⤢ ENLARGE</span>
+              </button>
+              <figcaption class="shot-meta">
+                <span class="shot-rank">SETTINGS PANEL</span>
+                <h3>Deep Customization</h3>
+                <p>30 locales, cave selector, High Contrast, Reduced Motion, Remixed Creatures, and Sprint Caves.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="shot-card reveal" data-shot-cat="interface" data-title="Illustrated Help &amp; Creature Encyclopedia" data-desc="In-game quick reference with custom icons for every terrain tile, coastal predator, deep-sea specialist, and keyboard shortcut.">
+              <button class="shot-trigger" type="button" aria-label="Enlarge screenshot: Illustrated Help Panel">
+                <img src="static/images/screenshots/09-help-page.webp" alt="Gemrift inverse Help screen showing illustrated guides for Gems, Controls &amp; Snap, Air &amp; Mines, and Menu shortcuts." width="1920" height="1111" loading="lazy">
+                <span class="shot-zoom-badge">⤢ ENLARGE</span>
+              </button>
+              <figcaption class="shot-meta">
+                <span class="shot-rank">ENCYCLOPEDIA</span>
+                <h3>Illustrated In-Game Help</h3>
+                <p>Localized mechanic cards, creature guides, and shortcut badges available anytime with <kbd>F1</kbd>.</p>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8-CREATURE BESTIARY -->
+      <section class="section-block" id="creatures" aria-labelledby="creatures-title">
+        <div class="section-wrap">
+          <div class="section-kicker"><span class="kicker-num">04</span><span>RIFT WILDLIFE · 8 SPECIES</span></div>
+          <div class="section-header reveal">
+            <h2 id="creatures-title">Eight distinct hunters.<br><em>Zero cheap hits.</em></h2>
+            <p>Five coastal predators roam water channels and dry shelves from the opening caves, joined from Cave 21 onward by three deep-sea specialists—and optional <strong>Remixed Creatures</strong> mode reinvents the core five with wild arcade powers.</p>
+          </div>
+
+          <div class="filter-bar reveal">
+            <div class="filter-pills" role="group" aria-label="Filter creatures by habitat">
+              <button class="filter-pill is-active" type="button" data-creature-filter="all" aria-pressed="true">All 8 Species</button>
+              <button class="filter-pill" type="button" data-creature-filter="coastal" aria-pressed="false">5 Coastal Predators</button>
+              <button class="filter-pill" type="button" data-creature-filter="deep" aria-pressed="false">3 Deep-Sea Specialists (Cave 21+)</button>
+            </div>
+            <div class="filter-pills" role="group" aria-label="Toggle Standard vs Remixed creature rules">
+              <button class="filter-pill is-active" type="button" data-creature-mode="coastal" aria-pressed="true">Standard Rules</button>
+              <button class="filter-pill filter-pill-remix" type="button" data-creature-mode="remix" aria-pressed="false">⚡ Remixed Mode</button>
+            </div>
+          </div>
+
+          <div class="creature-grid" id="creature-grid" data-mode="coastal">
+            <!-- 1. Giant Crab -->
+            <article class="creature-card reveal" data-group="coastal" data-has-remix="true">
+              <div class="creature-top">
+                <span class="creature-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <ellipse cx="24" cy="27" rx="12" ry="9" fill="#ffb26b" stroke="#ffe4b0" stroke-width="2"/>
+                    <path d="M12 20c-5-2-6-8-2-10 3-1 5 2 4 5m22 5c5-2 6-8 2-10-3-1-5 2-4 5" stroke="#ffb26b" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M13 31 7 36m7-2-4 6m25-9 6 5m-7-2 4 6" stroke="#bd623d" stroke-width="2.4" stroke-linecap="round"/>
+                    <circle cx="20" cy="24" r="2" fill="#291923"/><circle cx="28" cy="24" r="2" fill="#291923"/>
+                  </svg>
+                </span>
+                <span class="habitat-pill habitat-water">WATER · CAVE 1+</span>
+              </div>
+              <h3>Giant Crab</h3>
+              <div class="creature-role">Right-Wall Scuttler · Claw Lunge</div>
+              <p class="creature-desc-coastal">Scuttles along right-hand submerged walls. Spots Milo within 5 cells, raises snapping claws for 4 ticks, lunges 2 cells, and rests harmlessly while spent.</p>
+              <p class="creature-desc-remix"><strong>Remix — The Grid Locker:</strong> Fuses loose boulders in place or shoves them horizontally! Trap it in a 1×1 tunnel and push a rock sideways for a 3×3 Dirt Diamond Cage.</p>
+              <div class="creature-loot"><span>TELEGRAPH: 4 TICKS</span><strong>◆ 1 Gem</strong></div>
+            </article>
+
+            <!-- 2. Shark -->
+            <article class="creature-card reveal" data-group="coastal" data-has-remix="true">
+              <div class="creature-top">
+                <span class="creature-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M7 25c8-8 19-10 29-5l6-5-2 10 2 10-6-5c-10 5-21 3-29-5Z" fill="#8fb3d6" stroke="#e9f4ff" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M21 17 25 9l3 9" fill="#5a82ab" stroke="#e9f4ff" stroke-width="1.8" stroke-linejoin="round"/>
+                    <circle cx="15" cy="23" r="1.8" fill="#1b1d24"/>
+                  </svg>
+                </span>
+                <span class="habitat-pill habitat-water">WATER · CAVE 3+</span>
+              </div>
+              <h3>Shark</h3>
+              <div class="creature-role">Cardinal Sprinter · 1.5× Pursuit</div>
+              <p class="creature-desc-coastal">Patrols straight water channels. Sighting submerged Milo within 12 cells triggers a sonar warning tick followed by a 1.5× sprint to his last sighted cell.</p>
+              <p class="creature-desc-remix"><strong>Remix — The Scent Tracker:</strong> Hunts Milo's 10s digging sediment trail at double speed! Dropping a boulder bursts it into Chum that lures other enemies for 15s.</p>
+              <div class="creature-loot"><span>SIGHT: 12 CELLS</span><strong>◆×6 Cluster</strong></div>
+            </article>
+
+            <!-- 3. Octopus -->
+            <article class="creature-card reveal" data-group="coastal" data-has-remix="true">
+              <div class="creature-top">
+                <span class="creature-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M15 21c0-6 4-11 9-11s9 5 9 11c0 3-2 5-4 5H19c-2 0-4-2-4-5Z" fill="#ff7a8c" stroke="#ffe3e8" stroke-width="2"/>
+                    <path d="M16 26c-4 3-6 7-4 10m8-10c-2 5-2 9 0 12m8-12c2 5 2 9 0 12m4-12c4 3 6 7 4 10" stroke="#ff7a8c" stroke-width="2.6" stroke-linecap="round"/>
+                    <circle cx="21" cy="20" r="1.8" fill="#241a2b"/><circle cx="27" cy="20" r="1.8" fill="#241a2b"/>
+                  </svg>
+                </span>
+                <span class="habitat-pill habitat-water">WATER · CAVE 4+</span>
+              </div>
+              <h3>Octopus</h3>
+              <div class="creature-role">Left-Wall Swimmer · Tentacle Sweep</div>
+              <p class="creature-desc-coastal">Hugs left-hand chamber walls and holds still while illuminating its cardinal tentacle lanes for 3 ticks before striking—pulling rocks, gems, or mines closer.</p>
+              <p class="creature-desc-remix"><strong>Remix — Camouflage Mimic:</strong> Disguises as a pulsing diamond or rock! Trick it into revealing itself, step back, and drop a boulder for a 3-item Roulette Drop.</p>
+              <div class="creature-loot"><span>TELEGRAPH: 3 TICKS</span><strong>● Black Pearl</strong></div>
+            </article>
+
+            <!-- 4. Polar Bear -->
+            <article class="creature-card reveal" data-group="coastal" data-has-remix="true">
+              <div class="creature-top">
+                <span class="creature-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <circle cx="16" cy="14" r="3.5" fill="#cbbfae"/><circle cx="32" cy="14" r="3.5" fill="#cbbfae"/>
+                    <rect x="12" y="13" width="24" height="22" rx="10" fill="#f6f1e4" stroke="#ffffff" stroke-width="2"/>
+                    <ellipse cx="24" cy="27" rx="5.5" ry="4" fill="#cbbfae"/>
+                    <circle cx="19" cy="21" r="1.8" fill="#241a2b"/><circle cx="29" cy="21" r="1.8" fill="#241a2b"/><circle cx="24" cy="26" r="2" fill="#241a2b"/>
+                  </svg>
+                </span>
+                <span class="habitat-pill habitat-dry">DRY LEDGE · CAVE 2+</span>
+              </div>
+              <h3>Polar Bear</h3>
+              <div class="creature-role">Ledge Charger · Row Stampede</div>
+              <p class="creature-desc-coastal">Patrols dry floors and drops when support vanishes. Spots Milo within 8 cells on its row, rears up with a 3-tick roar, and charges 2 cells/tick until crashing stunned.</p>
+              <p class="creature-desc-remix"><strong>Remix — The Icebreaker:</strong> Roars every 5s to shake loose unstable rocks! Drop a 3-boulder cascade onto it to freeze every screen enemy into pushable solid ice.</p>
+              <div class="creature-loot"><span>STUNNED: 4 TICKS</span><strong>◆ 1 Gem</strong></div>
+            </article>
+
+            <!-- 5. Snow Tiger -->
+            <article class="creature-card reveal" data-group="coastal" data-has-remix="true">
+              <div class="creature-top">
+                <span class="creature-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <polygon points="13,18 16,10 22,15" fill="#fff1cc" stroke="#9fd7ff" stroke-width="1.6"/>
+                    <polygon points="35,18 32,10 26,15" fill="#fff1cc" stroke="#9fd7ff" stroke-width="1.6"/>
+                    <rect x="12" y="14" width="24" height="22" rx="9" fill="#fff1cc" stroke="#ffffff" stroke-width="2"/>
+                    <path d="M15 20h4m10 0h4M24 14v4m-8 8h3m10 0h3" stroke="#241a2b" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="20" cy="23" r="1.8" fill="#241a2b"/><circle cx="28" cy="23" r="1.8" fill="#241a2b"/>
+                  </svg>
+                </span>
+                <span class="habitat-pill habitat-dry">DRY DEN · ALL 215</span>
+              </div>
+              <h3>Snow Tiger</h3>
+              <div class="creature-role">Corridor Stalker · Frost Pounce</div>
+              <p class="creature-desc-coastal">Guards every cave in dry passages and hinted sleeping dens. Crouches with glinting eyes for 4 ticks, then pounces up to 3 cells across land or water to freeze Milo.</p>
+              <p class="creature-desc-remix"><strong>Remix — Neon Flash Freeze:</strong> Leaves speed-halving frost tiles and flashes 5s reversed controls! Crush sideways to ignite the map-revealing Prism Light Show.</p>
+              <div class="creature-loot"><span>TELEGRAPH: 4 TICKS</span><strong>◆ 1 Gem</strong></div>
+            </article>
+
+            <!-- 6. Pufferfish -->
+            <article class="creature-card reveal" data-group="deep" data-has-remix="false">
+              <div class="creature-top">
+                <span class="creature-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="11" fill="#ffd166" stroke="#fff3c4" stroke-width="2"/>
+                    <path d="M24 8v4m0 24v4M8 24h4m24 0h4M13 13l3 3m16 16 3 3M35 13l-3 3M16 32l-3 3" stroke="#ffd166" stroke-width="2.4" stroke-linecap="round"/>
+                    <circle cx="20" cy="22" r="2" fill="#1d2d44"/><circle cx="28" cy="22" r="2" fill="#1d2d44"/>
+                  </svg>
+                </span>
+                <span class="habitat-pill habitat-deep">DEEP · CAVE 21+</span>
+              </div>
+              <h3>Pufferfish</h3>
+              <div class="creature-role">The Expandable 3×3 Block</div>
+              <p class="creature-desc-coastal">Swells for 3 turns when submerged Milo nears, then inflates into a rock-solid 3×3 block for 28 turns—catching falling boulders until it deflates underneath them!</p>
+              <div class="creature-loot"><span>195 CAMPAIGN CAVES</span><strong>🫧 Breath Bubble</strong></div>
+            </article>
+
+            <!-- 7. Electric Eel -->
+            <article class="creature-card reveal" data-group="deep" data-has-remix="false">
+              <div class="creature-top">
+                <span class="creature-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M10 30c4-10 11-10 15-3s10 7 14-5" stroke="#5ce1e6" stroke-width="5.5" stroke-linecap="round"/>
+                    <path d="M22 10l-3 6h5l-3 6" stroke="#ffe66d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="habitat-pill habitat-deep">DEEP · CAVE 22+</span>
+              </div>
+              <h3>Electric Eel</h3>
+              <div class="creature-role">The Silt-Channel Line Clearer</div>
+              <p class="creature-desc-coastal">Traces submerged silt borders, flickers for 3 turns when silt opens, then electrifies connected pools for 17 turns. Dropping a rock clears silt cells into gems!</p>
+              <div class="creature-loot"><span>TELEGRAPH: 3 TURNS</span><strong>◆ Silt Gems</strong></div>
+            </article>
+
+            <!-- 8. Jellyfish -->
+            <article class="creature-card reveal" data-group="deep" data-has-remix="false">
+              <div class="creature-top">
+                <span class="creature-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M12 23c0-7 5.4-12 12-12s12 5 12 12H12Z" fill="#d896ff" stroke="#f5e1ff" stroke-width="2"/>
+                    <path d="M16 24c-1 5 1 9-1 13m6-13c0 5 2 9 0 14m6-14c0 5-2 9 0 14m5-13c1 5-1 9 1 13" stroke="#d896ff" stroke-width="2.2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <span class="habitat-pill habitat-deep">DEEP · CAVE 23+</span>
+              </div>
+              <h3>Jellyfish</h3>
+              <div class="creature-role">The Upward-Drifting Living Mine</div>
+              <p class="creature-desc-coastal">Drifts slowly upward through flooded shafts instead of hugging walls. Time a falling boulder down its column to pop it without a terrain blast into a shower of pearls!</p>
+              <div class="creature-loot"><span>NO TERRAIN BLAST</span><strong>●×9 Pearl Burst</strong></div>
+            </article>
+          </div>
+
+          <div class="dodge-callout reveal">
+            <div>
+              <h3>1,096 Proved Open Ambush Encounters &amp; Stylish Dodges</h3>
+              <p>Every single cave includes open ambush rooms where Milo steps into view, reads the predator's visual &amp; audio telegraph, and climbs clear before the strike lands—setting up the boulder drop while scoring bonus style points.</p>
+            </div>
+            <div class="dodge-badges">
+              <div class="dodge-badge"><b>DODGE! +10</b>Step clear of telegraphed lane</div>
+              <div class="dodge-badge"><b>CLOSE CALL! +25</b>Last-tick escape + gold ring</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 215 CAVES, INTERACTIVE DIFFICULTY SLIDER & OPTIONAL MODES -->
+      <section class="section-block section-block-alt" id="caves" aria-labelledby="caves-title">
+        <div class="section-wrap">
+          <div class="section-kicker"><span class="kicker-num">05</span><span>215 DOORS INTO THE DEEP</span></div>
+          <div class="section-header reveal">
+            <h2 id="caves-title">Every cave unlocked.<br><em>Five ways to master it.</em></h2>
+            <p>Each cave is generated from its own title—shaping its silhouette, stone pattern, contraptions, and flood depth—then proved tick-by-tick in the real simulation and ordered smoothly from #1 to #215.</p>
+          </div>
+
+          <div class="caves-layout">
+            <div class="difficulty-card reveal" id="difficulty-widget">
+              <div class="difficulty-card-top">
+                <h3>Interactive Difficulty Selector</h3>
+                <span class="diff-badge" id="diff-badge">DEFAULT · STEP 1 OF 5</span>
+              </div>
+
+              <div class="diff-slider-box">
+                <div class="diff-slider-header">
+                  <button class="diff-arrow-btn" type="button" data-diff-prev aria-label="Previous difficulty">◀</button>
+                  <span class="diff-current-name" id="diff-name">Junior</span>
+                  <button class="diff-arrow-btn" type="button" data-diff-next aria-label="Next difficulty">▶</button>
+                </div>
+                <div class="diff-track" role="radiogroup" aria-label="Select difficulty tier 1 to 5">
+                  <button class="diff-step is-selected" type="button" role="radio" aria-checked="true" data-diff-step="0" aria-label="1 Junior"><span>1</span></button>
+                  <button class="diff-step" type="button" role="radio" aria-checked="false" data-diff-step="1" aria-label="2 Senior"><span>2</span></button>
+                  <button class="diff-step" type="button" role="radio" aria-checked="false" data-diff-step="2" aria-label="3 Principal"><span>3</span></button>
+                  <button class="diff-step" type="button" role="radio" aria-checked="false" data-diff-step="3" aria-label="4 Expert"><span>4</span></button>
+                  <button class="diff-step" type="button" role="radio" aria-checked="false" data-diff-step="4" aria-label="5 Distinguished"><span>5</span></button>
+                </div>
+              </div>
+
+              <p class="diff-summary" id="diff-summary">Slower pace; about 25% more reaction time and generous oxygen reserves.</p>
+
+              <div class="diff-metrics">
+                <div class="diff-metric">
+                  <span>Simulation Pace</span>
+                  <strong id="diff-pace">125% tick window (225 ms)</strong>
+                </div>
+                <div class="diff-metric">
+                  <span>Exit Door Target</span>
+                  <strong id="diff-goal">Standard cave gem quota</strong>
+                </div>
+                <div class="diff-metric">
+                  <span>Countdown Clock</span>
+                  <strong id="diff-clock">150% quota clock · Relaxed default</strong>
+                </div>
+                <div class="diff-metric">
+                  <span>Score Weight</span>
+                  <strong id="diff-credit">50% score weight</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="modes-stack">
+              <article class="mode-card reveal">
+                <div class="mode-card-head">
+                  <h3>All 215 Caves Open + Flawless Stars</h3>
+                  <span class="mode-pill">✦★ MASTERY</span>
+                </div>
+                <p>Play in the recommended complexity order or jump straight to any cavern from #1 to #215. Difficulty never adds or moves enemies—and clearing a cave with zero deaths stamps a sparkling <strong>✦★</strong> star beside your best score.</p>
+              </article>
+
+              <article class="mode-card reveal">
+                <div class="mode-card-head">
+                  <h3>Sprint Caves Blitz</h3>
+                  <span class="mode-pill">3× SCORE · 45s</span>
+                </div>
+                <p>Toggle <strong>Sprint caves</strong> in Settings to turn every 10th slot (10, 20, … 210) into a single-screen 45-second chain-reaction highway with Chaos Combos and triple score!</p>
+              </article>
+
+              <article class="mode-card reveal">
+                <div class="mode-card-head">
+                  <h3>Remixed Creatures Mode</h3>
+                  <span class="mode-pill">COASTAL-REMIX</span>
+                </div>
+                <p>Flip on <strong>Remixed creatures</strong> for redesigned predator boss mechanics, 3×3 breathable air pockets from popped bubbles &amp; mines, close-call swim boosts, and dedicated remix leaderboards.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MILO COPPERCAP & ARCADE CONTROLS -->
+      <section class="section-block" id="controls" aria-labelledby="controls-title">
+        <div class="section-wrap">
+          <div class="section-kicker"><span class="kicker-num">06</span><span>YOUR GUIDE &amp; CONTROLS</span></div>
+          <div class="section-header reveal">
+            <h2 id="controls-title">Tactile controls.<br><em>Built for every player.</em></h2>
+            <p>Responsive input buffering keeps rapid key taps crisp without ever advancing gravity early—backed by low-vision HUD contrast, 30 localized languages, and full keyboard &amp; gamepad remapping.</p>
+          </div>
+
+          <div class="milo-controls-grid">
+            <aside class="milo-showcase reveal">
+              <span class="section-kicker">RIFT DIVER NO. 001</span>
+              <div class="milo-portrait-wrap">
+                <img src="static/images/milo-coppercap-portrait.svg" alt="Milo Coppercap in his copper diving-miner helmet with a glowing cyan crystal headlamp, holding a pickaxe and gem." width="320" height="360" loading="lazy">
+              </div>
+              <h3>Milo Coppercap</h3>
+              <p>Armed with his copper helmet, crystal headlamp, and unshakeable curiosity, Milo trades dry tunnels for pressurized siphons, buoyant mines, and deep-ocean vaults.</p>
+              <a class="button button-outline button-compact" href="https://bulentozkir.github.io/gemrift-site/" target="_blank" rel="noopener noreferrer">
+                Visit Original Gemrift ↗
+              </a>
+            </aside>
+
+            <div class="controls-deck reveal">
+              <div>
+                <h3>Arcade Keycap &amp; Controller Guide</h3>
+                <p>Every gameplay action and menu shortcut is customizable in <strong>Settings → Controls</strong>. By default, the clock is relaxed (reaching zero only ends the time bonus; toggle <strong>Strict clock</strong> anytime).</p>
+
+                <dl class="keycaps-grid">
+                  <div class="keycap-card">
+                    <dt>Move, Dig &amp; Swim</dt>
+                    <dd><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> or <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd><span class="pad-note">Controller: D-pad · Hold 3 steps to push rock</span></dd>
+                  </div>
+                  <div class="keycap-card">
+                    <dt>Snap (Safe Adjacent Dig / Grab)</dt>
+                    <dd>Hold <kbd>Space</kbd> + Direction<span class="pad-note">Controller: Hold A + D-pad</span></dd>
+                  </div>
+                  <div class="keycap-card">
+                    <dt>Checkpoint Rewind vs Full Restart</dt>
+                    <dd><kbd>R</kbd> Rewind · <kbd>R</kbd>+<kbd>R</kbd> Full Restart<span class="pad-note">Controller: Y (single tap vs double tap)</span></dd>
+                  </div>
+                  <div class="keycap-card">
+                    <dt>Scout Camera &amp; Mini-Map</dt>
+                    <dd>Hold <kbd>V</kbd> + Move · <kbd>Ctrl+Z</kbd> Map<span class="pad-note">Controller: Left Shoulder + D-pad (freezes clock)</span></dd>
+                  </div>
+                  <div class="keycap-card">
+                    <dt>Pause, Cave List &amp; Next Cave</dt>
+                    <dd><kbd>P</kbd> Pause · <kbd>C</kbd> Caves · <kbd>N</kbd> Next<span class="pad-note">Controller: Back / View to pause</span></dd>
+                  </div>
+                  <div class="keycap-card">
+                    <dt>Help, Settings &amp; Fullscreen</dt>
+                    <dd><kbd>F1</kbd> Help · <kbd>F2</kbd> Settings · <kbd>F11</kbd> Screen<span class="pad-note">Auto-pauses on focus loss or pad disconnect</span></dd>
+                  </div>
+                </dl>
+              </div>
+
+              <div class="accessibility-strip" aria-label="Accessibility features">
+                <span class="access-chip">30 Languages + RTL (AR / HE / FA)</span>
+                <span class="access-chip">WCAG High-Contrast Mode</span>
+                <span class="access-chip">Reduced Motion Option</span>
+                <span class="access-chip">Sound Captions</span>
+                <span class="access-chip">Adjustable Grid &amp; Miner Box</span>
+                <span class="access-chip">UI Scale &amp; Board Zoom</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="milo section-wrap" id="meet-milo" aria-labelledby="milo-title">
-        <div class="section-kicker"><span>03</span><span class="kicker-line"></span><span>YOUR GUIDE TO THE DEEP</span></div>
-        <div class="milo-grid">
-          <div class="milo-art">
-            <span class="milo-orbit orbit-one"></span>
-            <span class="milo-orbit orbit-two"></span>
-            <span class="milo-coordinate">RIFT DIVER<br>NO. 001</span>
-            <img src="static/images/milo-coppercap.png" alt="Milo Coppercap, a cheerful explorer in a copper helmet with a gem headlamp, holding a pickaxe and a bright gem." width="768" height="900" loading="lazy">
-            <span class="milo-caption">MILO COPPERCAP <span>✦</span></span>
-          </div>
-          <div class="milo-copy">
-            <p class="eyebrow">A familiar face. A very different world.</p>
-            <h2 id="milo-title">Milo Coppercap<br>is going <em>deeper.</em></h2>
-            <p>Curious, quick on his feet, and never one to pass up a sparkle—Milo is back for an adventure that will test his instincts in an entirely new element.</p>
-            <p>This time, there are no dry shortcuts. Just good timing, a pocket full of courage, and a cave full of surprises.</p>
+      <!-- CLOSING CTA -->
+      <section class="closing-section section-wrap" aria-labelledby="closing-title">
+        <div class="closing-banner reveal">
+          <p class="release-pill">
+            <span class="status-beacon" aria-hidden="true"></span>
+            Available for Windows · Play Offline Anytime
+          </p>
+          <h2 id="closing-title">Ready to turn the cavern <span class="accent-cyan">upside down?</span></h2>
+          <p>215 title-born underwater caves, 8 telegraphed creatures, smart checkpoint rewind, and an unforgettable chiptune dive await.</p>
+          <div class="closing-actions">
+            <a class="button button-store" href="https://apps.microsoft.com/detail/9P3QHCNQ5SL3?hl=en-us&amp;gl=TR&amp;ocid=pdpshare" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor" stroke="none"/><rect x="13" y="3" width="8" height="8" fill="currentColor" stroke="none"/><rect x="3" y="13" width="8" height="8" fill="currentColor" stroke="none"/><rect x="13" y="13" width="8" height="8" fill="currentColor" stroke="none"/></svg>
+              Get on Microsoft Store
+            </a>
+            <a class="button button-secondary" href="support.html">
+              Support &amp; FAQ
+            </a>
             <a class="button button-outline" href="https://bulentozkir.github.io/gemrift-site/" target="_blank" rel="noopener noreferrer">
-              Visit the original Gemrift
-              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M11 4h5v5m-8 3 8-8M14 11v5H4V6h5"/></svg>
+              Explore Original Gemrift ↗
             </a>
           </div>
         </div>
       </section>
-
-      <section class="wildlife section-wrap" aria-labelledby="wildlife-title">
-        <div class="wildlife-heading">
-          <div>
-            <div class="section-kicker"><span>04</span><span class="kicker-line"></span><span>RIFT WILDLIFE</span></div>
-            <h2 id="wildlife-title">Not everything<br>down here is <em>friendly.</em></h2>
-          </div>
-          <p>Keep an eye on the locals. Some patrol the walls, some keep to their lanes—and every encounter can change the cave.</p>
-        </div>
-        <div class="wildlife-list">
-          <article class="wildlife-entry">
-            <span class="wildlife-no">01</span>
-            <span class="wildlife-symbol" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M15 22c0-7 4-12 10-12s10 5 10 12c0 3-2 5-5 5h-2c-2 0-3-1-3-3v-2m-5 4c-2 5-8 5-8 11 0 3 2 4 4 2l4-5m6-7c-1 5 2 7 6 9 2 2 1 4-1 4s-5-2-7-5m7-7c4 1 8 4 8 8 0 2-2 3-4 1l-4-4M13 18c-4 1-7 4-6 7 1 2 3 2 5 0l3-4m17-12 2-4m-10 2V3"/></svg></span>
-            <div><h3>Octopus</h3><p>Follows the cave walls</p></div>
-            <span class="wildlife-arrow" aria-hidden="true">↗</span>
-          </article>
-          <article class="wildlife-entry">
-            <span class="wildlife-no">02</span>
-            <span class="wildlife-symbol" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M6 24c8-9 19-12 30-7l7 7-7 7c-11 5-22 2-30-7Zm30-7 5-6v13m-5 7 5 6V24M17 18l5 6-5 6m8-13 4 7-4 7"/><circle cx="13" cy="22" r="1"/></svg></span>
-            <div><h3>Shark</h3><p>Patrols the cave walls</p></div>
-            <span class="wildlife-arrow" aria-hidden="true">↗</span>
-          </article>
-          <article class="wildlife-entry">
-            <span class="wildlife-no">03</span>
-            <span class="wildlife-symbol" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M15 17c0-7 4-11 9-11s9 4 9 11c5 2 8 7 7 13l-2 9H10l-2-9c-1-6 2-11 7-13Zm1 1-6-4m22 4 6-4M18 22h1m11 0h1m-13 5 3 2h7l3-2M14 37v3m20-3v3"/></svg></span>
-            <div><h3>Polar bear</h3><p>Patrols a horizontal lane</p></div>
-            <span class="wildlife-arrow" aria-hidden="true">↗</span>
-          </article>
-          <article class="wildlife-entry">
-            <span class="wildlife-no">04</span>
-            <span class="wildlife-symbol" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="m10 17 6-9 8 5 8-5 6 9-2 17c-1 7-7 10-12 10s-11-3-12-10l-2-17Zm3 1 6 5m16-5-6 5M17 17l3 5m11-5-3 5M19 30l-5 4m15-4 5 4m-20-4 4-2m16 2-4-2"/></svg></span>
-            <div><h3>Snow tiger</h3><p>Patrols a vertical lane</p></div>
-            <span class="wildlife-arrow" aria-hidden="true">↗</span>
-          </article>
-        </div>
-      </section>
-
-      <section class="controls-section section-wrap" id="how-to-play" aria-labelledby="controls-title">
-        <div class="section-kicker"><span>05</span><span class="kicker-line"></span><span>FIND YOUR FEET. THEN YOUR FINS.</span></div>
-        <div class="controls-heading">
-          <h2 id="controls-title">Simple controls.<br><em>Deep possibilities.</em></h2>
-          <p>Swim, dig, and collect the gem quota to open the exit. Unlimited retries mean there is always room for another bright idea.</p>
-        </div>
-        <dl class="controls-grid">
-          <div><dt>Move &amp; swim</dt><dd><kbd>W A S D</kbd> or <kbd>↑ ↓ ← →</kbd><span>Controller: D-pad</span></dd></div>
-          <div><dt>Snap / dig</dt><dd><kbd>Space</kbd> + direction<span>Controller: A + direction</span></dd></div>
-          <div><dt>Scout the cave</dt><dd>Hold <kbd>V</kbd> + direction<span>Controller: left shoulder + D-pad</span></dd></div>
-          <div><dt>Pause / resume</dt><dd><kbd>P</kbd><span>Controller: Back / View</span></dd></div>
-          <div><dt>Try again</dt><dd><kbd>R</kbd><span>Controller: Y</span></dd></div>
-        </dl>
-        <p class="controls-note">These are the current default bindings; you can remap them in Settings. Junior is the default difficulty. The relaxed clock lets play continue at zero; Strict clock is optional. Details may change before release. <a href="support.html#questions">More questions? Start here <span aria-hidden="true">↗</span></a></p>
-      </section>
-
-      <section class="closing section-wrap" id="in-development" aria-labelledby="closing-title">
-        <div class="closing-frame">
-          <div class="closing-orbit" aria-hidden="true"><span></span><i></i><b></b></div>
-          <p class="eyebrow"><span class="status-dot"></span> THE RIFT IS TAKING SHAPE</p>
-          <h2 id="closing-title">A new adventure<br>is <em>rising.</em></h2>
-          <p class="closing-copy">Gemrift inverse is in development. The caves are being explored, the details are still evolving, and there is more to come.</p>
-          <a class="button button-primary" href="https://bulentozkir.github.io/gemrift-site/" target="_blank" rel="noopener noreferrer">
-            Explore the original Gemrift
-            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M11 4h5v5m-8 3 8-8M14 11v5H4V6h5"/></svg>
-          </a>
-          <a class="text-link" href="support.html">Questions about Gemrift inverse? <span aria-hidden="true">↗</span></a>
-          <span class="closing-footnote">NO RELEASE DATE ANNOUNCED</span>
-        </div>
-      </section>
     </main>
+
+    <!-- SCREENSHOT LIGHTBOX MODAL -->
+    <dialog class="lightbox-dialog" id="lightbox" aria-label="Screenshot viewer">
+      <div class="lightbox-bar">
+        <strong id="lightbox-title">Screenshot</strong>
+        <div class="lightbox-actions">
+          <button class="lightbox-btn" id="lightbox-prev" type="button" aria-label="Previous screenshot">◀ Prev</button>
+          <span class="monitor-chip" id="lightbox-count">1 / 10</span>
+          <button class="lightbox-btn" id="lightbox-next" type="button" aria-label="Next screenshot">Next ▶</button>
+          <button class="lightbox-btn" id="lightbox-close" type="button" aria-label="Close viewer">✕ Close</button>
+        </div>
+      </div>
+      <div class="lightbox-body">
+        <img id="lightbox-img" src="static/images/screenshots/01-gameplay-the-inverted-cistern.webp" alt="">
+      </div>
+      <div class="lightbox-foot">
+        <span id="lightbox-caption"></span>
+        <span>Use ← → arrow keys or Esc</span>
+      </div>
+    </dialog>
 
     <footer class="site-footer">
       <div class="footer-inner">
         <a class="wordmark footer-wordmark" href="#top">
           <img src="static/images/gemrift-inverse-icon.png" alt="" width="34" height="34">
-          <span>GEMRIFT <b>INVERSE</b></span>
+          <span><span class="wordmark-gemrift">GEMRIFT</span> <span class="wordmark-inverse">INVERSE</span></span>
         </a>
-        <p>Underwater puzzle adventure <span>·</span> In development</p>
+        <p class="footer-meta">Underwater Puzzle Adventure for Windows · 215 Proved Caves</p>
         <nav class="footer-links" aria-label="Footer navigation">
+          <a class="footer-link" href="https://apps.microsoft.com/detail/9P3QHCNQ5SL3?hl=en-us&amp;gl=TR&amp;ocid=pdpshare" target="_blank" rel="noopener noreferrer">Microsoft Store ↗</a>
           <a class="footer-link" href="support.html">Support</a>
           <a class="footer-link" href="privacy.html">Privacy</a>
-          <a class="footer-link" href="copyright.html">Copyright &amp; credits</a>
-          <a class="footer-link" href="https://bulentozkir.github.io/gemrift-site/" target="_blank" rel="noopener noreferrer">Original Gemrift <span aria-hidden="true">↗</span></a>
+          <a class="footer-link" href="copyright.html">Copyright &amp; credit</a>
+          <a class="footer-link" href="https://bulentozkir.github.io/gemrift-site/" target="_blank" rel="noopener noreferrer">Original Gemrift ↗</a>
         </nav>
         <span class="copyright">© <span id="current-year">2026</span> Bulent Ozkir</span>
       </div>
