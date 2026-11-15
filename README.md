@@ -24,4 +24,4 @@ The single workflow in `.github/workflows/static.yml` deploys the site automatic
 
 ## Privacy & static assets
 
-All fonts (`static/fonts/Baloo2.ttf`), artwork, WebP screenshots, and the optimized animated trailer GIF are self-hosted in `static/`. No third-party scripts, analytics, cookies, or browser storage APIs are used; theme switching uses the optional `scoutTheme` URL query parameter.
+All fonts (`static/fonts/Baloo2.ttf`), artwork, WebP screenshots, trailer audio (`static/audio/gemrift-inverse-trailer.mp3`), and the optimized animated trailer GIF are self-hosted in `static/`. No third-party scripts, analytics, cookies, or browser storage APIs are used; theme and 30-language UI switching use optional `scoutTheme` and `lang` URL query parameters.

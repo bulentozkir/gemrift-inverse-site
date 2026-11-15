@@ -32,7 +32,7 @@
       }
     });
 
-    window.matchMedia("(min-width: 1081px)").addEventListener("change", closeMenu);
+    window.matchMedia("(min-width: 961px)").addEventListener("change", closeMenu);
   }
 
   // 2. Theme toggle (URL parameter only — no cookies or browser storage)
@@ -40,6 +40,10 @@
   const themeToggle = document.querySelector(".theme-toggle");
 
   const syncThemeLinks = (theme) => {
+    if (window.GemriftI18n) {
+      window.GemriftI18n.syncLinks();
+      return;
+    }
     document.querySelectorAll("a[href]").forEach((link) => {
       const raw = link.getAttribute("href") || "";
       if (raw.startsWith("#") || raw.startsWith("mailto:")) return;
@@ -205,7 +209,8 @@
       trailerToggle.setAttribute("aria-pressed", String(!isPlaying));
       const label = trailerToggle.querySelector("[data-toggle-label]");
       const glyph = trailerToggle.querySelector("[data-toggle-glyph]");
-      if (label) label.textContent = isPlaying ? "Pause GIF" : "Play GIF";
+      const t = (key, fb) => (window.GemriftI18n ? window.GemriftI18n.t(key, fb) : fb);
+      if (label) label.textContent = isPlaying ? t("pauseGif", "Pause GIF") : t("playGif", "Play GIF");
       if (glyph) glyph.textContent = isPlaying ? "⏸" : "▶";
 
       if (trailerBadge) {
@@ -224,16 +229,16 @@
         trailerSoundToggle.setAttribute("aria-pressed", String(isSoundOn));
         const sLabel = trailerSoundToggle.querySelector("[data-sound-label]");
         const sGlyph = trailerSoundToggle.querySelector("[data-sound-glyph]");
-        if (sLabel) sLabel.textContent = isSoundOn ? "Mute Sound" : "Enable Sound";
+        if (sLabel) sLabel.textContent = isSoundOn ? t("muteSound", "Mute Sound") : t("enableSound", "Enable Sound");
         if (sGlyph) sGlyph.textContent = isSoundOn ? "🔇" : "🔊";
       }
 
       if (trailerSoundOverlay) {
         trailerSoundOverlay.textContent = !isPlaying
-          ? "▶ Click to Play"
+          ? "▶ " + t("playGif", "Play GIF")
           : isSoundOn
-            ? "🔊 Sound On"
-            : "🔇 Click for Sound";
+            ? t("soundOn", "🔊 Sound On")
+            : t("clickSound", "🔇 Click for Sound");
       }
 
       if (trailerAudio instanceof HTMLAudioElement) {
@@ -271,6 +276,8 @@
         syncTrailerState(false);
       }
     });
+
+    window.addEventListener("gemrift:langchange", () => syncTrailerState(false));
 
     trailerSoundToggle?.addEventListener("click", toggleSound);
     trailerStage?.addEventListener("click", () => {
@@ -401,12 +408,15 @@
     const renderDifficulty = (index) => {
       activeIdx = (index + difficultyLevels.length) % difficultyLevels.length;
       const item = difficultyLevels[activeIdx];
+      const localizedName = window.GemriftI18n
+        ? window.GemriftI18n.t(`diff${item.step}`, item.name)
+        : item.name;
       stepBtns.forEach((btn, idx) => {
         btn.classList.toggle("is-selected", idx === activeIdx);
         btn.classList.toggle("is-passed", idx < activeIdx);
         btn.setAttribute("aria-checked", String(idx === activeIdx));
       });
-      if (nameEl) nameEl.textContent = item.name;
+      if (nameEl) nameEl.textContent = localizedName;
       if (badgeEl) badgeEl.textContent = item.badge;
       if (summaryEl) summaryEl.textContent = item.summary;
       if (paceEl) paceEl.textContent = item.pace;
@@ -414,6 +424,8 @@
       if (clockEl) clockEl.textContent = item.clock;
       if (creditEl) creditEl.textContent = item.credit;
     };
+
+    window.addEventListener("gemrift:langchange", () => renderDifficulty(activeIdx));
 
     stepBtns.forEach((btn, idx) => {
       btn.addEventListener("click", () => renderDifficulty(idx));

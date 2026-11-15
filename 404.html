@@ -10,8 +10,13 @@
     <link rel="stylesheet" href="/gemrift-inverse-site/static/css/site.css">
     <script>
       (() => {
-        const param = new URLSearchParams(window.location.search).get("scoutTheme");
-        document.documentElement.setAttribute("data-theme", param === "light" ? "light" : "dark");
+        const params = new URLSearchParams(window.location.search);
+        document.documentElement.setAttribute("data-theme", params.get("scoutTheme") === "light" ? "light" : "dark");
+        const lang = params.get("lang");
+        if (lang) {
+          document.documentElement.setAttribute("lang", lang);
+          if (lang === "ar" || lang === "he" || lang === "fa") document.documentElement.setAttribute("dir", "rtl");
+        }
       })();
     </script>
   </head>
@@ -26,29 +31,34 @@
           <span><span class="wordmark-gemrift">GEMRIFT</span> <span class="wordmark-inverse">INVERSE</span></span>
         </a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
-          <span>Menu</span>
+          <span data-i18n="menu">Menu</span>
           <span class="menu-icon" aria-hidden="true"><i></i><i></i></span>
         </button>
         <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
           <div class="nav-section-links">
-            <a href="/gemrift-inverse-site/">Home</a>
-            <a href="/gemrift-inverse-site/#trailer">Trailer</a>
-            <a href="/gemrift-inverse-site/#gameplay">Gameplay</a>
-            <a href="/gemrift-inverse-site/#creatures">Creatures</a>
+            <a href="/gemrift-inverse-site/" data-i18n="navHome">Home</a>
+            <a href="/gemrift-inverse-site/#trailer" data-i18n="navTrailer">Trailer</a>
+            <a href="/gemrift-inverse-site/#gameplay" data-i18n="navGameplay">Gameplay</a>
+            <a href="/gemrift-inverse-site/#creatures" data-i18n="navCreatures">Creatures</a>
           </div>
-          <div class="toolbar-capsule" role="group" aria-label="Site pages and theme">
+          <div class="toolbar-capsule" role="group" aria-label="Site pages, language, and theme">
             <a class="toolbar-btn toolbar-btn-support" href="/gemrift-inverse-site/support.html">
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2a2.6 2.6 0 0 1 5 .8c0 1.8-2.5 2.1-2.5 3.8"/><circle cx="12" cy="17.2" r="0.6" fill="currentColor"/></svg>
-              Support
+              <span data-i18n="btnSupport">Support</span>
             </a>
             <a class="toolbar-btn toolbar-btn-privacy" href="/gemrift-inverse-site/privacy.html">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.8 3 8.3 7 9.8 4-1.5 7-5 7-9.8V6l-7-3Z"/><path d="m9.2 12.2 2 2 3.8-4"/></svg>
-              Privacy
+              <span data-i18n="btnPrivacy">Privacy</span>
             </a>
             <a class="toolbar-btn toolbar-btn-credits" href="/gemrift-inverse-site/copyright.html">
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.6 9.6a3.6 3.6 0 1 0 0 4.8"/></svg>
-              Copyright &amp; credit
+              <span data-i18n="btnCredits">Copyright &amp; credit</span>
             </a>
+            <div class="toolbar-lang">
+              <svg class="toolbar-lang-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+              <select class="toolbar-lang-select" aria-label="Select language" title="Select language"></select>
+              <svg class="toolbar-lang-caret" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
+            </div>
             <button class="theme-toggle" type="button" aria-label="Switch to coastal daylight theme" aria-pressed="false" title="Toggle dark and light theme">
               <span data-theme-icon aria-hidden="true">☀</span>
             </button>
@@ -60,13 +70,14 @@
     <main class="not-found section-wrap" id="main">
       <span class="not-found-number" aria-hidden="true">404 ↑</span>
       <div class="section-kicker"><span class="kicker-num">DEAD END</span><span>PRESS [R] TO REWIND</span></div>
-      <h1>Lost in the rift?</h1>
+      <h1 data-i18n="lostHeading">Lost in the rift?</h1>
       <p>Even Milo takes a wrong turn down a flooded siphon sometimes. That passage does not exist, but all 215 caves are right back at the surface.</p>
       <div class="closing-actions">
         <a class="button button-store" href="/gemrift-inverse-site/">Back to Gemrift inverse ↗</a>
         <a class="button button-secondary" href="/gemrift-inverse-site/support.html">Report a broken link ↗</a>
       </div>
     </main>
+    <script src="/gemrift-inverse-site/static/js/i18n.js" defer></script>
     <script src="/gemrift-inverse-site/static/js/site.js" defer></script>
   </body>
 </html>

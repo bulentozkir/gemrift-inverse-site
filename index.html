@@ -18,8 +18,13 @@
     <title>Gemrift inverse — Underwater Puzzle Adventure</title>
     <script>
       (() => {
-        const param = new URLSearchParams(window.location.search).get("scoutTheme");
-        document.documentElement.setAttribute("data-theme", param === "light" ? "light" : "dark");
+        const params = new URLSearchParams(window.location.search);
+        document.documentElement.setAttribute("data-theme", params.get("scoutTheme") === "light" ? "light" : "dark");
+        const lang = params.get("lang");
+        if (lang) {
+          document.documentElement.setAttribute("lang", lang);
+          if (lang === "ar" || lang === "he" || lang === "fa") document.documentElement.setAttribute("dir", "rtl");
+        }
       })();
     </script>
   </head>
@@ -34,31 +39,36 @@
           <span><span class="wordmark-gemrift">GEMRIFT</span> <span class="wordmark-inverse">INVERSE</span></span>
         </a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
-          <span>Menu</span>
+          <span data-i18n="menu">Menu</span>
           <span class="menu-icon" aria-hidden="true"><i></i><i></i></span>
         </button>
         <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
           <div class="nav-section-links">
-            <a href="#trailer">Trailer</a>
-            <a href="#gameplay">Gameplay</a>
-            <a href="#screenshots">Screenshots</a>
-            <a href="#creatures">Creatures</a>
-            <a href="#caves">Caves &amp; Modes</a>
-            <a href="#controls">Controls</a>
+            <a href="#trailer" data-i18n="navTrailer">Trailer</a>
+            <a href="#gameplay" data-i18n="navGameplay">Gameplay</a>
+            <a href="#screenshots" data-i18n="navScreenshots">Screenshots</a>
+            <a href="#creatures" data-i18n="navCreatures">Creatures</a>
+            <a href="#caves" data-i18n="navCaves">Caves &amp; Modes</a>
+            <a href="#controls" data-i18n="navControls">Controls</a>
           </div>
-          <div class="toolbar-capsule" role="group" aria-label="Site pages and theme">
+          <div class="toolbar-capsule" role="group" aria-label="Site pages, language, and theme">
             <a class="toolbar-btn toolbar-btn-support" href="support.html">
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2a2.6 2.6 0 0 1 5 .8c0 1.8-2.5 2.1-2.5 3.8"/><circle cx="12" cy="17.2" r="0.6" fill="currentColor"/></svg>
-              Support
+              <span data-i18n="btnSupport">Support</span>
             </a>
             <a class="toolbar-btn toolbar-btn-privacy" href="privacy.html">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.8 3 8.3 7 9.8 4-1.5 7-5 7-9.8V6l-7-3Z"/><path d="m9.2 12.2 2 2 3.8-4"/></svg>
-              Privacy
+              <span data-i18n="btnPrivacy">Privacy</span>
             </a>
             <a class="toolbar-btn toolbar-btn-credits" href="copyright.html">
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.6 9.6a3.6 3.6 0 1 0 0 4.8"/></svg>
-              Copyright &amp; credit
+              <span data-i18n="btnCredits">Copyright &amp; credit</span>
             </a>
+            <div class="toolbar-lang">
+              <svg class="toolbar-lang-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+              <select class="toolbar-lang-select" aria-label="Select language" title="Select language"></select>
+              <svg class="toolbar-lang-caret" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
+            </div>
             <button class="theme-toggle" type="button" aria-label="Switch to coastal daylight theme" aria-pressed="false" title="Toggle dark and light theme">
               <span data-theme-icon aria-hidden="true">☀</span>
             </button>
@@ -73,24 +83,24 @@
         <div class="hero-copy">
           <p class="release-pill">
             <span class="status-beacon" aria-hidden="true"></span>
-            Out Now for Windows · 215 Proved Caves
+            <span data-i18n="heroPill">Out Now for Windows · 215 Proved Caves</span>
           </p>
           <h1 id="hero-title">
-            Rocks fall.
-            <span class="hero-line-cyan">Gems rise.</span>
+            <span data-i18n="heroLine1">Rocks fall.</span>
+            <span class="hero-line-cyan" data-i18n="heroLine2">Gems rise.</span>
           </h1>
-          <p class="hero-tagline">Dig smart · Shine bright.</p>
-          <p class="hero-lede">
+          <p class="hero-tagline" data-i18n="heroTagline">Dig smart · Shine bright.</p>
+          <p class="hero-lede" data-i18n="heroLede">
             Plunge with Milo Coppercap into an arcade underwater puzzle adventure where heavy boulders crash downward, freed crystals and buoyant mines shoot toward the ceiling, and every breath of air shapes your route.
           </p>
           <div class="hero-actions">
             <a class="button button-store" href="https://apps.microsoft.com/detail/9P3QHCNQ5SL3?hl=en-us&amp;gl=TR&amp;ocid=pdpshare" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor" stroke="none"/><rect x="13" y="3" width="8" height="8" fill="currentColor" stroke="none"/><rect x="3" y="13" width="8" height="8" fill="currentColor" stroke="none"/><rect x="13" y="13" width="8" height="8" fill="currentColor" stroke="none"/></svg>
-              Get on Microsoft Store
+              <span data-i18n="ctaStore">Get on Microsoft Store</span>
             </a>
             <a class="button button-secondary" href="#trailer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="8,5 19,12 8,19" fill="currentColor" stroke="none"/></svg>
-              Watch Trailer
+              <span data-i18n="ctaTrailer">Watch Trailer</span>
             </a>
           </div>
           <div class="hero-platform-note">
@@ -101,24 +111,24 @@
           </div>
           <div class="hud-stats" aria-label="Game highlights">
             <div class="hud-stat-box" data-tone="cyan">
-              <span class="hud-stat-top">◆ Caves</span>
+              <span class="hud-stat-top" data-i18n="statCaves">◆ Caves</span>
               <strong class="hud-stat-value" data-count="215">215</strong>
-              <span class="hud-stat-label">All open at launch</span>
+              <span class="hud-stat-label" data-i18n="statCavesSub">All open at launch</span>
             </div>
             <div class="hud-stat-box" data-tone="coral">
-              <span class="hud-stat-top">◈ Hunters</span>
+              <span class="hud-stat-top" data-i18n="statHunters">◈ Hunters</span>
               <strong class="hud-stat-value" data-count="8">8</strong>
-              <span class="hud-stat-label">5 coastal + 3 deep</span>
+              <span class="hud-stat-label" data-i18n="statHuntersSub">5 coastal + 3 deep</span>
             </div>
             <div class="hud-stat-box" data-tone="gold">
-              <span class="hud-stat-top">★ Tiers</span>
+              <span class="hud-stat-top" data-i18n="statTiers">★ Tiers</span>
               <strong class="hud-stat-value" data-count="5">5</strong>
-              <span class="hud-stat-label">Junior to Distinguished</span>
+              <span class="hud-stat-label" data-i18n="statTiersSub">Junior to Distinguished</span>
             </div>
             <div class="hud-stat-box" data-tone="mint">
-              <span class="hud-stat-top">◎ Locales</span>
+              <span class="hud-stat-top" data-i18n="statLocales">◎ Locales</span>
               <strong class="hud-stat-value" data-count="30">30</strong>
-              <span class="hud-stat-label">UI &amp; Help languages</span>
+              <span class="hud-stat-label" data-i18n="statLocalesSub">UI &amp; Help languages</span>
             </div>
           </div>
         </div>
@@ -145,8 +155,8 @@
         <div class="section-wrap">
           <div class="section-kicker"><span class="kicker-num">01</span><span>GAMEPLAY TRAILER</span></div>
           <div class="section-header reveal">
-            <h2 id="trailer-title">See the abyss <em>in motion.</em></h2>
-            <p>Real gameplay across flooded cisterns, buoyant mine locks, telegraphed predator ambushes, and chain-reaction blasts—scored by the original 128 BPM chiptune theme <strong>Pixel Tides</strong>.</p>
+            <h2 id="trailer-title" data-i18n="secTrailerTitle" data-i18n-html>See the abyss <em>in motion.</em></h2>
+            <p data-i18n="secTrailerDesc" data-i18n-html>Real gameplay across flooded cisterns, buoyant mine locks, telegraphed predator ambushes, and chain-reaction blasts—scored by the original 128 BPM chiptune theme <strong>Pixel Tides</strong>.</p>
           </div>
 
           <div class="trailer-cabinet reveal" id="trailer-player">
@@ -232,8 +242,8 @@
         <div class="section-wrap">
           <div class="section-kicker"><span class="kicker-num">02</span><span>THE INVERSE TWIST</span></div>
           <div class="section-header reveal">
-            <h2 id="gameplay-title">Opposite gravity.<br><em>Pure arcade tactics.</em></h2>
-            <p>Every cave runs on an exact 180 ms deterministic simulation. Water never drains or evaporates—so every silt plug you clear, mine you release, and boulder you drop obeys crystal-clear rules.</p>
+            <h2 id="gameplay-title" data-i18n="secGameplayTitle" data-i18n-html>Opposite gravity.<br><em>Pure arcade tactics.</em></h2>
+            <p data-i18n="secGameplayDesc">Every cave runs on an exact 180 ms deterministic simulation. Water never drains or evaporates—so every silt plug you clear, mine you release, and boulder you drop obeys crystal-clear rules.</p>
           </div>
 
           <div class="mechanics-layout">
@@ -245,7 +255,7 @@
 
               <div class="physics-shafts" aria-hidden="true">
                 <div class="shaft-card shaft-down">
-                  <span class="shaft-label">ROCKS SINK ↓</span>
+                  <span class="shaft-label" data-i18n="rocksSink">ROCKS SINK ↓</span>
                   <span class="shaft-waterline"></span>
                   <svg class="anim-boulder" viewBox="0 0 48 48">
                     <polygon points="14,6 35,8 43,23 36,41 13,42 5,25" fill="#4f6272" stroke="#b8d0e0" stroke-width="2.5"/>
@@ -260,9 +270,9 @@
                 </div>
 
                 <div class="shaft-card shaft-up">
-                  <span class="shaft-label">GEMS RISE ↑</span>
+                  <span class="shaft-label" data-i18n="gemsRise">GEMS RISE ↑</span>
                   <span class="shaft-waterline"></span>
-                  <div class="air-dome">AIR DOME</div>
+                  <div class="air-dome" data-i18n="airDome">AIR DOME</div>
                   <svg class="anim-gem" viewBox="0 0 48 48">
                     <polygon points="13,14 35,14 43,22 24,42 5,22" fill="#4ce8ff" stroke="#e6fcff" stroke-width="2.2"/>
                     <polyline points="5,22 43,22" stroke="#e6fcff" stroke-width="1.8"/>
@@ -316,15 +326,15 @@
         <div class="section-wrap">
           <div class="section-kicker"><span class="kicker-num">03</span><span>NATIVE CAPTURES</span></div>
           <div class="section-header reveal">
-            <h2 id="screenshots-title">Crisp silhouettes.<br><em>Readable at a glance.</em></h2>
+            <h2 id="screenshots-title" data-i18n="secShotsTitle" data-i18n-html>Crisp silhouettes.<br><em>Readable at a glance.</em></h2>
             <p>Captured directly at 1920×1111 desktop resolution with the high-contrast color-coded capsule toolbar, predator telegraph brackets, and procedural cave palettes.</p>
           </div>
 
           <div class="filter-bar reveal">
             <div class="filter-pills" role="group" aria-label="Filter screenshots">
-              <button class="filter-pill is-active" type="button" data-shot-filter="all" aria-pressed="true">All Captures (10)</button>
-              <button class="filter-pill" type="button" data-shot-filter="gameplay" aria-pressed="false">Underwater Caves (6)</button>
-              <button class="filter-pill" type="button" data-shot-filter="interface" aria-pressed="false">Menus, Tutorial &amp; Help (4)</button>
+              <button class="filter-pill is-active" type="button" data-shot-filter="all" aria-pressed="true" data-i18n="shotsAll">All Captures (10)</button>
+              <button class="filter-pill" type="button" data-shot-filter="gameplay" aria-pressed="false" data-i18n="shotsCaves">Underwater Caves (6)</button>
+              <button class="filter-pill" type="button" data-shot-filter="interface" aria-pressed="false" data-i18n="shotsUi">Menus, Tutorial &amp; Help (4)</button>
             </div>
           </div>
 
@@ -457,19 +467,19 @@
         <div class="section-wrap">
           <div class="section-kicker"><span class="kicker-num">04</span><span>RIFT WILDLIFE · 8 SPECIES</span></div>
           <div class="section-header reveal">
-            <h2 id="creatures-title">Eight distinct hunters.<br><em>Zero cheap hits.</em></h2>
+            <h2 id="creatures-title" data-i18n="secCreaturesTitle" data-i18n-html>Eight distinct hunters.<br><em>Zero cheap hits.</em></h2>
             <p>Five coastal predators roam water channels and dry shelves from the opening caves, joined from Cave 21 onward by three deep-sea specialists—and optional <strong>Remixed Creatures</strong> mode reinvents the core five with wild arcade powers.</p>
           </div>
 
           <div class="filter-bar reveal">
             <div class="filter-pills" role="group" aria-label="Filter creatures by habitat">
-              <button class="filter-pill is-active" type="button" data-creature-filter="all" aria-pressed="true">All 8 Species</button>
-              <button class="filter-pill" type="button" data-creature-filter="coastal" aria-pressed="false">5 Coastal Predators</button>
-              <button class="filter-pill" type="button" data-creature-filter="deep" aria-pressed="false">3 Deep-Sea Specialists (Cave 21+)</button>
+              <button class="filter-pill is-active" type="button" data-creature-filter="all" aria-pressed="true" data-i18n="filterAll8">All 8 Species</button>
+              <button class="filter-pill" type="button" data-creature-filter="coastal" aria-pressed="false" data-i18n="filterCoastal5">5 Coastal Predators</button>
+              <button class="filter-pill" type="button" data-creature-filter="deep" aria-pressed="false" data-i18n="filterDeep3">3 Deep-Sea Specialists (Cave 21+)</button>
             </div>
             <div class="filter-pills" role="group" aria-label="Toggle Standard vs Remixed creature rules">
-              <button class="filter-pill is-active" type="button" data-creature-mode="coastal" aria-pressed="true">Standard Rules</button>
-              <button class="filter-pill filter-pill-remix" type="button" data-creature-mode="remix" aria-pressed="false">⚡ Remixed Mode</button>
+              <button class="filter-pill is-active" type="button" data-creature-mode="coastal" aria-pressed="true" data-i18n="modeStandard">Standard Rules</button>
+              <button class="filter-pill filter-pill-remix" type="button" data-creature-mode="remix" aria-pressed="false" data-i18n="modeRemix">⚡ Remixed Mode</button>
             </div>
           </div>
 
@@ -644,14 +654,14 @@
         <div class="section-wrap">
           <div class="section-kicker"><span class="kicker-num">05</span><span>215 DOORS INTO THE DEEP</span></div>
           <div class="section-header reveal">
-            <h2 id="caves-title">Every cave unlocked.<br><em>Five ways to master it.</em></h2>
+            <h2 id="caves-title" data-i18n="secCavesTitle" data-i18n-html>Every cave unlocked.<br><em>Five ways to master it.</em></h2>
             <p>Each cave is generated from its own title—shaping its silhouette, stone pattern, contraptions, and flood depth—then proved tick-by-tick in the real simulation and ordered smoothly from #1 to #215.</p>
           </div>
 
           <div class="caves-layout">
             <div class="difficulty-card reveal" id="difficulty-widget">
               <div class="difficulty-card-top">
-                <h3>Interactive Difficulty Selector</h3>
+                <h3 data-i18n="diffSelectorTitle">Interactive Difficulty Selector</h3>
                 <span class="diff-badge" id="diff-badge">DEFAULT · STEP 1 OF 5</span>
               </div>
 
@@ -726,7 +736,7 @@
         <div class="section-wrap">
           <div class="section-kicker"><span class="kicker-num">06</span><span>YOUR GUIDE &amp; CONTROLS</span></div>
           <div class="section-header reveal">
-            <h2 id="controls-title">Tactile controls.<br><em>Built for every player.</em></h2>
+            <h2 id="controls-title" data-i18n="secControlsTitle" data-i18n-html>Tactile controls.<br><em>Built for every player.</em></h2>
             <p>Responsive input buffering keeps rapid key taps crisp without ever advancing gravity early—backed by low-vision HUD contrast, 30 localized languages, and full keyboard &amp; gamepad remapping.</p>
           </div>
 
@@ -738,7 +748,7 @@
               </div>
               <h3>Milo Coppercap</h3>
               <p>Armed with his copper helmet, crystal headlamp, and unshakeable curiosity, Milo trades dry tunnels for pressurized siphons, buoyant mines, and deep-ocean vaults.</p>
-              <a class="button button-outline button-compact" href="https://bulentozkir.github.io/gemrift-site/" target="_blank" rel="noopener noreferrer">
+              <a class="button button-outline button-compact" href="https://bulentozkir.github.io/gemrift-site/" target="_blank" rel="noopener noreferrer" data-i18n="visitOriginal">
                 Visit Original Gemrift ↗
               </a>
             </aside>
@@ -796,17 +806,17 @@
             <span class="status-beacon" aria-hidden="true"></span>
             Available for Windows · Play Offline Anytime
           </p>
-          <h2 id="closing-title">Ready to turn the cavern <span class="accent-cyan">upside down?</span></h2>
-          <p>215 title-born underwater caves, 8 telegraphed creatures, smart checkpoint rewind, and an unforgettable chiptune dive await.</p>
+          <h2 id="closing-title" data-i18n="closingTitle" data-i18n-html>Ready to turn the cavern <span class="accent-cyan">upside down?</span></h2>
+          <p data-i18n="closingDesc">215 title-born underwater caves, 8 telegraphed creatures, smart checkpoint rewind, and an unforgettable chiptune dive await.</p>
           <div class="closing-actions">
             <a class="button button-store" href="https://apps.microsoft.com/detail/9P3QHCNQ5SL3?hl=en-us&amp;gl=TR&amp;ocid=pdpshare" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="currentColor" stroke="none"/><rect x="13" y="3" width="8" height="8" fill="currentColor" stroke="none"/><rect x="3" y="13" width="8" height="8" fill="currentColor" stroke="none"/><rect x="13" y="13" width="8" height="8" fill="currentColor" stroke="none"/></svg>
-              Get on Microsoft Store
+              <span data-i18n="ctaStore">Get on Microsoft Store</span>
             </a>
-            <a class="button button-secondary" href="support.html">
+            <a class="button button-secondary" href="support.html" data-i18n="btnSupport">
               Support &amp; FAQ
             </a>
-            <a class="button button-outline" href="https://bulentozkir.github.io/gemrift-site/" target="_blank" rel="noopener noreferrer">
+            <a class="button button-outline" href="https://bulentozkir.github.io/gemrift-site/" target="_blank" rel="noopener noreferrer" data-i18n="visitOriginal">
               Explore Original Gemrift ↗
             </a>
           </div>
@@ -843,14 +853,15 @@
         <p class="footer-meta">Underwater Puzzle Adventure for Windows · 215 Proved Caves</p>
         <nav class="footer-links" aria-label="Footer navigation">
           <a class="footer-link" href="https://apps.microsoft.com/detail/9P3QHCNQ5SL3?hl=en-us&amp;gl=TR&amp;ocid=pdpshare" target="_blank" rel="noopener noreferrer">Microsoft Store ↗</a>
-          <a class="footer-link" href="support.html">Support</a>
-          <a class="footer-link" href="privacy.html">Privacy</a>
-          <a class="footer-link" href="copyright.html">Copyright &amp; credit</a>
-          <a class="footer-link" href="https://bulentozkir.github.io/gemrift-site/" target="_blank" rel="noopener noreferrer">Original Gemrift ↗</a>
+          <a class="footer-link" href="support.html" data-i18n="btnSupport">Support</a>
+          <a class="footer-link" href="privacy.html" data-i18n="btnPrivacy">Privacy</a>
+          <a class="footer-link" href="copyright.html" data-i18n="btnCredits">Copyright &amp; credit</a>
+          <a class="footer-link" href="https://bulentozkir.github.io/gemrift-site/" target="_blank" rel="noopener noreferrer" data-i18n="visitOriginal">Original Gemrift ↗</a>
         </nav>
         <span class="copyright">© <span id="current-year">2026</span> Bulent Ozkir</span>
       </div>
     </footer>
+    <script src="static/js/i18n.js" defer></script>
     <script src="static/js/site.js" defer></script>
   </body>
 </html>
