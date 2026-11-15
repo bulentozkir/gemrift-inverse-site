@@ -47,8 +47,8 @@
   // [61] supportHeading, [62] privacyHeading, [63] creditsHeading, [64] lostHeading
   const PACKS = {
     tr: [
-      "Ana Sayfa", "Fragman", "Oynanış", "Ekran Görüntüleri", "Yaratıklar", "Mağaralar ve Modlar", "Kontroller",
-      "Menü", "Destek", "Gizlilik", "Telif ve Emeği Geçenler", "Dil seçin",
+      "Ana Sayfa", "Fragman", "Oynanış", "Ekran Görüntüleri", "Yaratıklar", "Mağaralar", "Kontroller",
+      "Menü", "Destek", "Gizlilik", "Telif", "Dil seçin",
       "Windows İçin Çıktı · 215 Kanıtlanmış Mağara", "Kayalar düşer.", "Mücevherler yükselir.", "Akıllı kaz · Parlak parılda.",
       "Milo Coppercap ile ağır kayaların aşağı düştüğü, serbest kalan kristallerin ve su altı mayınlarının tavana yükseldiği ve her nefesin rotanızı belirlediği su altı bulmaca macerasına dalın.",
       "Microsoft Store'dan İndir", "Fragmanı İzle", "◆ Mağara", "Tümü baştan açık", "◈ Avcı", "5 kıyı + 3 derin deniz",
@@ -65,8 +65,8 @@
       "Oyuncu desteği ve <em>SSS.</em>", "Gizlilik, <em>açık ve net.</em>", "Telif hakkı ve <em>emeği geçenler.</em>", "Yarıkta mı kayboldunuz?"
     ],
     de: [
-      "Startseite", "Trailer", "Gameplay", "Screenshots", "Kreaturen", "Höhlen & Modi", "Steuerung",
-      "Menü", "Support", "Datenschutz", "Urheberrecht & Credits", "Sprache wählen",
+      "Startseite", "Trailer", "Gameplay", "Screenshots", "Kreaturen", "Höhlen", "Steuerung",
+      "Menü", "Support", "Datenschutz", "Urheberrecht", "Sprache wählen",
       "Jetzt für Windows · 215 geprüfte Höhlen", "Felsen fallen.", "Edelsteine steigen.", "Clever graben · Hell strahlen.",
       "Tauche mit Milo Coppercap in ein Unterwasser-Puzzle-Abenteuer ein, in dem schwere Felsen hinabstürzen, befreite Kristalle und Seeminen zur Decke schweben und jeder Atemzug deinen Weg bestimmt.",
       "Im Microsoft Store laden", "Trailer ansehen", "◆ Höhlen", "Alle sofort spielbar", "◈ Jäger", "5 Küste + 3 Tiefsee",
@@ -83,8 +83,8 @@
       "Spieler-Support &amp; <em>FAQ.</em>", "Datenschutz, <em>klipp und klar.</em>", "Urheberrecht &amp; <em>Credits.</em>", "In der Tiefe verirrt?"
     ],
     fr: [
-      "Accueil", "Bande-annonce", "Gameplay", "Captures", "Créatures", "Grottes & Modes", "Commandes",
-      "Menu", "Assistance", "Confidentialité", "Droits & crédits", "Choisir la langue",
+      "Accueil", "Bande-annonce", "Gameplay", "Captures", "Créatures", "Grottes", "Commandes",
+      "Menu", "Assistance", "Confidentialité", "Copyright", "Choisir la langue",
       "Disponible sur Windows · 215 grottes prouvées", "Les rochers tombent.", "Les gemmes montent.", "Creusez malin · Brillez fort.",
       "Plongez avec Milo Coppercap dans une aventure de réflexion sous-marine où les lourds rochers chutent, les cristaux et mines flottent vers le plafond et chaque bouffée d'air guide votre route.",
       "Obtenir sur le Microsoft Store", "Voir la bande-annonce", "◆ Grottes", "Toutes ouvertes dès le départ", "◈ Chasseurs", "5 côtiers + 3 abyssaux",
@@ -101,8 +101,8 @@
       "Assistance &amp; <em>FAQ.</em>", "Confidentialité, <em>en toute clarté.</em>", "Droits d'auteur &amp; <em>crédits.</em>", "Perdu dans la faille ?"
     ],
     es: [
-      "Inicio", "Tráiler", "Jugabilidad", "Capturas", "Criaturas", "Cuevas y Modos", "Controles",
-      "Menú", "Soporte", "Privacidad", "Derechos y créditos", "Seleccionar idioma",
+      "Inicio", "Tráiler", "Jugabilidad", "Capturas", "Criaturas", "Cuevas", "Controles",
+      "Menú", "Soporte", "Privacidad", "Copyright", "Seleccionar idioma",
       "Disponible para Windows · 215 cuevas probadas", "Las rocas caen.", "Las gemas suben.", "Excava con ingenio · Brilla con fuerza.",
       "Sumérgete con Milo Coppercap en una aventura submarina de puzles donde las rocas pesadas caen, los cristales y minas flotan hacia el techo y cada respiro define tu ruta.",
       "Consíguelo en Microsoft Store", "Ver tráiler", "◆ Cuevas", "Todas abiertas al inicio", "◈ Cazadores", "5 costeros + 3 abisales",
@@ -119,8 +119,8 @@
       "Soporte y <em>preguntas frecuentes.</em>", "Privacidad, <em>a plena vista.</em>", "Derechos de autor y <em>créditos.</em>", "¿Perdido en la grieta?"
     ],
     it: [
-      "Home", "Trailer", "Gameplay", "Screenshot", "Creature", "Grotte e Modalità", "Comandi",
-      "Menu", "Supporto", "Privacy", "Copyright e crediti", "Seleziona lingua",
+      "Home", "Trailer", "Gameplay", "Screenshot", "Creature", "Grotte", "Comandi",
+      "Menu", "Supporto", "Privacy", "Copyright", "Seleziona lingua",
       "Disponibile per Windows · 215 grotte verificate", "Le rocce cadono.", "Le gemme salgono.", "Scava con astuzia · Brilla forte.",
       "Tuffati con Milo Coppercap in un'avventura puzzle sottomarina dove i massi cadono giù, cristalli e mine salgono verso il soffitto e ogni respiro decide il percorso.",
       "Scarica da Microsoft Store", "Guarda il trailer", "◆ Grotte", "Tutte aperte da subito", "◈ Predatori", "5 costieri + 3 abissali",
@@ -137,8 +137,8 @@
       "Supporto e <em>FAQ.</em>", "Privacy, <em>in piena trasparenza.</em>", "Copyright e <em>crediti.</em>", "Perso nella faglia?"
     ],
     pt: [
-      "Início", "Trailer", "Jogabilidade", "Capturas", "Criaturas", "Cavernas e Modos", "Controlos",
-      "Menu", "Suporte", "Privacidade", "Direitos e créditos", "Selecionar idioma",
+      "Início", "Trailer", "Jogabilidade", "Capturas", "Criaturas", "Cavernas", "Controlos",
+      "Menu", "Suporte", "Privacidade", "Copyright", "Selecionar idioma",
       "Já disponível para Windows · 215 cavernas provadas", "As rochas caem.", "As gemas sobem.", "Escave com inteligência · Brilhe muito.",
       "Mergulhe com Milo Coppercap numa aventura de puzzles subaquáticos onde pedregulhos caem, cristais e minas sobem até ao teto e cada fôlego define a sua rota.",
       "Obter na Microsoft Store", "Ver Trailer", "◆ Cavernas", "Todas abertas de início", "◈ Caçadores", "5 costeiros + 3 abissais",
@@ -155,8 +155,8 @@
       "Suporte e <em>FAQ.</em>", "Privacidade, <em>às claras.</em>", "Direitos de autor e <em>créditos.</em>", "Perdido na fenda?"
     ],
     "pt-BR": [
-      "Início", "Trailer", "Jogabilidade", "Capturas", "Criaturas", "Cavernas e Modos", "Controles",
-      "Menu", "Suporte", "Privacidade", "Direitos e créditos", "Selecionar idioma",
+      "Início", "Trailer", "Jogabilidade", "Capturas", "Criaturas", "Cavernas", "Controles",
+      "Menu", "Suporte", "Privacidade", "Copyright", "Selecionar idioma",
       "Já disponível para Windows · 215 cavernas provadas", "As rochas caem.", "As gemas sobem.", "Cave com inteligência · Brilhe forte.",
       "Mergulhe com Milo Coppercap em uma aventura de quebra-cabeças submarinos onde pedras pesadas caem, cristais e minas flutuam até o teto e cada fôlego molda seu caminho.",
       "Baixar na Microsoft Store", "Assistir Trailer", "◆ Cavernas", "Todas abertas no início", "◈ Predadores", "5 costeiros + 3 abissais",
@@ -173,8 +173,8 @@
       "Suporte e <em>FAQ.</em>", "Privacidade, <em>às claras.</em>", "Direitos autorais e <em>créditos.</em>", "Perdido na fenda?"
     ],
     nl: [
-      "Home", "Trailer", "Gameplay", "Screenshots", "Wezens", "Grotten & Modi", "Besturing",
-      "Menu", "Support", "Privacy", "Auteursrecht & credits", "Taal kiezen",
+      "Home", "Trailer", "Gameplay", "Screenshots", "Wezens", "Grotten", "Besturing",
+      "Menu", "Support", "Privacy", "Copyright", "Taal kiezen",
       "Nu uit voor Windows · 215 bewezen grotten", "Rotsen vallen.", "Edelstenen stijgen.", "Graaf slim · Schitter fel.",
       "Duik met Milo Coppercap in een onderwater-puzzelavontuur waarin zware rotsblokken vallen, kristallen en zeemijnen omhoog zweven en elke ademteug telt.",
       "Download in Microsoft Store", "Bekijk trailer", "◆ Grotten", "Direct allemaal open", "◈ Jagers", "5 kust + 3 diepzee",
@@ -191,8 +191,8 @@
       "Ondersteuning &amp; <em>FAQ.</em>", "Privacy, <em>glashelder.</em>", "Auteursrecht &amp; <em>credits.</em>", "Verdwaald in de kloof?"
     ],
     sv: [
-      "Hem", "Trailer", "Spelupplägg", "Skärmbilder", "Varelser", "Grottor & Lägen", "Kontroller",
-      "Meny", "Support", "Integritet", "Upphovsrätt & eftertexter", "Välj språk",
+      "Hem", "Trailer", "Spelupplägg", "Skärmbilder", "Varelser", "Grottor", "Kontroller",
+      "Meny", "Support", "Integritet", "Upphovsrätt", "Välj språk",
       "Ute nu för Windows · 215 bevisade grottor", "Stenar faller.", "Juveler stiger.", "Gräv smart · Lys klart.",
       "Dyk med Milo Coppercap i ett undervattenspussel där tunga stenblock faller nedåt, kristaller och minor svävar uppåt och varje andetag formar din väg.",
       "Hämta i Microsoft Store", "Se trailer", "◆ Grottor", "Alla öppna från start", "◈ Jägare", "5 kust + 3 djuphav",
@@ -209,8 +209,8 @@
       "Spelarsupport &amp; <em>FAQ.</em>", "Integritet, <em>helt öppet.</em>", "Upphovsrätt &amp; <em>eftertexter.</em>", "Vilse i sprickan?"
     ],
     da: [
-      "Hjem", "Trailer", "Gameplay", "Skærmbilleder", "Væsner", "Grotter & Tilstande", "Styring",
-      "Menu", "Support", "Privatliv", "Ophavsret & kreditering", "Vælg sprog",
+      "Hjem", "Trailer", "Gameplay", "Skærmbilleder", "Væsner", "Grotter", "Styring",
+      "Menu", "Support", "Privatliv", "Ophavsret", "Vælg sprog",
       "Ude nu til Windows · 215 gennemtestede grotter", "Sten falder.", "Ædelsten stiger.", "Grav klogt · Skin klart.",
       "Dyk ned med Milo Coppercap i et undervands-puzzle-eventyr, hvor tunge kampesten falder ned, krystaller og miner svæver op, og hvert åndedrag tæller.",
       "Hent i Microsoft Store", "Se trailer", "◆ Grotter", "Alle åbne fra start", "◈ Jægere", "5 kyst + 3 dybhav",
@@ -227,8 +227,8 @@
       "Support &amp; <em>FAQ.</em>", "Privatliv, <em>helt klart.</em>", "Ophavsret &amp; <em>kreditering.</em>", "Faret vild i kløften?"
     ],
     nb: [
-      "Hjem", "Trailer", "Spillmekanikk", "Skjermbilder", "Skapninger", "Grotter og Modi", "Kontroller",
-      "Meny", "Brukerstøtte", "Personvern", "Opphavsrett og kreditering", "Velg språk",
+      "Hjem", "Trailer", "Spillmekanikk", "Skjermbilder", "Skapninger", "Grotter", "Kontroller",
+      "Meny", "Brukerstøtte", "Personvern", "Opphavsrett", "Velg språk",
       "Ute nå for Windows · 215 beviste grotter", "Steiner faller.", "Edelstener stiger.", "Grav smart · Skinn klart.",
       "Dykk ned med Milo Coppercap i et undervannspuslespill der tunge kampesteiner faller ned, krystaller og miner flyter opp, og hvert åndedrag styrer ruten.",
       "Last ned fra Microsoft Store", "Se trailer", "◆ Grotter", "Alle åpne fra start", "◈ Jegere", "5 kyst + 3 dyphav",
@@ -245,8 +245,8 @@
       "Brukerstøtte &amp; <em>FAQ.</em>", "Personvern, <em>helt åpent.</em>", "Opphavsrett &amp; <em>kreditering.</em>", "Gått deg vill i kløften?"
     ],
     fi: [
-      "Etusivu", "Traileri", "Pelattavuus", "Kuvakaappaukset", "Olennot", "Luolat ja Tilat", "Ohjaus",
-      "Valikko", "Tuki", "Tietosuoja", "Tekijänoikeudet ja tekijät", "Valitse kieli",
+      "Etusivu", "Traileri", "Pelattavuus", "Kuvakaappaukset", "Olennot", "Luolat", "Ohjaus",
+      "Valikko", "Tuki", "Tietosuoja", "Tekijänoikeus", "Valitse kieli",
       "Saatavilla Windowsille · 215 todistettua luolaa", "Kivet putoavat.", "Jalokivet nousevat.", "Kaiva fiksusti · Loista kirkkaasti.",
       "Sukella Milo Coppercapin kanssa vedenalaiseen pulmapeliin, jossa raskaat lohkareet putoavat alas, kristallit ja miinat kohoavat kattoon ja jokainen henkäys ratkaisee.",
       "Hanki Microsoft Storesta", "Katso traileri", "◆ Luolat", "Kaikki auki heti", "◈ Saalistajat", "5 rannikko + 3 syvänne",
@@ -263,8 +263,8 @@
       "Pelaajatuki &amp; <em>UKK.</em>", "Tietosuoja, <em>selkeästi.</em>", "Tekijänoikeudet &amp; <em>tekijät.</em>", "Eksyitkö railoon?"
     ],
     pl: [
-      "Start", "Zwiastun", "Rozgrywka", "Zrzuty ekranu", "Stworzenia", "Jaskinie i Tryby", "Sterowanie",
-      "Menu", "Wsparcie", "Prywatność", "Prawa autorskie i twórcy", "Wybierz język",
+      "Start", "Zwiastun", "Rozgrywka", "Zrzuty ekranu", "Stworzenia", "Jaskinie", "Sterowanie",
+      "Menu", "Wsparcie", "Prywatność", "Prawa autorskie", "Wybierz język",
       "Już dostępne na Windows · 215 sprawdzonych jaskiń", "Głazy spadają.", "Klejnoty unoszą się.", "Kop z głową · Lśnij jasno.",
       "Zanurkuj z Milo Coppercapem w podwodnej grze logicznej, gdzie ciężkie głazy spadają w dół, uwolnione kryształy i miny płyną ku górze, a każdy oddech wyznacza trasę.",
       "Pobierz z Microsoft Store", "Zobacz zwiastun", "◆ Jaskinie", "Wszystkie otwarte od startu", "◈ Łowcy", "5 przybrzeżnych + 3 głębinowe",
@@ -281,8 +281,8 @@
       "Wsparcie i <em>FAQ.</em>", "Prywatność, <em>jasno i przejrzyście.</em>", "Prawa autorskie i <em>twórcy.</em>", "Zagubiony w szczelinie?"
     ],
     cs: [
-      "Domů", "Trailer", "Hratelnost", "Snímky", "Tvorové", "Jeskyně a Režimy", "Ovládání",
-      "Nabídka", "Podpora", "Soukromí", "Autorská práva a tvůrci", "Vybrat jazyk",
+      "Domů", "Trailer", "Hratelnost", "Snímky", "Tvorové", "Jeskyně", "Ovládání",
+      "Nabídka", "Podpora", "Soukromí", "Autorská práva", "Vybrat jazyk",
       "Nyní pro Windows · 215 ověřených jeskyní", "Balvany padají.", "Drahokamy stoupají.", "Kopej chytře · Zaři jasně.",
       "Ponořte se s Milem Coppercapem do podvodního logického dobrodružství, kde těžké balvany padají dolů, krystaly a miny stoupají ke stropu a každý nádech rozhoduje.",
       "Získat v Microsoft Store", "Přehrát trailer", "◆ Jeskyně", "Všechny odemčené hned", "◈ Lovci", "5 pobřežních + 3 hlubinní",
@@ -299,8 +299,8 @@
       "Hráčská podpora a <em>FAQ.</em>", "Soukromí, <em>zcela přehledně.</em>", "Autorská práva a <em>tvůrci.</em>", "Ztraceni v průrvě?"
     ],
     sk: [
-      "Domov", "Trailer", "Hrateľnosť", "Snímky", "Tvory", "Jaskyne a Režimy", "Ovládanie",
-      "Ponuka", "Podpora", "Súkromie", "Autorské práva a tvorcovia", "Vybrať jazyk",
+      "Domov", "Trailer", "Hrateľnosť", "Snímky", "Tvory", "Jaskyne", "Ovládanie",
+      "Ponuka", "Podpora", "Súkromie", "Autorské práva", "Vybrať jazyk",
       "Teraz pre Windows · 215 overených jaskýň", "Balvany padajú.", "Drahokamy stúpajú.", "Kop múdro · Žiar jasno.",
       "Ponorte sa s Milom Coppercapom do podmorského logického dobrodružstva, kde ťažké balvany padajú nadol, kryštály a míny stúpajú k stropu a každý nádych rozhoduje.",
       "Získať v Microsoft Store", "Pozrieť trailer", "◆ Jaskyne", "Všetky otvorené od štartu", "◈ Lovci", "5 pobrežných + 3 hlbinné",
@@ -317,8 +317,8 @@
       "Podpora a <em>FAQ.</em>", "Súkromie, <em>jasne a zrozumiteľne.</em>", "Autorské práva a <em>tvorcovia.</em>", "Stratení v trhline?"
     ],
     hu: [
-      "Kezdőlap", "Előzetes", "Játékmenet", "Képernyőképek", "Lények", "Barlangok és Módok", "Irányítás",
-      "Menü", "Támogatás", "Adatvédelem", "Szerzői jog és stáblista", "Nyelv választása",
+      "Kezdőlap", "Előzetes", "Játékmenet", "Képernyőképek", "Lények", "Barlangok", "Irányítás",
+      "Menü", "Támogatás", "Adatvédelem", "Szerzői jog", "Nyelv választása",
       "Elérhető Windowsra · 215 igazolt barlang", "A sziklák zuhannak.", "A drágakövek emelkednek.", "Áss okosan · Ragyogj fényesen.",
       "Merülj alá Milo Coppercap oldalán egy víz alatti logikai kalandba, ahol a nehéz sziklák lezuhannak, a kristályok és aknák a plafon felé szállnak, és minden levegővétel számít.",
       "Letöltés a Microsoft Store-ból", "Előzetes megtekintése", "◆ Barlangok", "Mind nyitva induláskor", "◈ Vadászok", "5 part menti + 3 mélytengeri",
@@ -335,8 +335,8 @@
       "Játékostámogatás és <em>GYIK.</em>", "Adatvédelem, <em>érthetően.</em>", "Szerzői jog és <em>stáblista.</em>", "Eltévedtél a hasadékban?"
     ],
     ro: [
-      "Acasă", "Trailer", "Gameplay", "Capturi", "Creaturi", "Peșteri și Moduri", "Controale",
-      "Meniu", "Asistență", "Confidențialitate", "Drepturi și credite", "Alege limba",
+      "Acasă", "Trailer", "Gameplay", "Capturi", "Creaturi", "Peșteri", "Controale",
+      "Meniu", "Asistență", "Confidențialitate", "Copyright", "Alege limba",
       "Disponibil pe Windows · 215 peșteri demonstrate", "Bolovanii cad.", "Nestematele urcă.", "Sapă inteligent · Strălucește puternic.",
       "Scufundă-te alături de Milo Coppercap într-o aventură puzzle subacvatică în care bolovanii grei cad, cristalele și minele plutesc spre tavan, iar fiecare respirație contează.",
       "Descarcă din Microsoft Store", "Vezi trailerul", "◆ Peșteri", "Toate deschise de la început", "◈ Vânători", "5 de coastă + 3 abisali",
