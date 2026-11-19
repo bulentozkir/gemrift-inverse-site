@@ -20,7 +20,8 @@ The single workflow in `.github/workflows/static.yml` deploys the site automatic
 - `privacy.html`: tracker-free static site privacy, GitHub Pages hosting, voluntary support contact, and offline local game save behavior.
 - `copyright.html`: ownership, original 215-cave campaign & Milo Coppercap credits, `Baloo 2` SIL Open Font License 1.1 credit, and engine acknowledgements.
 - `404.html`: custom not-found page using project-root `/gemrift-inverse-site/` paths for GitHub Pages.
-- `sitemap.xml`: public page URLs.
+- `sitemap.xml`: canonical public page URLs.
+- `robots.txt`: crawler access policy and sitemap location.
 
 ## Privacy & static assets
 
