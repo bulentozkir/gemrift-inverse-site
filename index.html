@@ -270,14 +270,14 @@
           <div class="section-kicker"><span class="kicker-num">02</span><span>THE INVERSE TWIST</span></div>
           <div class="section-header reveal">
             <h2 id="gameplay-title" data-i18n="secGameplayTitle" data-i18n-html>Opposite gravity.<br><em>Pure arcade tactics.</em></h2>
-            <p data-i18n="secGameplayDesc">Every cave runs on an exact 180 ms deterministic simulation. Water never drains or evaporates—so every silt plug you clear, mine you release, and boulder you drop obeys crystal-clear rules.</p>
+            <p data-i18n="secGameplayDesc">Every cave uses deterministic rules, with pace, clock, and air scaled to your difficulty. Water never drains or evaporates—so every silt plug you clear, mine you release, and boulder you drop obeys crystal-clear rules.</p>
           </div>
 
           <div class="mechanics-layout">
             <aside class="physics-stage reveal" aria-label="Animated diagram comparing downward boulder gravity and upward crystal buoyancy">
               <div class="physics-stage-head">
                 <span>LIVE SIMULATION RULESET · NATIVE-V3</span>
-                <span class="monitor-chip">180ms TICKS</span>
+                <span class="monitor-chip">180ms AT SENIOR</span>
               </div>
 
               <div class="physics-shafts" aria-hidden="true">
@@ -339,10 +339,21 @@
 
               <article class="mechanic-card reveal" data-accent="gold">
                 <span class="mechanic-icon" aria-hidden="true">💡</span>
-                <h3>Live Solution Bulb &amp; Demo</h3>
-                <p>Jump into <strong>Show me the game play</strong> for an interactive tutorial cave, or unlock the toolbar <strong>Bulb</strong> after 9 tries on any cave for step-scrubbable live solution playback.</p>
-                <span class="mechanic-tag">430 BUNDLED JSON PROOFS</span>
+                <h3>Offline Solution Bulb</h3>
+                <p>The toolbar <strong>Bulb</strong> opens immediately in caves <strong>1–20</strong>, and after <strong>19 failed attempts in that cave</strong> for caves <strong>21–215</strong>. All 430 quota and all-gems routes play locally in the game.</p>
+                <span class="mechanic-tag">NO DOWNLOADS · NO LICENCE CHECK</span>
               </article>
+            </div>
+          </div>
+
+          <div class="dodge-callout reveal" id="updates" aria-labelledby="updates-title">
+            <div>
+              <h3 id="updates-title">New in v0.0.8 · A clearer dive</h3>
+              <p>Choose from 30 languages directly on the opening screen with <kbd>L</kbd>, with mirrored placement for right-to-left languages. Take your time with the interactive tutorial's Hold / Auto controls, or study a bundled solution at your own pace.</p>
+            </div>
+            <div class="dodge-badges">
+              <div class="dodge-badge"><b>LIVE SOLUTION REPLAY</b>Pause · step back / forward · 1× / 2× / 4×</div>
+              <div class="dodge-badge"><b>REFINED CAVE AUDIO</b>Filtered music · smoother peaks · nearby cues</div>
             </div>
           </div>
         </div>
@@ -354,7 +365,7 @@
           <div class="section-kicker"><span class="kicker-num">03</span><span>NATIVE CAPTURES</span></div>
           <div class="section-header reveal">
             <h2 id="screenshots-title" data-i18n="secShotsTitle" data-i18n-html>Crisp silhouettes.<br><em>Readable at a glance.</em></h2>
-            <p>Captured directly at 1920×1111 desktop resolution with the high-contrast color-coded capsule toolbar, predator telegraph brackets, and procedural cave palettes.</p>
+            <p>Native in-game captures: 1920×1111 gameplay and interface views, plus a refreshed 1440×900 opening screen from v0.0.8. Explore the color-coded toolbar, predator warnings, and opening-screen language selector.</p>
           </div>
 
           <div class="filter-bar reveal">
@@ -414,7 +425,7 @@
               </figcaption>
             </figure>
 
-            <figure class="shot-card reveal" data-shot-cat="gameplay" data-title="Cave 165/215 — Hadal Breathing Vaults" data-desc="Deep-cavern oxygen routing across dome-capped air pockets, siphon relays, and multi-pin boulder locks.">
+            <figure class="shot-card reveal" data-shot-cat="gameplay" data-title="Cave 162/215 — Hadal Breathing Vaults" data-desc="Deep-cavern oxygen routing across dome-capped air pockets, siphon relays, and multi-pin boulder locks.">
               <button class="shot-trigger" type="button" aria-label="Enlarge screenshot: Hadal Breathing Vaults">
                 <img src="static/images/screenshots/05-gameplay-hadal-breathing-vaults.webp" alt="Gameplay in Hadal Breathing Vaults with deep flooded vaults, air pockets, and multi-stage boulder contraptions." width="1920" height="1111" loading="lazy">
                 <span class="shot-zoom-badge">⤢ ENLARGE</span>
@@ -438,15 +449,15 @@
               </figcaption>
             </figure>
 
-            <figure class="shot-card reveal" data-shot-cat="interface" data-title="Opening Screen — Start, Tutorial &amp; Low-Vision Difficulty Slider" data-desc="Milo Coppercap's animated headlamp portrait, Start Game, Show me the game play, and the numbered 1–5 diamond difficulty selector.">
+            <figure class="shot-card reveal" data-shot-cat="interface" data-title="Opening Screen — 30 Languages &amp; Accessible Difficulty" data-desc="The v0.0.8 opening screen: choose a language with L, start on Junior by default, or launch Show me the game play. The language selector mirrors to the right in RTL languages.">
               <button class="shot-trigger" type="button" aria-label="Enlarge screenshot: Opening Screen">
-                <img src="static/images/screenshots/07-opening-page.webp" alt="Gemrift inverse opening screen with Milo Coppercap, gold Start game button, Show me the game play button, and 1-5 difficulty slider." width="1920" height="1111" loading="lazy">
+                <img src="static/images/screenshots/07-opening-page.webp" alt="Gemrift inverse v0.0.8 opening screen with a top-left Language selector and L shortcut, Milo Coppercap, tutorial and Start game buttons, and Junior selected on the numbered difficulty slider." width="1440" height="900" loading="lazy">
                 <span class="shot-zoom-badge">⤢ ENLARGE</span>
               </button>
               <figcaption class="shot-meta">
                 <span class="shot-rank">OPENING SCREEN</span>
-                <h3>Clean Arcade Launch</h3>
-                <p>Instant keyboard-first launch with gold Start action, tutorial button, and numbered 1–5 difficulty slider.</p>
+                <h3>Your Language, Before You Dive</h3>
+                <p>30-language selector with <kbd>L</kbd> shortcut, gold Start action, tutorial button, and numbered 1–5 difficulty slider.</p>
               </figcaption>
             </figure>
 
@@ -458,7 +469,7 @@
               <figcaption class="shot-meta">
                 <span class="shot-rank">LIVE TUTORIAL</span>
                 <h3>“Show Me The Game Play”</h3>
-                <p>Step-by-step choreographed cave teaching inverse gems, air pockets, mines, and <kbd>R</kbd> rewind.</p>
+                <p>Learn inverse gems, air pockets, mines, and <kbd>R</kbd> rewind. Switch Hold / Auto to pause or resume the guided steps.</p>
               </figcaption>
             </figure>
 
@@ -665,7 +676,7 @@
 
           <div class="dodge-callout reveal">
             <div>
-              <h3>1,096 Proved Open Ambush Encounters &amp; Stylish Dodges</h3>
+              <h3>Proved Open Ambushes in All 215 Caves &amp; Stylish Dodges</h3>
               <p>Every single cave includes open ambush rooms where Milo steps into view, reads the predator's visual &amp; audio telegraph, and climbs clear before the strike lands—setting up the boulder drop while scoring bonus style points.</p>
             </div>
             <div class="dodge-badges">
@@ -707,12 +718,12 @@
                 </div>
               </div>
 
-              <p class="diff-summary" id="diff-summary">Slower pace; about 25% more reaction time and generous oxygen reserves.</p>
+              <p class="diff-summary" id="diff-summary">Slower pace; more reaction time, with the clock and air supply scaled together.</p>
 
               <div class="diff-metrics">
                 <div class="diff-metric">
                   <span>Simulation Pace</span>
-                  <strong id="diff-pace">125% tick window (225 ms)</strong>
+                  <strong id="diff-pace">230 ms ticks · Slower pace</strong>
                 </div>
                 <div class="diff-metric">
                   <span>Exit Door Target</span>
@@ -720,7 +731,7 @@
                 </div>
                 <div class="diff-metric">
                   <span>Countdown Clock</span>
-                  <strong id="diff-clock">150% quota clock · Relaxed default</strong>
+                  <strong id="diff-clock">Quota clock scales with pace · Relaxed default</strong>
                 </div>
                 <div class="diff-metric">
                   <span>Score Weight</span>
@@ -741,9 +752,9 @@
               <article class="mode-card reveal">
                 <div class="mode-card-head">
                   <h3>Sprint Caves Blitz</h3>
-                  <span class="mode-pill">3× SCORE · 45s</span>
+                  <span class="mode-pill">3× SCORE · 45s BASE</span>
                 </div>
-                <p>Toggle <strong>Sprint caves</strong> in Settings to turn every 10th slot (10, 20, … 210) into a single-screen 45-second chain-reaction highway with Chaos Combos and triple score!</p>
+                <p>Toggle <strong>Sprint caves</strong> in Settings to turn every 10th slot (10, 20, … 210) into a single-screen chain reaction with triple score and a 45-second base clock scaled to your difficulty. Sprint rooms have no recorded solution, and their losses do not count toward a cave's Bulb unlock.</p>
               </article>
 
               <article class="mode-card reveal">
@@ -751,7 +762,7 @@
                   <h3>Remixed Creatures Mode</h3>
                   <span class="mode-pill">COASTAL-REMIX</span>
                 </div>
-                <p>Flip on <strong>Remixed creatures</strong> for redesigned predator boss mechanics, 3×3 breathable air pockets from popped bubbles &amp; mines, close-call swim boosts, and dedicated remix leaderboards.</p>
+                <p>Flip on <strong>Remixed creatures</strong> for redesigned predator mechanics, 3×3 breathable air pockets from popped bubbles &amp; mines, close-call swim boosts, and separate local best scores. The Bulb still demonstrates the standard cave as it was proved, not the remix.</p>
               </article>
             </div>
           </div>
@@ -815,7 +826,7 @@
 
               <div class="accessibility-strip" aria-label="Accessibility features">
                 <span class="access-chip">30 Languages + RTL (AR / HE / FA)</span>
-                <span class="access-chip">WCAG High-Contrast Mode</span>
+                <span class="access-chip">High-Contrast Mode</span>
                 <span class="access-chip">Reduced Motion Option</span>
                 <span class="access-chip">Sound Captions</span>
                 <span class="access-chip">Adjustable Grid &amp; Miner Box</span>

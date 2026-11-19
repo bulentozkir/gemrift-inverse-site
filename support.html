@@ -103,13 +103,24 @@
           </details>
 
           <details>
+            <summary>Can I choose my language before starting?</summary>
+            <p>Yes. In v0.0.8, the opening screen has a <strong>Language</strong> selector with the default <kbd>L</kbd> shortcut and all 30 UI and Help languages. It sits at the top left in left-to-right languages and mirrors to the top right for Arabic, Hebrew, and Persian. You can also change the language in Settings.</p>
+          </details>
+
+          <details>
             <summary>How do inverse physics and underwater air work?</summary>
             <p>Heavy boulders always sink downward, while loose gems, black pearls, and waterborne naval mines float upward toward the ceiling. Water stays fixed in its authored cells—digging or blasts never drain a pool—and swimming into dry dome-capped air pockets immediately refills Milo's oxygen tank.</p>
           </details>
 
           <details>
-            <summary>How do Rewind (R), Full Restart (R+R), and the Solution Bulb work?</summary>
-            <p>Pressing <kbd>R</kbd> once—whether Milo died or wedged a rock while alive—rewinds to the last clean checkpoint while keeping earlier dug passages, collected gems, and score. Pressing <kbd>R+R</kbd> twice quickly restarts the cave from tick 0. After 9 failed attempts on any cave, the toolbar <strong>Bulb</strong> icon before Help unlocks live step-by-step playback of that cave's verified solution. You can also launch <strong>Show me the game play</strong> from the Opening screen or Help (<kbd>F1</kbd>).</p>
+            <summary>How do Rewind (R), Full Restart (R+R), and the tutorial work?</summary>
+            <p>Pressing <kbd>R</kbd> once—whether Milo died or wedged a rock while alive—rewinds to the last clean checkpoint while keeping earlier dug passages, collected gems, and score. Pressing <kbd>R</kbd> twice quickly restarts the cave from tick 0. You can launch <strong>Show me the game play</strong> from the opening screen or Help (<kbd>F1</kbd>); its <strong>Hold / Auto</strong> control pauses or resumes automatic guidance, while Next advances a guided step.</p>
+          </details>
+
+          <details>
+            <summary>When does the Solution Bulb unlock, and how does replay work?</summary>
+            <p>The toolbar <strong>Bulb</strong> immediately before Help is available from the start in <strong>caves 1–20</strong>. In <strong>caves 21–215</strong>, it unlocks after <strong>19 failed attempts in that same cave</strong>. A lost run, or starting a run over after your first move, counts; the counter is saved locally per cave and cave version. Clearing a cave does not take an unlocked solution away.</p>
+            <p>The solution runs live in the game: pause, step backward or forward, choose <strong>1× / 2× / 4×</strong>, or replay from the beginning. Junior and Senior show the quota route; Principal, Expert, and Distinguished show the all-gems route. All 430 routes are bundled—there is no walkthrough download, video, or Store licence check.</p>
           </details>
 
           <details>
@@ -119,12 +130,18 @@
 
           <details>
             <summary>What are Remixed Creatures and Sprint Caves?</summary>
-            <p>Both are optional modes in <strong>Settings → Game</strong> with separate high-score boards. <strong>Sprint caves</strong> turns every 10th cave into a single-screen 45-second chain-reaction blitz with 3× score. <strong>Remixed creatures</strong> switches the five coastal predators to the arcade <code>coastal-remix</code> ruleset and adds extra underwater air-pocket mechanics (note: the 215 campaign layouts were proved for standard coastal rules).</p>
+            <p>Both are optional modes in <strong>Settings → Game</strong> with separate local best scores. <strong>Sprint caves</strong> turns every 10th cave into a single-screen chain reaction with 3× score and a 45-second base clock scaled to your difficulty. A sprint is a different room with no recorded solution: its Bulb is disabled and explains why, and sprint losses do not count toward the original cave's 19-failure unlock.</p>
+            <p><strong>Remixed creatures</strong> switches the five coastal predators to the arcade <code>coastal-remix</code> ruleset and adds extra underwater air-pocket mechanics. Its Bulb remains available under the same unlock rules, but demonstrates the standard cave as it was proved rather than the remixed variant.</p>
+          </details>
+
+          <details>
+            <summary>What changed in the latest audio update?</summary>
+            <p>Version 0.0.8 filters high-frequency music noise, smooths loud peaks, improves synthesized creature sounds, and limits distant creature cues so nearby action stays clearer. Music and effects retain independent switches and volume sliders in Settings. If you still hear distortion or dropouts, include your game version and audio device in a support report.</p>
           </details>
 
           <details>
             <summary>What should I include in a bug report?</summary>
-            <p>Include the game version (shown in Credits/installer, e.g. 0.0.7), your Windows version and architecture (x64 or ARM64), the cave number and title, your active difficulty/mode, and the steps to reproduce the issue. Never include passwords, payment details, or private personal data.</p>
+            <p>Include the game version (shown in Credits/installer, e.g. 0.0.8), your Windows version and architecture (x64 or ARM64), the cave number and title, your active difficulty/mode, and the steps to reproduce the issue. Never include passwords, payment details, or private personal data.</p>
           </details>
 
           <div class="contact-card">
@@ -147,7 +164,7 @@
               <option>Website issue</option>
             </select>
             <label for="environment">Game / Windows details <span>(optional)</span></label>
-            <input id="environment" name="environment" type="text" maxlength="160" placeholder="e.g. v0.0.7, Windows 11 x64, Cave 42, Senior">
+            <input id="environment" name="environment" type="text" maxlength="160" placeholder="e.g. v0.0.8, Windows 11 x64, Cave 42, Senior">
             <label for="subject">Subject</label>
             <input id="subject" name="subject" type="text" required maxlength="120" placeholder="Short summary of your question or issue">
             <label for="message">Message</label>

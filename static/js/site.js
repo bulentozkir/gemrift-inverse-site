@@ -343,10 +343,10 @@
       step: 1,
       name: "Junior",
       badge: "DEFAULT · STEP 1 OF 5",
-      summary: "Slower pace; about 25% more reaction time and generous oxygen reserves.",
-      pace: "125% tick window (225 ms)",
+      summary: "Slower pace; more reaction time, with the clock and air supply scaled together.",
+      pace: "230 ms ticks · Slower pace",
       goal: "Standard cave gem quota",
-      clock: "150% quota clock · Relaxed default",
+      clock: "Quota clock scales with pace · Relaxed default",
       credit: "50% score weight"
     },
     {
@@ -354,7 +354,7 @@
       name: "Senior",
       badge: "AUTHORED PACE · STEP 2 OF 5",
       summary: "The cave exactly as authored: crisp 180 ms simulation ticks and standard gem quota.",
-      pace: "100% authored (180 ms)",
+      pace: "180 ms ticks · Authored pace",
       goal: "Standard cave gem quota",
       clock: "100% authored quota clock",
       credit: "100% score weight"
@@ -364,9 +364,9 @@
       name: "Principal",
       badge: "ALL-GEMS TIER · STEP 3 OF 5",
       summary: "Brisker pace and full-clear objective: collect 100% of reachable gems to open the exit.",
-      pace: "92% tick window (160 ms)",
-      goal: "100% collectible gems (MaxRoute)",
-      clock: "Extended all-gems clock scaled",
+      pace: "170 ms ticks · Brisker pace",
+      goal: "100% collectible gems",
+      clock: "All-gems clock scales with pace",
       credit: "125% score weight"
     },
     {
@@ -374,9 +374,9 @@
       name: "Expert",
       badge: "HIGH-SPEED FULL CLEAR · STEP 4 OF 5",
       summary: "Tight reaction windows across every ambush room while harvesting every collectible gem.",
-      pace: "85% tick window (150 ms)",
-      goal: "100% collectible gems (MaxRoute)",
-      clock: "Tighter all-gems countdown",
+      pace: "150 ms ticks · Fast pace",
+      goal: "100% collectible gems",
+      clock: "All-gems clock scales with pace",
       credit: "150% score weight"
     },
     {
@@ -384,9 +384,9 @@
       name: "Distinguished",
       badge: "MASTERY TIER · STEP 5 OF 5",
       summary: "Peak arcade velocity: fastest ticks, proportional air budget, and 100% gem mastery.",
-      pace: "75% tick window (135 ms)",
-      goal: "100% collectible gems (MaxRoute)",
-      clock: "Fastest all-gems mastery clock",
+      pace: "140 ms ticks · Fastest pace",
+      goal: "100% collectible gems",
+      clock: "All-gems clock scales with pace",
       credit: "200% score weight"
     }
   ];
