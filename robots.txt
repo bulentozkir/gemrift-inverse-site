@@ -1,3 +1,5 @@
+# Crawlers only read robots.txt at the origin root, not a project subdirectory.
+# Submit this project's sitemap directly to search engines; see README.md.
 User-agent: *
 Allow: /
 

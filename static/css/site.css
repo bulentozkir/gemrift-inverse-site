@@ -1,6 +1,7 @@
 @font-face {
   font-family: "Baloo 2";
-  src: url("../fonts/Baloo2.ttf") format("truetype");
+  src: url("../fonts/Baloo2.woff2") format("woff2"),
+       url("../fonts/Baloo2.ttf") format("truetype");
   font-weight: 400 800;
   font-style: normal;
   font-display: swap;
@@ -815,6 +816,14 @@ html[data-theme="light"] .button-secondary {
   font-size: clamp(44px, 5.4vw, 72px);
   font-weight: 800;
   line-height: 0.98;
+}
+
+.hero h1 .hero-game-name {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--text-main);
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.2;
 }
 
 .hero h1 .hero-line-cyan {
@@ -2445,6 +2454,28 @@ code {
    ========================================================================== */
 .document-page {
   padding-block: clamp(48px, 6vw, 84px) 96px;
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.breadcrumbs li + li::before {
+  content: "/";
+  margin-inline-end: 8px;
+}
+
+.breadcrumbs a {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .document-heading {

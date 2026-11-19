@@ -615,7 +615,7 @@
           const sameSite =
             url.protocol === window.location.protocol &&
             (url.origin === window.location.origin || url.protocol === "file:");
-          if (sameSite) {
+          if (sameSite && (url.pathname.endsWith("/") || url.pathname.endsWith(".html"))) {
             if (theme === "light") url.searchParams.set("scoutTheme", "light");
             else url.searchParams.delete("scoutTheme");
 

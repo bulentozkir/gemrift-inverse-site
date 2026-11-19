@@ -52,7 +52,7 @@
         const sameSite =
           url.protocol === window.location.protocol &&
           (url.origin === window.location.origin || url.protocol === "file:");
-        if (sameSite) {
+        if (sameSite && (url.pathname.endsWith("/") || url.pathname.endsWith(".html"))) {
           if (theme === "light") {
             url.searchParams.set("scoutTheme", "light");
           } else {
@@ -191,14 +191,18 @@
     const gifSrc = trailerImg.getAttribute("data-gif-src") || trailerImg.getAttribute("src") || "";
     const posterSrc = trailerImg.getAttribute("data-poster-src") || gifSrc;
     let isPlaying = !reducedMotionQuery.matches;
+    let isVisible = !("IntersectionObserver" in window);
     let isSoundOn = false;
 
     const syncTrailerState = (restartGif = false) => {
-      if (isPlaying) {
+      const isActive = isPlaying && isVisible && !document.hidden;
+      if (isActive) {
         if (restartGif) {
           // Force browser to restart animated GIF from frame 0 in sync with audio
           trailerImg.setAttribute("src", posterSrc);
-          requestAnimationFrame(() => trailerImg.setAttribute("src", gifSrc));
+          requestAnimationFrame(() => {
+            if (isPlaying && isVisible && !document.hidden) trailerImg.setAttribute("src", gifSrc);
+          });
         } else if (trailerImg.getAttribute("src") !== gifSrc) {
           trailerImg.setAttribute("src", gifSrc);
         }
@@ -224,6 +228,10 @@
 
       trailerStage?.classList.toggle("is-paused", !isPlaying);
       trailerStage?.classList.toggle("is-sound-on", isPlaying && isSoundOn);
+      trailerStage?.setAttribute(
+        "aria-label",
+        !isPlaying ? t("playGif", "Play GIF") : isSoundOn ? t("muteSound", "Mute Sound") : t("enableSound", "Enable Sound")
+      );
 
       if (trailerSoundToggle) {
         trailerSoundToggle.setAttribute("aria-pressed", String(isSoundOn));
@@ -242,9 +250,13 @@
       }
 
       if (trailerAudio instanceof HTMLAudioElement) {
-        if (isPlaying && isSoundOn) {
-          trailerAudio.play().catch(() => {
+        if (isActive && isSoundOn) {
+          trailerAudio.play().catch((error) => {
+            if (error.name === "AbortError") return;
+            console.warn("Trailer audio could not start.", error);
             isSoundOn = false;
+            syncTrailerState(false);
+            if (trailerBadge) trailerBadge.textContent = "AUDIO UNAVAILABLE · SILENT TRAILER";
           });
         } else {
           trailerAudio.pause();
@@ -267,6 +279,18 @@
 
     syncTrailerState(false);
 
+    if ("IntersectionObserver" in window) {
+      const trailerObserver = new IntersectionObserver(
+        (entries) => {
+          isVisible = entries[0].isIntersecting;
+          syncTrailerState(false);
+        },
+        { rootMargin: "160px 0px" }
+      );
+      trailerObserver.observe(trailerStage || trailerImg);
+    }
+    document.addEventListener("visibilitychange", () => syncTrailerState(false));
+
     trailerToggle.addEventListener("click", () => {
       isPlaying = !isPlaying;
       if (isPlaying && isSoundOn && trailerAudio instanceof HTMLAudioElement) {
@@ -280,19 +304,26 @@
     window.addEventListener("gemrift:langchange", () => syncTrailerState(false));
 
     trailerSoundToggle?.addEventListener("click", toggleSound);
-    trailerStage?.addEventListener("click", () => {
+    const activateTrailer = () => {
       if (!isPlaying) {
         isPlaying = true;
         syncTrailerState(true);
       } else {
         toggleSound();
       }
+    };
+    trailerStage?.addEventListener("click", activateTrailer);
+    trailerStage?.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        activateTrailer();
+      }
     });
 
     if (beatPills.length > 0 && !reducedMotionQuery.matches) {
       let beatIdx = 0;
       setInterval(() => {
-        if (!isPlaying || document.hidden) return;
+        if (!isPlaying || !isVisible || document.hidden) return;
         beatIdx = (beatIdx + 1) % beatPills.length;
         beatPills.forEach((pill, i) => pill.classList.toggle("is-current", i === beatIdx));
       }, 3600);
@@ -497,7 +528,9 @@
 
     shotCards.forEach((card) => {
       const trigger = card.querySelector(".shot-trigger");
-      trigger?.addEventListener("click", () => {
+      trigger?.addEventListener("click", (event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
         const list = visibleShots();
         const idx = list.indexOf(card);
         showShot(idx >= 0 ? idx : 0);
@@ -512,7 +545,10 @@
       if (e.target === lightbox) lightbox.close();
     });
     lightbox.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        lightbox.close();
+      } else if (e.key === "ArrowLeft") {
         e.preventDefault();
         showShot(currentShotIdx - 1);
       } else if (e.key === "ArrowRight") {

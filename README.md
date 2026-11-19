@@ -4,7 +4,7 @@ Official static GitHub Pages website for **Gemrift inverse — Underwater Puzzle
 
 ## Local preview
 
-Open `index.html` directly, or serve this folder with any static file server (for example `python -m http.server 8080`). There is no build step, bundler, or runtime dependency.
+Open `index.html` directly, or serve this folder with any static file server (for example `python -m http.server 8080 --bind 127.0.0.1`). There is no build step, bundler, or runtime dependency.
 
 ## GitHub Pages deployment
 
@@ -20,8 +20,34 @@ The single workflow in `.github/workflows/static.yml` deploys the site automatic
 - `privacy.html`: tracker-free static site privacy, GitHub Pages hosting, voluntary support contact, and offline local game save behavior.
 - `copyright.html`: ownership, original 215-cave campaign & Milo Coppercap credits, `Baloo 2` SIL Open Font License 1.1 credit, and engine acknowledgements.
 - `404.html`: custom not-found page using project-root `/gemrift-inverse-site/` paths for GitHub Pages.
-- `sitemap.xml`: canonical public page URLs.
-- `robots.txt`: crawler access policy and sitemap location.
+- `sitemap.xml`: canonical public page URLs and original content images.
+- `robots.txt`: crawler policy template and sitemap location; see the GitHub Pages limitation below.
+
+## SEO and performance
+
+- All four public pages have distinct, descriptive titles and summaries, matching Open Graph and Twitter cards, accurate social-image dimensions, large-image preview permission, and absolute HTTPS canonicals. The homepage heading includes the game name. The not-found page remains `noindex`.
+- Static JSON-LD connects the website, homepage, Windows game, publisher, and key art. Supporting pages identify their purpose and include visible breadcrumbs matching their `BreadcrumbList` data. Prices, ratings, reviews, and release dates are not invented, and the GIF is not misrepresented as a video rich result.
+- English is the canonical content language. `lang` and `scoutTheme` are optional interface preferences, not separate indexable landing pages. Do not add `hreflang` alternates until there are independently addressable, substantially translated pages with matching canonicals and reciprocal language links.
+- Crawlable screenshot links work without JavaScript and open native-resolution captures. Responsive WebP previews reduce downloads without replacing those originals. The hero remains high priority, while the gallery and closed lightbox are lazy-loaded.
+- The trailer starts with a lightweight poster. JavaScript loads the animated GIF only near the viewport, suspends it offscreen or in a hidden tab, respects reduced motion, and fetches audio only after interaction. A direct GIF link remains available without JavaScript.
+- The self-hosted WOFF2 font retains the complete original character coverage, with the original TTF as a fallback. Small header/favicon artwork and an Apple touch icon are derived from the existing game icon.
+
+### Search engine setup after publishing
+
+1. Verify the URL-prefix property `https://bulentozkir.github.io/gemrift-inverse-site/` in Google Search Console and the site in Bing Webmaster Tools using their supported ownership-verification methods.
+2. Submit `https://bulentozkir.github.io/gemrift-inverse-site/sitemap.xml` directly in both tools. Inspect the homepage and support page after deployment, and request indexing if appropriate.
+3. **GitHub project Pages limitation:** crawlers look for `https://bulentozkir.github.io/robots.txt`, not this project's `/gemrift-inverse-site/robots.txt`. This repository cannot configure that origin-root file. If you also control the user-site repository, add this project's `Sitemap:` directive there without removing policies for other projects. The sitemap and page-level indexing directives here remain useful independently.
+4. Monitor indexing and real-user Core Web Vitals after recrawling. Target LCP at or below 2.5 seconds, INP at or below 200 milliseconds, and CLS at or below 0.1 at the 75th percentile. Local checks cannot guarantee search rankings, rich results, or field performance.
+
+### Validation
+
+Run the dependency-free regression checks with Python 3:
+
+```text
+python -B -m unittest discover -s tests -v
+```
+
+These checks cover canonical/sitemap consistency, social previews, linked structured data, content-image discovery, responsive asset references, crawlable gallery fallbacks, and initial media/font delivery. The Pages workflow runs them before deployment; test files are not included in the published site.
 
 ## Game content sync
 
@@ -34,4 +60,4 @@ The site reflects **v0.0.8**, rebuilt November 18, 2026, from the sibling `C:\Gi
 
 ## Privacy & static assets
 
-All fonts (`static/fonts/Baloo2.ttf`), artwork, WebP screenshots, trailer audio (`static/audio/gemrift-inverse-trailer.mp3`), and the optimized animated trailer GIF are self-hosted in `static/`. No third-party scripts, analytics, cookies, or browser storage APIs are used; theme and 30-language UI switching use optional `scoutTheme` and `lang` URL query parameters.
+All fonts (`static/fonts/Baloo2.woff2`, with the original TTF fallback), artwork, responsive WebP screenshots, trailer audio (`static/audio/gemrift-inverse-trailer.mp3`), and the animated trailer GIF are self-hosted in `static/`. The original Baloo 2 font license remains alongside both font formats. No third-party scripts, analytics, cookies, or browser storage APIs are used; theme and 30-language UI switching use optional `scoutTheme` and `lang` URL query parameters.
